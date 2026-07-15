@@ -3,7 +3,6 @@
 import FloralLayer from "@/components/FloralLayer";
 import InvitationButton from "@/components/InvitationButton";
 import MusicPlayer from "@/components/MusicPlayer";
-import PhotoBloom from "@/components/PhotoBloom";
 import { useCoverRefs } from "@/hooks/useCoverRefs";
 import { useIdleMotion } from "@/hooks/useIdleMotion";
 import { useOpenInvitation } from "@/hooks/useOpenInvitation";
@@ -101,30 +100,37 @@ export default function Hero() {
           priority
           className="pointer-events-none absolute left-1/2 top-0 w-[92%] max-w-2xl -translate-x-1/2 select-none"
         />
-        <PhotoBloom
+        <FloralLayer
           ref={leftTop}
-          src="/images/florals/rose.jpg"
+          src="/floral/left-top.svg"
+          width={300}
+          height={300}
           priority
-          className="pointer-events-none absolute -left-4 -top-4 w-32 drop-shadow-[0_14px_28px_rgba(99,72,28,0.35)] select-none sm:w-44 md:w-56"
+          className="pointer-events-none absolute left-0 top-0 w-32 select-none sm:w-44 md:w-56"
         />
-        <PhotoBloom
+        <FloralLayer
           ref={rightTop}
-          src="/images/florals/peony.jpg"
+          src="/floral/left-top.svg"
+          width={300}
+          height={300}
           priority
-          className="pointer-events-none absolute -right-4 -top-4 w-32 drop-shadow-[0_14px_28px_rgba(99,72,28,0.35)] select-none sm:w-44 md:w-56"
+          className="pointer-events-none absolute right-0 top-0 w-32 -scale-x-100 select-none sm:w-44 md:w-56"
         />
 
         {/* smaller accent blooms + gold — bottom corners */}
-        <PhotoBloom
+        <FloralLayer
           ref={leftBottom}
-          src="/images/florals/hydrangea.jpg"
-          className="pointer-events-none absolute -bottom-4 -left-4 w-24 drop-shadow-[0_14px_28px_rgba(99,72,28,0.35)] select-none sm:w-32 md:w-36"
+          src="/floral/left-bottom.svg"
+          width={220}
+          height={220}
+          className="pointer-events-none absolute bottom-0 left-0 w-24 select-none sm:w-32 md:w-36"
         />
-        <PhotoBloom
+        <FloralLayer
           ref={rightBottom}
-          src="/images/florals/magnolia.jpg"
-          objectPosition="50% 30%"
-          className="pointer-events-none absolute -bottom-4 -right-4 w-24 drop-shadow-[0_14px_28px_rgba(99,72,28,0.35)] select-none sm:w-32 md:w-36"
+          src="/floral/left-bottom.svg"
+          width={220}
+          height={220}
+          className="pointer-events-none absolute bottom-0 right-0 w-24 -scale-x-100 select-none sm:w-32 md:w-36"
         />
 
         {/* floating gold particles */}
