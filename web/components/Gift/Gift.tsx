@@ -65,7 +65,7 @@ export default function Gift() {
                 className={[
                   "mt-4 cursor-pointer rounded-full border px-6 py-2.5 text-[10px] font-medium uppercase tracking-[0.18em] transition-colors",
                   copiedIndex === i
-                    ? "border-sage-dark bg-sage-dark text-warm-white"
+                    ? "border-sage-dark bg-sage-dark text-paper"
                     : "border-gold/40 bg-warm-white/70 text-ink-soft hover:border-gold",
                 ].join(" ")}
               >

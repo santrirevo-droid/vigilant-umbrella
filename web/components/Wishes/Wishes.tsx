@@ -66,7 +66,7 @@ export default function Wishes() {
                   className="rounded-2xl border border-gold/25 bg-cream/60 px-5 py-4"
                 >
                   <div className="flex items-center gap-3">
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gold font-display text-base text-warm-white">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gold font-display text-base text-paper">
                       {wish.name.trim().charAt(0).toUpperCase() || "?"}
                     </span>
                     <div className="min-w-0">

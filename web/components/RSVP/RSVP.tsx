@@ -81,7 +81,7 @@ export default function RSVP() {
                   className={[
                     "flex-1 cursor-pointer rounded-xl border px-3 py-3 text-xs font-medium uppercase tracking-[0.14em] transition-colors",
                     attend === value
-                      ? "border-gold bg-gold text-warm-white"
+                      ? "border-gold bg-gold text-paper"
                       : "border-gold/30 bg-warm-white text-ink-mute",
                   ].join(" ")}
                 >
@@ -131,7 +131,7 @@ export default function RSVP() {
           <button
             data-reveal
             type="submit"
-            className="mt-1 cursor-pointer rounded-xl bg-gold py-3.5 text-xs font-medium uppercase tracking-[0.22em] text-warm-white shadow-[0_10px_26px_-10px_rgba(169,131,74,0.55)] transition-opacity hover:opacity-90"
+            className="mt-1 cursor-pointer rounded-xl bg-gold py-3.5 text-xs font-medium uppercase tracking-[0.22em] text-paper shadow-[0_10px_26px_-10px_rgba(169,131,74,0.55)] transition-opacity hover:opacity-90"
           >
             {justSent ? "Terkirim, terima kasih" : "Kirim Konfirmasi"}
           </button>

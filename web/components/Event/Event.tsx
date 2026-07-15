@@ -42,9 +42,9 @@ export default function Event() {
             href={venue.mapsUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-6 inline-flex items-center gap-2 rounded-full bg-gold px-7 py-3 text-[11px] font-medium uppercase tracking-[0.2em] text-warm-white shadow-[0_10px_26px_-10px_rgba(169,131,74,0.55)] transition-opacity hover:opacity-90"
+            className="mt-6 inline-flex items-center gap-2 rounded-full bg-gold px-7 py-3 text-[11px] font-medium uppercase tracking-[0.2em] text-paper shadow-[0_10px_26px_-10px_rgba(169,131,74,0.55)] transition-opacity hover:opacity-90"
           >
-            <span className="h-1.5 w-1.5 rounded-full bg-warm-white" />
+            <span className="h-1.5 w-1.5 rounded-full bg-paper" />
             Lihat Lokasi
           </a>
         </div>

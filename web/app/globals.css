@@ -1,10 +1,11 @@
 @import "tailwindcss";
 
 :root {
-  /* Vibrant Botanical Luxury v2 */
-  --warm-white: #f8f3ea;
-  --cream: #f5ecd9;
-  --beige: #e7d6c3;
+  /* Vibrant Botanical Luxury v2 — bold pink-red background */
+  --warm-white: #e28a98;
+  --cream: #efb4be;
+  --beige: #d46b7c;
+  --paper: #fff7f5;
   --gold: #c89b3c;
   --gold-light: #d8af47;
   --gold-dark: #9c7728;
@@ -28,6 +29,7 @@
   --color-warm-white: var(--warm-white);
   --color-cream: var(--cream);
   --color-beige: var(--beige);
+  --color-paper: var(--paper);
   --color-gold: var(--gold);
   --color-gold-light: var(--gold-light);
   --color-gold-dark: var(--gold-dark);

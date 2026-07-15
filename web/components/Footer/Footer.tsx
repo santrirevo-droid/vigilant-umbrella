@@ -30,11 +30,11 @@ export default function Footer() {
       />
 
       <div className="relative mx-auto max-w-md">
-        <p data-reveal className="font-display text-base italic text-warm-white/80">
+        <p data-reveal className="font-display text-base italic text-paper/80">
           Atas kehadiran dan doa restu Bapak/Ibu/Saudara/i, kami
           sekeluarga mengucapkan terima kasih.
         </p>
-        <p data-reveal className="mt-3 font-display text-base italic text-warm-white/80">
+        <p data-reveal className="mt-3 font-display text-base italic text-paper/80">
           Wassalamu&apos;alaikum Warahmatullahi Wabarakatuh
         </p>
 
@@ -43,18 +43,18 @@ export default function Footer() {
         </div>
 
         <h2 data-reveal className="mt-2 flex flex-col items-center gap-1">
-          <span className="font-display text-[clamp(2.5rem,13vw,4.5rem)] font-medium leading-none text-warm-white">
+          <span className="font-display text-[clamp(2.5rem,13vw,4.5rem)] font-medium leading-none text-paper">
             {couple.groom.shortName}
           </span>
           <span className="my-0.5 font-accent text-lg text-gold-light">
             &amp;
           </span>
-          <span className="font-display text-[clamp(2.5rem,13vw,4.5rem)] font-medium leading-none text-warm-white">
+          <span className="font-display text-[clamp(2.5rem,13vw,4.5rem)] font-medium leading-none text-paper">
             {couple.bride.shortName}
           </span>
         </h2>
 
-        <p data-reveal className="mt-10 font-accent text-[10px] uppercase tracking-[0.3em] text-warm-white/40">
+        <p data-reveal className="mt-10 font-accent text-[10px] uppercase tracking-[0.3em] text-paper/40">
           Made with GSAP &amp; Lenis
         </p>
       </div>

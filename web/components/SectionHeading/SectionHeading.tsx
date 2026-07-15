@@ -36,7 +36,7 @@ export default function SectionHeading({
         <h2
           className={[
             "font-display text-4xl leading-tight sm:text-5xl",
-            dark ? "text-warm-white" : "text-ink",
+            dark ? "text-paper" : "text-ink",
           ].join(" ")}
         >
           {title}
