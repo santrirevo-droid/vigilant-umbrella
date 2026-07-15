@@ -72,6 +72,186 @@
       <span class="petal" style="left:90%;--sway:20px;animation-duration:18s;animation-delay:2.5s;"><svg width="13" height="13" viewBox="0 0 16 16"><path d="M8 1 C12 3 15 7 8 15 C1 7 4 3 8 1Z" fill="#A84F57" opacity=".7"/></svg></span>
     </div>
 
+    <!-- ============ OPENING STACK (scroll-peel) ============ -->
+    <div class="stack">
+
+      <!-- Slide 1: Cover -->
+      <div class="stack-slide stack-slide--cover">
+        <div class="cover" id="cover">
+          <div class="cover-glow cover-glow--a" aria-hidden="true"></div>
+          <div class="cover-glow cover-glow--b" aria-hidden="true"></div>
+
+          <div class="cover-frame cover-frame--outer" aria-hidden="true"></div>
+          <div class="cover-frame cover-frame--inner" aria-hidden="true"></div>
+
+          <!-- cover botanical corners -->
+          <div class="cover-corner cover-corner--tl" aria-hidden="true">
+            <svg width="104" height="104" viewBox="0 0 130 130" fill="none">
+              <use href="#orn-leaf" width="46" height="19" transform="translate(0,8) rotate(38)" style="color:#3F7A6C" opacity=".9"/>
+              <use href="#orn-leaf" width="34" height="15" transform="translate(14,30) rotate(64)" style="color:#7FB5A3" opacity=".85"/>
+              <use href="#orn-rose" width="26" height="26" transform="translate(2,0)"/>
+              <use href="#orn-bud" width="11" height="15" transform="translate(2,40) rotate(-12)"/>
+            </svg>
+          </div>
+          <div class="cover-corner cover-corner--tr" aria-hidden="true">
+            <svg width="104" height="104" viewBox="0 0 130 130" fill="none">
+              <use href="#orn-leaf" width="46" height="19" transform="translate(0,8) rotate(38)" style="color:#3F7A6C" opacity=".9"/>
+              <use href="#orn-leaf" width="34" height="15" transform="translate(14,30) rotate(64)" style="color:#7FB5A3" opacity=".85"/>
+              <use href="#orn-rose" width="26" height="26" transform="translate(2,0)"/>
+              <use href="#orn-bud" width="11" height="15" transform="translate(2,40) rotate(-12)"/>
+            </svg>
+          </div>
+          <div class="cover-corner cover-corner--bl" aria-hidden="true">
+            <svg width="104" height="104" viewBox="0 0 130 130" fill="none">
+              <use href="#orn-leaf" width="46" height="19" transform="translate(0,8) rotate(38)" style="color:#3F7A6C" opacity=".9"/>
+              <use href="#orn-leaf" width="34" height="15" transform="translate(14,30) rotate(64)" style="color:#7FB5A3" opacity=".85"/>
+              <use href="#orn-rose" width="26" height="26" transform="translate(2,0)"/>
+              <use href="#orn-bud" width="11" height="15" transform="translate(2,40) rotate(-12)"/>
+            </svg>
+          </div>
+          <div class="cover-corner cover-corner--br" aria-hidden="true">
+            <svg width="104" height="104" viewBox="0 0 130 130" fill="none">
+              <use href="#orn-leaf" width="46" height="19" transform="translate(0,8) rotate(38)" style="color:#3F7A6C" opacity=".9"/>
+              <use href="#orn-leaf" width="34" height="15" transform="translate(14,30) rotate(64)" style="color:#7FB5A3" opacity=".85"/>
+              <use href="#orn-rose" width="26" height="26" transform="translate(2,0)"/>
+              <use href="#orn-bud" width="11" height="15" transform="translate(2,40) rotate(-12)"/>
+            </svg>
+          </div>
+
+          <div class="cover-top">
+            <div class="eyebrow eyebrow--cover">Wedding Invitation</div>
+
+            <div class="cover-monogram-wrap">
+              <svg class="cover-wreath" viewBox="0 0 172 172" width="172" height="172">
+                <g fill="none" stroke="#7FB5A3" stroke-width="1.1" stroke-linecap="round" opacity=".8">
+                  <path d="M86 12 C52 14 24 42 22 84"/>
+                  <path d="M86 160 C120 158 148 130 150 88"/>
+                </g>
+                <use href="#orn-leaf" width="30" height="12" transform="translate(46,10) rotate(-40)" style="color:#3F7A6C" opacity=".85"/>
+                <use href="#orn-leaf" width="26" height="11" transform="translate(28,30) rotate(-15)" style="color:#7FB5A3" opacity=".8"/>
+                <use href="#orn-leaf" width="26" height="11" transform="translate(112,128) rotate(140)" style="color:#3F7A6C" opacity=".85"/>
+                <use href="#orn-leaf" width="30" height="12" transform="translate(126,108) rotate(165)" style="color:#7FB5A3" opacity=".8"/>
+                <use href="#orn-rose" width="26" height="26" transform="translate(50,18)"/>
+                <use href="#orn-rose" width="20" height="20" transform="translate(18,72)"/>
+                <use href="#orn-rose" width="26" height="26" transform="translate(96,128)"/>
+                <use href="#orn-rose" width="20" height="20" transform="translate(132,80)"/>
+              </svg>
+              <div class="cover-monogram">
+                <div class="cover-monogram-ring" aria-hidden="true"></div>
+                <span>F<span class="cover-monogram-amp">&amp;</span>R</span>
+              </div>
+            </div>
+
+            <h1 class="cover-title">Falah <span class="amp-inline">&amp;</span> Risyqaa</h1>
+
+            <div class="divider divider--tight">
+              <span class="cover-rule"></span>
+              <span class="cover-date">18 · 08 · 2026</span>
+              <span class="cover-rule"></span>
+            </div>
+          </div>
+
+          <div class="cover-guest">
+            <div class="eyebrow eyebrow--to">Kepada Yth. Bapak / Ibu / Saudara/i</div>
+            <div class="cover-guest-name" id="guestName">Bapak / Ibu / Saudara/i</div>
+          </div>
+
+          <button type="button" class="cover-open" id="openBtn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12c0-2.209-1.791-4-4-4s-4 1.791-4 4 1.791 4 4 4 4-1.791 4-4z"/><path d="M4 12c0-2.209 1.791-4 4-4s4 1.791 4 4-1.791 4-4 4-4-1.791-4-4z"/><path d="M12 4c2.209 0 4 1.791 4 4s-1.791 4-4 4-4-1.791-4-4 1.791-4 4-4z"/><path d="M12 20c2.209 0 4-1.791 4-4s-1.791-4-4-4-4 1.791-4-4 1.791-4 4-4z"/></svg>
+            Buka Undangan
+          </button>
+
+          <div class="stack-hint" aria-hidden="true">
+            <span class="stack-hint-text">Geser untuk membuka</span>
+            <span class="stack-hint-arrow">⌄</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2: nature panel — rose hills at dawn -->
+      <div class="stack-slide stack-slide--nature">
+        <div class="nature-panel">
+          <svg class="nature-bg" viewBox="0 0 400 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <defs>
+              <linearGradient id="skyA" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#F8E1D8"/>
+                <stop offset="55%" stop-color="#F1C4BE"/>
+                <stop offset="100%" stop-color="#E7B9B6"/>
+              </linearGradient>
+              <radialGradient id="sunA" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#FDEEE2"/>
+                <stop offset="60%" stop-color="#E8A79C"/>
+                <stop offset="100%" stop-color="#E8A79C" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <rect width="400" height="600" fill="url(#skyA)"/>
+            <circle cx="200" cy="230" r="170" fill="url(#sunA)"/>
+            <circle cx="200" cy="230" r="56" fill="#F3D2BE"/>
+            <path d="M64 150 q10 -10 20 0 q10 -10 20 0" stroke="#9B6C63" stroke-width="2" fill="none" stroke-linecap="round" opacity=".55"/>
+            <path d="M296 190 q8 -8 16 0 q8 -8 16 0" stroke="#9B6C63" stroke-width="2" fill="none" stroke-linecap="round" opacity=".45"/>
+            <path d="M0 380 Q100 320 200 360 T400 340 V600 H0 Z" fill="#E3ACA6"/>
+            <path d="M0 440 Q120 380 220 420 T400 400 V600 H0 Z" fill="#C98A84"/>
+            <path d="M0 500 Q140 440 240 480 T400 460 V600 H0 Z" fill="#4F8577"/>
+            <g transform="translate(66,466)">
+              <rect x="-2" y="20" width="4" height="26" fill="#3F7A6C"/>
+              <circle cx="0" cy="8" r="16" fill="#5C9C8A"/>
+              <circle cx="-11" cy="18" r="11" fill="#5C9C8A"/>
+              <circle cx="11" cy="18" r="11" fill="#5C9C8A"/>
+            </g>
+            <use href="#orn-rose" width="30" height="30" transform="translate(316,498)"/>
+            <use href="#orn-rose" width="20" height="20" transform="translate(38,536)"/>
+          </svg>
+          <div class="nature-copy">
+            <div class="eyebrow eyebrow--cover">Sebuah Perjalanan Dimulai</div>
+            <p class="nature-tagline">Dua hati yang saling menemukan jalan pulang.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3: nature panel — blossom meadow -->
+      <div class="stack-slide stack-slide--nature">
+        <div class="nature-panel">
+          <svg class="nature-bg" viewBox="0 0 400 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <defs>
+              <linearGradient id="skyB" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#FDEDE7"/>
+                <stop offset="100%" stop-color="#F3D3CD"/>
+              </linearGradient>
+              <linearGradient id="groundB" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#6FA894"/>
+                <stop offset="100%" stop-color="#3F7A6C"/>
+              </linearGradient>
+            </defs>
+            <rect width="400" height="600" fill="url(#skyB)"/>
+            <ellipse cx="90" cy="120" rx="46" ry="16" fill="#FFFFFF" opacity=".5"/>
+            <ellipse cx="300" cy="90" rx="38" ry="13" fill="#FFFFFF" opacity=".4"/>
+            <path d="M0 420 Q200 360 400 420 V600 H0 Z" fill="url(#groundB)"/>
+            <use href="#orn-rose" width="26" height="26" transform="translate(42,428)"/>
+            <use href="#orn-rose" width="18" height="18" transform="translate(92,468)"/>
+            <use href="#orn-rose" width="22" height="22" transform="translate(152,438)"/>
+            <use href="#orn-rose" width="16" height="16" transform="translate(212,478)"/>
+            <use href="#orn-rose" width="28" height="28" transform="translate(270,433)"/>
+            <use href="#orn-rose" width="18" height="18" transform="translate(330,463)"/>
+            <use href="#orn-bud" width="14" height="18" transform="translate(66,452) rotate(-8)"/>
+            <use href="#orn-bud" width="14" height="18" transform="translate(190,458) rotate(6)"/>
+            <use href="#orn-bud" width="14" height="18" transform="translate(300,468) rotate(-4)"/>
+            <g transform="translate(-10,538)">
+              <use href="#orn-rose" width="60" height="60"/>
+              <use href="#orn-leaf" width="50" height="20" transform="translate(30,26) rotate(20)" style="color:#3F7A6C"/>
+            </g>
+            <g transform="translate(340,538) scale(-1,1)">
+              <use href="#orn-rose" width="60" height="60"/>
+              <use href="#orn-leaf" width="50" height="20" transform="translate(30,26) rotate(20)" style="color:#3F7A6C"/>
+            </g>
+          </svg>
+          <div class="nature-copy">
+            <div class="eyebrow eyebrow--cover">Menuju Hari Bahagia</div>
+            <p class="nature-tagline">Dengan penuh syukur, kami mengundang Anda merayakannya bersama kami.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- ============ MAIN CONTENT ============ -->
     <div>
       <!-- Opening / Salam -->
@@ -337,94 +517,6 @@
           <div class="closing-names">Falah &amp; Risyqaa</div>
         </div>
       </section>
-    </div>
-
-    <!-- ============ COVER ============ -->
-    <div class="cover-outer" id="cover">
-    <div class="cover">
-      <div class="cover-glow cover-glow--a" aria-hidden="true"></div>
-      <div class="cover-glow cover-glow--b" aria-hidden="true"></div>
-
-      <div class="cover-frame cover-frame--outer" aria-hidden="true"></div>
-      <div class="cover-frame cover-frame--inner" aria-hidden="true"></div>
-
-      <!-- cover botanical corners -->
-      <div class="cover-corner cover-corner--tl" aria-hidden="true">
-        <svg width="104" height="104" viewBox="0 0 130 130" fill="none">
-          <use href="#orn-leaf" width="46" height="19" transform="translate(0,8) rotate(38)" style="color:#3F7A6C" opacity=".9"/>
-          <use href="#orn-leaf" width="34" height="15" transform="translate(14,30) rotate(64)" style="color:#7FB5A3" opacity=".85"/>
-          <use href="#orn-rose" width="26" height="26" transform="translate(2,0)"/>
-          <use href="#orn-bud" width="11" height="15" transform="translate(2,40) rotate(-12)"/>
-        </svg>
-      </div>
-      <div class="cover-corner cover-corner--tr" aria-hidden="true">
-        <svg width="104" height="104" viewBox="0 0 130 130" fill="none">
-          <use href="#orn-leaf" width="46" height="19" transform="translate(0,8) rotate(38)" style="color:#3F7A6C" opacity=".9"/>
-          <use href="#orn-leaf" width="34" height="15" transform="translate(14,30) rotate(64)" style="color:#7FB5A3" opacity=".85"/>
-          <use href="#orn-rose" width="26" height="26" transform="translate(2,0)"/>
-          <use href="#orn-bud" width="11" height="15" transform="translate(2,40) rotate(-12)"/>
-        </svg>
-      </div>
-      <div class="cover-corner cover-corner--bl" aria-hidden="true">
-        <svg width="104" height="104" viewBox="0 0 130 130" fill="none">
-          <use href="#orn-leaf" width="46" height="19" transform="translate(0,8) rotate(38)" style="color:#3F7A6C" opacity=".9"/>
-          <use href="#orn-leaf" width="34" height="15" transform="translate(14,30) rotate(64)" style="color:#7FB5A3" opacity=".85"/>
-          <use href="#orn-rose" width="26" height="26" transform="translate(2,0)"/>
-          <use href="#orn-bud" width="11" height="15" transform="translate(2,40) rotate(-12)"/>
-        </svg>
-      </div>
-      <div class="cover-corner cover-corner--br" aria-hidden="true">
-        <svg width="104" height="104" viewBox="0 0 130 130" fill="none">
-          <use href="#orn-leaf" width="46" height="19" transform="translate(0,8) rotate(38)" style="color:#3F7A6C" opacity=".9"/>
-          <use href="#orn-leaf" width="34" height="15" transform="translate(14,30) rotate(64)" style="color:#7FB5A3" opacity=".85"/>
-          <use href="#orn-rose" width="26" height="26" transform="translate(2,0)"/>
-          <use href="#orn-bud" width="11" height="15" transform="translate(2,40) rotate(-12)"/>
-        </svg>
-      </div>
-
-      <div class="cover-top">
-        <div class="eyebrow eyebrow--cover">Wedding Invitation</div>
-
-        <div class="cover-monogram-wrap">
-          <svg class="cover-wreath" viewBox="0 0 172 172" width="172" height="172">
-            <g fill="none" stroke="#7FB5A3" stroke-width="1.1" stroke-linecap="round" opacity=".8">
-              <path d="M86 12 C52 14 24 42 22 84"/>
-              <path d="M86 160 C120 158 148 130 150 88"/>
-            </g>
-            <use href="#orn-leaf" width="30" height="12" transform="translate(46,10) rotate(-40)" style="color:#3F7A6C" opacity=".85"/>
-            <use href="#orn-leaf" width="26" height="11" transform="translate(28,30) rotate(-15)" style="color:#7FB5A3" opacity=".8"/>
-            <use href="#orn-leaf" width="26" height="11" transform="translate(112,128) rotate(140)" style="color:#3F7A6C" opacity=".85"/>
-            <use href="#orn-leaf" width="30" height="12" transform="translate(126,108) rotate(165)" style="color:#7FB5A3" opacity=".8"/>
-            <use href="#orn-rose" width="26" height="26" transform="translate(50,18)"/>
-            <use href="#orn-rose" width="20" height="20" transform="translate(18,72)"/>
-            <use href="#orn-rose" width="26" height="26" transform="translate(96,128)"/>
-            <use href="#orn-rose" width="20" height="20" transform="translate(132,80)"/>
-          </svg>
-          <div class="cover-monogram">
-            <div class="cover-monogram-ring" aria-hidden="true"></div>
-            <span>F<span class="cover-monogram-amp">&amp;</span>R</span>
-          </div>
-        </div>
-
-        <h1 class="cover-title">Falah <span class="amp-inline">&amp;</span> Risyqaa</h1>
-
-        <div class="divider divider--tight">
-          <span class="cover-rule"></span>
-          <span class="cover-date">18 · 08 · 2026</span>
-          <span class="cover-rule"></span>
-        </div>
-      </div>
-
-      <div class="cover-guest">
-        <div class="eyebrow eyebrow--to">Kepada Yth. Bapak / Ibu / Saudara/i</div>
-        <div class="cover-guest-name" id="guestName">Bapak / Ibu / Saudara/i</div>
-      </div>
-
-      <button type="button" class="cover-open" id="openBtn">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12c0-2.209-1.791-4-4-4s-4 1.791-4 4 1.791 4 4 4 4-1.791 4-4z"/><path d="M4 12c0-2.209 1.791-4 4-4s4 1.791 4 4-1.791 4-4 4-4-1.791-4-4z"/><path d="M12 4c2.209 0 4 1.791 4 4s-1.791 4-4 4-4-1.791-4-4 1.791-4 4-4z"/><path d="M12 20c2.209 0 4-1.791 4-4s-1.791-4-4-4-4 1.791-4-4 1.791-4 4-4z"/></svg>
-        Buka Undangan
-      </button>
-    </div>
     </div>
 
     <!-- ============ MUSIC TOGGLE ============ -->

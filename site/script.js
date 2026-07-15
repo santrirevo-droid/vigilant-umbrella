@@ -33,7 +33,6 @@
     wishCount: el("wishCount"),
     hadirCount: el("hadirCount"),
     wishes: el("wishes"),
-    cover: el("cover"),
     guestName: el("guestName"),
     openBtn: el("openBtn"),
     musicBtn: el("musicBtn"),
@@ -299,17 +298,13 @@
     els.musicBtn.addEventListener("click", toggleMusic);
   }
 
-  // ---------- open invitation ----------
+  // ---------- open invitation (triggered by scrolling past the stack) ----------
+  let opened = false;
   function openInvitation() {
-    els.cover.style.transition = "opacity 1.2s ease-out";
-    els.cover.style.opacity = "0";
-    setTimeout(() => {
-      els.cover.hidden = true;
-    }, 1200);
-
+    if (opened) return;
+    opened = true;
     els.petals.hidden = false;
-    try { document.body.style.overflow = ""; window.scrollTo(0, 0); } catch (e) {}
-    setTimeout(setupReveal, 60);
+    setupReveal();
     if (CONFIG.musicEnabled) {
       els.musicBtn.hidden = false;
       const a = els.audio;
@@ -317,15 +312,37 @@
     }
   }
 
+  function initOpenTrigger() {
+    const firstSection = document.querySelector(".sec--salam");
+    if (!firstSection) return;
+    try {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            openInvitation();
+            observer.disconnect();
+          }
+        });
+      }, { threshold: 0.2 });
+      observer.observe(firstSection);
+    } catch (e) {
+      openInvitation();
+    }
+    if (els.openBtn) {
+      els.openBtn.addEventListener("click", () => {
+        firstSection.scrollIntoView({ behavior: "smooth" });
+      });
+    }
+  }
+
   function init() {
-    try { document.body.style.overflow = "hidden"; } catch (e) {}
     initGuestName();
     initCountdown();
     initRsvp();
     initGift();
     initMusic();
     initParallax();
-    els.openBtn.addEventListener("click", openInvitation);
+    initOpenTrigger();
   }
 
   document.addEventListener("DOMContentLoaded", init);
