@@ -1,20 +1,30 @@
 <svg width="800" height="1200" viewBox="0 0 800 1200" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <g fill="#8FA085" opacity="0.5">
-    <path d="M40 180 C56 170 72 176 76 192 C60 200 44 194 40 180Z"/>
-    <path d="M28 420 C46 414 60 424 60 440 C42 446 30 436 28 420Z" transform="rotate(18 44 430)"/>
-    <path d="M52 720 C70 716 82 728 80 744 C62 748 50 736 52 720Z" transform="rotate(-14 66 732)"/>
-    <path d="M30 980 C48 976 60 988 58 1004 C40 1008 28 996 30 980Z"/>
+  <defs>
+    <linearGradient id="lv-a" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#5C9468"/>
+      <stop offset="100%" stop-color="#173D24"/>
+    </linearGradient>
+    <linearGradient id="lv-b" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#5C9468"/>
+      <stop offset="100%" stop-color="#173D24"/>
+    </linearGradient>
+  </defs>
+  <g fill="url(#lv-a)" opacity="0.55">
+    <path d="M40 180 C58 168 78 176 82 194 C64 204 44 196 40 180Z"/>
+    <path d="M28 420 C48 412 64 424 64 442 C44 448 30 436 28 420Z" transform="rotate(18 44 430)"/>
+    <path d="M52 720 C72 714 86 728 84 746 C64 750 50 736 52 720Z" transform="rotate(-14 66 732)"/>
+    <path d="M30 980 C50 974 64 988 62 1006 C42 1010 28 996 30 980Z"/>
   </g>
-  <g fill="#B7C2A8" opacity="0.45">
-    <path d="M760 220 C744 212 728 218 724 234 C740 242 756 236 760 220Z"/>
-    <path d="M772 500 C754 496 742 508 744 524 C762 528 774 516 772 500Z"/>
-    <path d="M748 800 C730 796 718 808 720 824 C738 828 750 816 748 800Z"/>
-    <path d="M764 1040 C746 1038 734 1050 736 1066 C754 1069 766 1057 764 1040Z"/>
+  <g fill="url(#lv-b)" opacity="0.5">
+    <path d="M760 220 C742 210 724 218 720 236 C738 246 756 238 760 220Z"/>
+    <path d="M772 500 C752 494 738 508 740 526 C760 530 774 516 772 500Z"/>
+    <path d="M748 800 C728 794 714 808 716 826 C736 830 750 816 748 800Z"/>
+    <path d="M764 1040 C744 1036 730 1050 732 1068 C752 1071 766 1057 764 1040Z"/>
   </g>
-  <g fill="#C9A96A" opacity="0.55">
-    <circle cx="58" cy="300" r="2.2"/>
-    <circle cx="742" cy="360" r="2.2"/>
-    <circle cx="66" cy="860" r="2"/>
-    <circle cx="736" cy="920" r="2"/>
+  <g fill="#D8AF47" opacity="0.6">
+    <circle cx="58" cy="300" r="2.4"/>
+    <circle cx="742" cy="360" r="2.4"/>
+    <circle cx="66" cy="860" r="2.2"/>
+    <circle cx="736" cy="920" r="2.2"/>
   </g>
 </svg>

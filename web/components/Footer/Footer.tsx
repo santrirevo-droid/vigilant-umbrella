@@ -43,18 +43,18 @@ export default function Footer() {
         </div>
 
         <h2 data-reveal className="mt-2 flex flex-col items-center gap-1">
-          <span className="font-script text-[clamp(2.5rem,13vw,4.5rem)] leading-none text-warm-white">
+          <span className="font-display text-[clamp(2.5rem,13vw,4.5rem)] font-medium leading-none text-warm-white">
             {couple.groom.shortName}
           </span>
-          <span className="my-0.5 font-display text-xl italic text-gold-light">
+          <span className="my-0.5 font-accent text-lg text-gold-light">
             &amp;
           </span>
-          <span className="font-script text-[clamp(2.5rem,13vw,4.5rem)] leading-none text-warm-white">
+          <span className="font-display text-[clamp(2.5rem,13vw,4.5rem)] font-medium leading-none text-warm-white">
             {couple.bride.shortName}
           </span>
         </h2>
 
-        <p data-reveal className="mt-10 text-[10px] uppercase tracking-[0.3em] text-warm-white/40">
+        <p data-reveal className="mt-10 font-accent text-[10px] uppercase tracking-[0.3em] text-warm-white/40">
           Made with GSAP &amp; Lenis
         </p>
       </div>

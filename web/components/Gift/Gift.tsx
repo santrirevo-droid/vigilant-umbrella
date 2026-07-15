@@ -80,18 +80,18 @@ export default function Gift() {
           className="mx-auto mt-6 flex aspect-square w-40 flex-col items-center justify-center gap-2 rounded-2xl border border-white/50 bg-white/35 shadow-[0_18px_44px_-24px_rgba(58,54,46,0.35)] backdrop-blur-md"
         >
           <svg width="56" height="56" viewBox="0 0 56 56" className="opacity-70">
-            <rect x="4" y="4" width="18" height="18" rx="2" fill="none" stroke="#A8834A" strokeWidth="2" />
-            <rect x="34" y="4" width="18" height="18" rx="2" fill="none" stroke="#A8834A" strokeWidth="2" />
-            <rect x="4" y="34" width="18" height="18" rx="2" fill="none" stroke="#A8834A" strokeWidth="2" />
-            <rect x="10" y="10" width="6" height="6" fill="#A8834A" />
-            <rect x="40" y="10" width="6" height="6" fill="#A8834A" />
-            <rect x="10" y="40" width="6" height="6" fill="#A8834A" />
-            <rect x="34" y="34" width="6" height="6" fill="#A8834A" />
-            <rect x="44" y="34" width="6" height="6" fill="#A8834A" />
-            <rect x="34" y="44" width="6" height="6" fill="#A8834A" />
-            <rect x="44" y="44" width="6" height="6" fill="#A8834A" />
+            <rect x="4" y="4" width="18" height="18" rx="2" fill="none" stroke="#9C7728" strokeWidth="2" />
+            <rect x="34" y="4" width="18" height="18" rx="2" fill="none" stroke="#9C7728" strokeWidth="2" />
+            <rect x="4" y="34" width="18" height="18" rx="2" fill="none" stroke="#9C7728" strokeWidth="2" />
+            <rect x="10" y="10" width="6" height="6" fill="#9C7728" />
+            <rect x="40" y="10" width="6" height="6" fill="#9C7728" />
+            <rect x="10" y="40" width="6" height="6" fill="#9C7728" />
+            <rect x="34" y="34" width="6" height="6" fill="#9C7728" />
+            <rect x="44" y="34" width="6" height="6" fill="#9C7728" />
+            <rect x="34" y="44" width="6" height="6" fill="#9C7728" />
+            <rect x="44" y="44" width="6" height="6" fill="#9C7728" />
           </svg>
-          <span className="text-[10px] uppercase tracking-[0.2em] text-ink-mute">
+          <span className="font-accent text-[10px] uppercase tracking-[0.2em] text-ink-mute">
             QRIS
           </span>
         </div>

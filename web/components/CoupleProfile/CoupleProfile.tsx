@@ -38,11 +38,11 @@ export default function CoupleProfile({
       className="relative overflow-hidden bg-warm-white px-6 py-24"
     >
       <FloralLayer
-        src={floralSide === "left" ? "/floral/left-top.svg" : "/floral/right-top.svg"}
-        width={240}
-        height={240}
+        src="/floral/left-top.svg"
+        width={300}
+        height={300}
         className={[
-          "pointer-events-none absolute top-0 w-24 select-none opacity-70 sm:w-32",
+          "pointer-events-none absolute top-0 w-24 select-none opacity-80 sm:w-32",
           floralSide === "left" ? "left-0" : "right-0 -scale-x-100",
         ].join(" ")}
       />
@@ -54,12 +54,12 @@ export default function CoupleProfile({
           data-reveal
           className="mt-2 flex h-32 w-32 items-center justify-center rounded-full border border-gold/60 bg-gradient-to-b from-cream to-beige/60 shadow-[0_18px_40px_-16px_rgba(169,131,74,0.35)] sm:h-36 sm:w-36"
         >
-          <span className="font-script text-6xl text-gold-dark">{initial}</span>
+          <span className="font-display text-6xl font-medium text-gold-dark">{initial}</span>
         </div>
 
         <h3
           data-reveal
-          className="mt-6 max-w-full font-script text-[clamp(2rem,8vw,2.75rem)] leading-tight text-ink"
+          className="mt-6 max-w-full font-display text-[clamp(2rem,8vw,2.75rem)] font-medium leading-tight text-ink"
         >
           {name}
         </h3>

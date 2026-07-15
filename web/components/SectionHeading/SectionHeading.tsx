@@ -20,7 +20,7 @@ export default function SectionHeading({
     >
       <p
         className={[
-          "font-body text-[11px] font-medium uppercase tracking-[0.42em]",
+          "font-accent text-[11px] font-medium uppercase tracking-[0.42em]",
           dark ? "text-gold-light" : "text-gold-dark",
         ].join(" ")}
       >
@@ -35,7 +35,7 @@ export default function SectionHeading({
       {title && (
         <h2
           className={[
-            "font-script text-4xl leading-tight sm:text-5xl",
+            "font-display text-4xl leading-tight sm:text-5xl",
             dark ? "text-warm-white" : "text-ink",
           ].join(" ")}
         >

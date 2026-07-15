@@ -63,7 +63,7 @@ export default function Countdown() {
               >
                 {String(cell.value).padStart(2, "0")}
               </div>
-              <div className="mt-1.5 text-[9.5px] uppercase tracking-[0.18em] text-ink-mute">
+              <div className="mt-1.5 font-accent text-[9.5px] uppercase tracking-[0.18em] text-ink-mute">
                 {cell.label}
               </div>
             </div>

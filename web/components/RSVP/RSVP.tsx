@@ -140,14 +140,14 @@ export default function RSVP() {
         <div data-reveal className="mt-10 flex justify-center gap-10">
           <div>
             <div className="font-display text-3xl text-gold-dark">{wishes.length}</div>
-            <div className="mt-1 text-[10px] uppercase tracking-[0.18em] text-ink-mute">
+            <div className="mt-1 font-accent text-[10px] uppercase tracking-[0.18em] text-ink-mute">
               Ucapan
             </div>
           </div>
           <div className="w-px bg-gold/25" />
           <div>
             <div className="font-display text-3xl text-gold-dark">{hadirCount}</div>
-            <div className="mt-1 text-[10px] uppercase tracking-[0.18em] text-ink-mute">
+            <div className="mt-1 font-accent text-[10px] uppercase tracking-[0.18em] text-ink-mute">
               Hadir
             </div>
           </div>

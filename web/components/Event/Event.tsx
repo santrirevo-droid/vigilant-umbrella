@@ -33,7 +33,7 @@ export default function Event() {
           data-reveal
           className="mt-6 rounded-2xl border border-gold/30 bg-cream/60 px-6 py-8"
         >
-          <p className="text-[11px] uppercase tracking-[0.24em] text-ink-mute">
+          <p className="font-accent text-[11px] uppercase tracking-[0.24em] text-ink-mute">
             Bertempat di
           </p>
           <h3 className="mt-3 font-display text-xl text-ink">{venue.name}</h3>

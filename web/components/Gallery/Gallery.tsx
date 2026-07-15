@@ -69,8 +69,8 @@ export default function Gallery() {
                   className="absolute inset-0 flex scale-125 items-center justify-center"
                 >
                   <svg width="28" height="28" viewBox="0 0 40 40" className="opacity-50">
-                    <circle r="16" cx="20" cy="19" fill="#E9DCC3" />
-                    <circle r="5" cx="20" cy="19" fill="#C9A96A" />
+                    <circle r="16" cx="20" cy="19" fill="#E7D6C3" />
+                    <circle r="5" cx="20" cy="19" fill="#C89B3C" />
                   </svg>
                 </div>
                 {/* eslint-disable-next-line @next/next/no-img-element */}

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Great_Vibes, Jost } from "next/font/google";
+import { Cormorant_Garamond, Cinzel, Inter } from "next/font/google";
 import SmoothScroll from "@/components/SmoothScroll";
 import "./globals.css";
 
@@ -10,13 +10,13 @@ const cormorant = Cormorant_Garamond({
   style: ["normal", "italic"],
 });
 
-const greatVibes = Great_Vibes({
-  variable: "--font-script",
+const cinzel = Cinzel({
+  variable: "--font-accent",
   subsets: ["latin"],
-  weight: "400",
+  weight: ["400", "500", "600"],
 });
 
-const jost = Jost({
+const inter = Inter({
   variable: "--font-body",
   subsets: ["latin"],
   weight: ["300", "400", "500"],
@@ -36,7 +36,7 @@ export default function RootLayout({
   return (
     <html
       lang="id"
-      className={`${cormorant.variable} ${greatVibes.variable} ${jost.variable} h-full antialiased`}
+      className={`${cormorant.variable} ${cinzel.variable} ${inter.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-warm-white font-body text-ink">
         <SmoothScroll>{children}</SmoothScroll>

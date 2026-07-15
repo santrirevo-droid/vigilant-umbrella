@@ -1,36 +1,52 @@
 @import "tailwindcss";
 
 :root {
-  --warm-white: #fbf8f2;
-  --cream: #f5eee0;
-  --beige: #e9dcc3;
-  --sage: #8fa085;
-  --sage-light: #b7c2a8;
-  --sage-dark: #5f7156;
-  --gold: #c9a96a;
-  --gold-light: #e3ce9c;
-  --gold-dark: #a8834a;
-  --ink: #3a362e;
-  --ink-soft: #6b6558;
-  --ink-mute: #948d7c;
+  /* Vibrant Botanical Luxury v2 */
+  --warm-white: #f8f3ea;
+  --cream: #f5ecd9;
+  --beige: #e7d6c3;
+  --gold: #c89b3c;
+  --gold-light: #d8af47;
+  --gold-dark: #9c7728;
+  --ink: #28302d;
+  --ink-soft: #4a564f;
+  --ink-mute: #71807a;
+  --sage: #396e45;
+  --sage-light: #5c9468;
+  --sage-dark: #1f4a30;
+
+  /* botanical accents — used across florals and small UI accents */
+  --rose: #c52c54;
+  --peony: #ff5d8f;
+  --magnolia: #fff5d8;
+  --hydrangea: #6e73d8;
+  --orchid: #c84fe8;
+  --berry: #d43650;
 }
 
 @theme inline {
   --color-warm-white: var(--warm-white);
   --color-cream: var(--cream);
   --color-beige: var(--beige);
-  --color-sage: var(--sage);
-  --color-sage-light: var(--sage-light);
-  --color-sage-dark: var(--sage-dark);
   --color-gold: var(--gold);
   --color-gold-light: var(--gold-light);
   --color-gold-dark: var(--gold-dark);
   --color-ink: var(--ink);
   --color-ink-soft: var(--ink-soft);
   --color-ink-mute: var(--ink-mute);
+  --color-sage: var(--sage);
+  --color-sage-light: var(--sage-light);
+  --color-sage-dark: var(--sage-dark);
+
+  --color-rose: var(--rose);
+  --color-peony: var(--peony);
+  --color-magnolia: var(--magnolia);
+  --color-hydrangea: var(--hydrangea);
+  --color-orchid: var(--orchid);
+  --color-berry: var(--berry);
 
   --font-display: var(--font-display);
-  --font-script: var(--font-script);
+  --font-accent: var(--font-accent);
   --font-body: var(--font-body);
 }
 
