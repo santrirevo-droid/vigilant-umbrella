@@ -1,0 +1,59 @@
+<svg width="480" height="150" viewBox="0 0 480 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- trailing stems -->
+  <g stroke="#8FA085" stroke-width="1.3" stroke-linecap="round" fill="none" opacity="0.8">
+    <path d="M240 70 C190 60 150 66 110 84 C78 98 50 96 20 78"/>
+    <path d="M240 70 C290 60 330 66 370 84 C402 98 430 96 460 78"/>
+    <path d="M240 70 C220 50 210 34 214 14"/>
+  </g>
+
+  <!-- leaves left -->
+  <g fill="#8FA085">
+    <path d="M170 72 C160 62 162 50 174 46 C182 58 180 70 170 72Z" opacity="0.85"/>
+    <path d="M120 84 C110 75 112 63 124 59 C132 71 130 82 120 84Z" opacity="0.8"/>
+    <path d="M64 90 C54 82 56 70 68 66 C76 78 74 88 64 90Z" opacity="0.75"/>
+  </g>
+  <g fill="#B7C2A8">
+    <path d="M144 80 C136 69 140 58 152 56 C158 68 154 78 144 80Z" opacity="0.7"/>
+    <path d="M90 90 C82 80 86 69 98 67 C104 79 100 88 90 90Z" opacity="0.65"/>
+    <path d="M36 82 C28 74 31 63 43 62 C48 74 45 82 36 82Z" opacity="0.6"/>
+  </g>
+
+  <!-- leaves right (mirrored) -->
+  <g fill="#8FA085">
+    <path d="M310 72 C320 62 318 50 306 46 C298 58 300 70 310 72Z" opacity="0.85"/>
+    <path d="M360 84 C370 75 368 63 356 59 C348 71 350 82 360 84Z" opacity="0.8"/>
+    <path d="M416 90 C426 82 424 70 412 66 C404 78 406 88 416 90Z" opacity="0.75"/>
+  </g>
+  <g fill="#B7C2A8">
+    <path d="M336 80 C344 69 340 58 328 56 C322 68 326 78 336 80Z" opacity="0.7"/>
+    <path d="M390 90 C398 80 394 69 382 67 C376 79 380 88 390 90Z" opacity="0.65"/>
+    <path d="M444 82 C452 74 449 63 437 62 C432 74 435 82 444 82Z" opacity="0.6"/>
+  </g>
+
+  <!-- gold berries scattered -->
+  <g fill="#C9A96A">
+    <circle cx="150" cy="58" r="2.4"/>
+    <circle cx="330" cy="58" r="2.4"/>
+    <circle cx="98" cy="70" r="2"/>
+    <circle cx="382" cy="70" r="2"/>
+  </g>
+
+  <!-- center bloom cluster -->
+  <g transform="translate(206,40)">
+    <circle r="17" fill="#E3CE9C" opacity="0.85"/>
+    <path d="M0 -17 C7 -11 7 11 0 17 C-7 11 -7 -11 0 -17Z" fill="#F5EEE0" opacity="0.9"/>
+    <path d="M-17 0 C-11 -7 11 -7 17 0 C11 7 -11 7 -17 0Z" fill="#F5EEE0" opacity="0.9"/>
+    <circle r="5.5" fill="#C9A96A"/>
+    <circle r="2.4" fill="#A8834A"/>
+  </g>
+  <g transform="translate(240,18) scale(0.7)">
+    <circle r="17" fill="#E9DCC3" opacity="0.9"/>
+    <path d="M0 -17 C7 -11 7 11 0 17 C-7 11 -7 -11 0 -17Z" fill="#F5EEE0" opacity="0.9"/>
+    <path d="M-17 0 C-11 -7 11 -7 17 0 C11 7 -11 7 -17 0Z" fill="#F5EEE0" opacity="0.9"/>
+    <circle r="5.5" fill="#C9A96A"/>
+  </g>
+  <g transform="translate(272,42) scale(0.6)">
+    <circle r="17" fill="#B7C2A8" opacity="0.55"/>
+    <circle r="6" fill="#8FA085"/>
+  </g>
+</svg>

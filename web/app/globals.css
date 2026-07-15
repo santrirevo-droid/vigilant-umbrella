@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+:root {
+  --warm-white: #fbf8f2;
+  --cream: #f5eee0;
+  --beige: #e9dcc3;
+  --sage: #8fa085;
+  --sage-light: #b7c2a8;
+  --sage-dark: #5f7156;
+  --gold: #c9a96a;
+  --gold-light: #e3ce9c;
+  --gold-dark: #a8834a;
+  --ink: #3a362e;
+  --ink-soft: #6b6558;
+  --ink-mute: #948d7c;
+}
+
+@theme inline {
+  --color-warm-white: var(--warm-white);
+  --color-cream: var(--cream);
+  --color-beige: var(--beige);
+  --color-sage: var(--sage);
+  --color-sage-light: var(--sage-light);
+  --color-sage-dark: var(--sage-dark);
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --color-gold-dark: var(--gold-dark);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-mute: var(--ink-mute);
+
+  --font-display: var(--font-display);
+  --font-script: var(--font-script);
+  --font-body: var(--font-body);
+}
+
+body {
+  background: var(--warm-white);
+  color: var(--ink);
+}
+
+html.scroll-locked {
+  overflow: hidden;
+  height: 100%;
+}
