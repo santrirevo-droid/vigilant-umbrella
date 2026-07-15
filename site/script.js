@@ -36,11 +36,6 @@
     cover: el("cover"),
     guestName: el("guestName"),
     openBtn: el("openBtn"),
-    curtain: el("curtain"),
-    drapeLeft: el("drapeLeft"),
-    drapeRight: el("drapeRight"),
-    valance: el("valance"),
-    scrollHint: el("scrollHint"),
     musicBtn: el("musicBtn"),
     musicIcon: el("musicIcon"),
     audio: el("audio"),
@@ -245,103 +240,6 @@
     apply();
   }
 
-  // ---------- curtain (scroll-locked opening) ----------
-  let curtainBound = false;
-  let curtainProgress = 0;
-  let curtainSpan = 1;
-  let curtainDone = false;
-  let wheelHandler, touchStartHandler, touchMoveHandler, keyHandler;
-  let lastTouchY = null;
-
-  function removeCurtainListeners() {
-    if (wheelHandler) window.removeEventListener("wheel", wheelHandler, { passive: false });
-    if (touchStartHandler) window.removeEventListener("touchstart", touchStartHandler);
-    if (touchMoveHandler) window.removeEventListener("touchmove", touchMoveHandler, { passive: false });
-    if (keyHandler) window.removeEventListener("keydown", keyHandler);
-    wheelHandler = touchStartHandler = touchMoveHandler = keyHandler = null;
-  }
-
-  function renderCurtain() {
-    const l = els.drapeLeft, r = els.drapeRight;
-    if (!l || !r) return;
-    const p = Math.min(1, Math.max(0, curtainProgress / curtainSpan));
-    const eased = 1 - Math.pow(1 - p, 3);
-    const rot = eased * 64;
-    const slide = eased * 48;
-    const fade = p > 0.8 ? (p - 0.8) / 0.2 : 0;
-    l.style.opacity = String(1 - fade);
-    r.style.opacity = String(1 - fade);
-    l.style.transform = `translateX(${-slide}%) rotateY(${rot}deg)`;
-    r.style.transform = `translateX(${slide}%) rotateY(${-rot}deg)`;
-    if (els.valance) {
-      els.valance.style.transform = `translateY(${-eased * 120}%)`;
-      els.valance.style.opacity = String(1 - fade);
-    }
-    if (els.scrollHint) {
-      els.scrollHint.style.opacity = String(Math.max(0, 1 - p * 2.4));
-    }
-  }
-
-  function finishCurtain() {
-    removeCurtainListeners();
-    try { document.body.style.overflow = ""; window.scrollTo(0, 0); } catch (e) {}
-    curtainDone = true;
-    els.curtain.hidden = true;
-  }
-
-  function advanceCurtain(delta) {
-    curtainProgress = Math.min(curtainSpan, Math.max(0, curtainProgress + delta));
-    window.requestAnimationFrame(renderCurtain);
-    if (curtainProgress >= curtainSpan) finishCurtain();
-  }
-
-  function setupCurtain() {
-    if (curtainBound) return;
-    curtainBound = true;
-
-    const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) {
-      curtainDone = true;
-      els.curtain.hidden = true;
-      return;
-    }
-
-    els.curtain.hidden = false;
-    curtainProgress = 0;
-    curtainSpan = Math.max(1, window.innerHeight * 0.9);
-    try { document.body.style.overflow = "hidden"; window.scrollTo(0, 0); } catch (e) {}
-
-    wheelHandler = (e) => {
-      if (curtainDone) return;
-      e.preventDefault();
-      advanceCurtain(e.deltaY);
-    };
-    touchStartHandler = (e) => { lastTouchY = e.touches[0].clientY; };
-    touchMoveHandler = (e) => {
-      if (curtainDone || lastTouchY == null) return;
-      e.preventDefault();
-      const y = e.touches[0].clientY;
-      advanceCurtain((lastTouchY - y) * 1.6);
-      lastTouchY = y;
-    };
-    keyHandler = (e) => {
-      if (curtainDone) return;
-      if (["ArrowDown", "PageDown", " ", "Spacebar"].includes(e.key)) {
-        e.preventDefault();
-        advanceCurtain(curtainSpan * 0.22);
-      } else if (["ArrowUp", "PageUp"].includes(e.key)) {
-        e.preventDefault();
-        advanceCurtain(-curtainSpan * 0.22);
-      }
-    };
-
-    window.addEventListener("wheel", wheelHandler, { passive: false });
-    window.addEventListener("touchstart", touchStartHandler, { passive: true });
-    window.addEventListener("touchmove", touchMoveHandler, { passive: false });
-    window.addEventListener("keydown", keyHandler);
-    renderCurtain();
-  }
-
   // ---------- music ----------
   function setMusicSpinning(spinning) {
     els.musicIcon.classList.toggle("is-spinning", spinning);
@@ -368,11 +266,15 @@
 
   // ---------- open invitation ----------
   function openInvitation() {
-    els.cover.hidden = true;
+    els.cover.style.transition = "opacity 1.2s ease-out";
+    els.cover.style.opacity = "0";
+    setTimeout(() => {
+      els.cover.hidden = true;
+    }, 1200);
+
     els.petals.hidden = false;
     try { document.body.style.overflow = ""; window.scrollTo(0, 0); } catch (e) {}
     setTimeout(setupReveal, 60);
-    setTimeout(setupCurtain, 60);
     if (CONFIG.musicEnabled) {
       els.musicBtn.hidden = false;
       const a = els.audio;
