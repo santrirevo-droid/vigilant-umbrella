@@ -11,40 +11,65 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+<!-- reusable botanical symbols (rose bloom / leaf / bud) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="orn-leaf" viewBox="0 0 44 18">
+      <path d="M2 9 C10 -3 34 -3 42 9 C34 21 10 21 2 9Z" fill="currentColor"/>
+      <path d="M5 9 C16 9 30 9 39 9" stroke="rgba(0,0,0,.15)" stroke-width="1" fill="none"/>
+    </symbol>
+    <symbol id="orn-rose" viewBox="0 0 40 40">
+      <path d="M20 20 C11 20 6 14 8 7 C14 9 18 14 20 20Z" fill="#A84F57"/>
+      <path d="M20 20 C29 20 34 14 32 7 C26 9 22 14 20 20Z" fill="#C96B72"/>
+      <path d="M20 20 C13 26 13 33 20 36 C24 30 24 24 20 20Z" fill="#A84F57"/>
+      <path d="M20 20 C27 26 27 33 20 36 C16 30 16 24 20 20Z" fill="#C96B72"/>
+      <circle cx="20" cy="19" r="5.6" fill="#F1D9D4"/>
+      <circle cx="20" cy="19" r="2.6" fill="#A84F57"/>
+    </symbol>
+    <symbol id="orn-bud" viewBox="0 0 16 22">
+      <path d="M8 2 C13 6 13 15 8 20 C3 15 3 6 8 2Z" fill="#C96B72"/>
+      <path d="M8 5 L8 17" stroke="#3F7A6C" stroke-width="1.4" stroke-linecap="round"/>
+    </symbol>
+  </defs>
+</svg>
+
 <div class="page">
   <div class="card" id="card">
 
-    <!-- botanical top corners - Updated to match reference style -->
+    <!-- botanical corner sprays (rose + tosca) -->
     <div class="corner corner--tl" aria-hidden="true">
-      <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M89.3739 25.468C87.2389 27.603 84.6289 29.263 81.7819 30.328C78.9349 31.393 75.9409 31.838 72.9239 31.633C66.7389 31.213 61.0189 28.393 56.9839 23.893C52.9489 19.393 50.9389 13.753 51.3989 7.543C51.5089 6.028 51.8689 4.573 52.4689 3.253" stroke="#A4856C" stroke-width="1.5" stroke-linecap="round"/>
-        <path d="M51.3989 7.543C53.5339 9.678 56.1439 11.338 58.9909 12.403C61.8379 13.468 64.8319 13.913 67.8489 13.708C74.0339 13.288 79.7539 10.468 83.7889 5.968" stroke="#A4856C" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/>
-        <path d="M72.9238 31.633C75.0588 33.768 77.6688 35.428 80.5158 36.493C83.3628 37.558 86.3568 38.003 89.3738 37.798C95.5588 37.378 101.279 34.558 105.314 30.058C109.349 25.558 111.359 19.918 110.899 13.708C110.789 12.193 110.429 10.738 109.829 9.418" stroke="#A4856C" stroke-width="1.5" stroke-linecap="round"/>
-        <path d="M89.3738 37.798C91.5088 39.933 94.1188 41.593 96.9658 42.658C99.8128 43.723 102.807 44.168 105.824 43.963C112.009 43.543 117.729 40.723 121.764 36.223" stroke="#A4856C" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/>
-        <circle cx="52" cy="4" r="3" fill="#D4C2AE"/>
-        <circle cx="110" cy="13" r="3" fill="#D4C2AE"/>
+      <svg width="128" height="128" viewBox="0 0 130 130" fill="none">
+        <use href="#orn-leaf" width="52" height="21" transform="translate(0,10) rotate(38)" style="color:#3F7A6C" opacity=".9"/>
+        <use href="#orn-leaf" width="40" height="17" transform="translate(16,36) rotate(64)" style="color:#7FB5A3" opacity=".85"/>
+        <use href="#orn-leaf" width="44" height="18" transform="translate(-8,32) rotate(10)" style="color:#3F7A6C" opacity=".7"/>
+        <use href="#orn-leaf" width="32" height="13" transform="translate(30,58) rotate(72)" style="color:#7FB5A3" opacity=".75"/>
+        <use href="#orn-rose" width="32" height="32" transform="translate(4,0)"/>
+        <use href="#orn-rose" width="20" height="20" transform="translate(32,42)"/>
+        <use href="#orn-bud" width="13" height="17" transform="translate(2,48) rotate(-12)"/>
       </svg>
     </div>
     <div class="corner corner--tr" aria-hidden="true">
-      <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M89.3739 25.468C87.2389 27.603 84.6289 29.263 81.7819 30.328C78.9349 31.393 75.9409 31.838 72.9239 31.633C66.7389 31.213 61.0189 28.393 56.9839 23.893C52.9489 19.393 50.9389 13.753 51.3989 7.543C51.5089 6.028 51.8689 4.573 52.4689 3.253" stroke="#A4856C" stroke-width="1.5" stroke-linecap="round"/>
-        <path d="M51.3989 7.543C53.5339 9.678 56.1439 11.338 58.9909 12.403C61.8379 13.468 64.8319 13.913 67.8489 13.708C74.0339 13.288 79.7539 10.468 83.7889 5.968" stroke="#A4856C" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/>
-        <path d="M72.9238 31.633C75.0588 33.768 77.6688 35.428 80.5158 36.493C83.3628 37.558 86.3568 38.003 89.3738 37.798C95.5588 37.378 101.279 34.558 105.314 30.058C109.349 25.558 111.359 19.918 110.899 13.708C110.789 12.193 110.429 10.738 109.829 9.418" stroke="#A4856C" stroke-width="1.5" stroke-linecap="round"/>
-        <path d="M89.3738 37.798C91.5088 39.933 94.1188 41.593 96.9658 42.658C99.8128 43.723 102.807 44.168 105.824 43.963C112.009 43.543 117.729 40.723 121.764 36.223" stroke="#A4856C" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/>
-        <circle cx="52" cy="4" r="3" fill="#D4C2AE"/>
-        <circle cx="110" cy="13" r="3" fill="#D4C2AE"/>
+      <svg width="128" height="128" viewBox="0 0 130 130" fill="none">
+        <use href="#orn-leaf" width="52" height="21" transform="translate(0,10) rotate(38)" style="color:#3F7A6C" opacity=".9"/>
+        <use href="#orn-leaf" width="40" height="17" transform="translate(16,36) rotate(64)" style="color:#7FB5A3" opacity=".85"/>
+        <use href="#orn-leaf" width="44" height="18" transform="translate(-8,32) rotate(10)" style="color:#3F7A6C" opacity=".7"/>
+        <use href="#orn-leaf" width="32" height="13" transform="translate(30,58) rotate(72)" style="color:#7FB5A3" opacity=".75"/>
+        <use href="#orn-rose" width="32" height="32" transform="translate(4,0)"/>
+        <use href="#orn-rose" width="20" height="20" transform="translate(32,42)"/>
+        <use href="#orn-bud" width="13" height="17" transform="translate(2,48) rotate(-12)"/>
       </svg>
     </div>
 
-    <!-- falling petals (shown only after invitation is opened) -->
+    <!-- falling petals & leaves (shown only after invitation is opened) -->
     <div class="petals" id="petals" hidden aria-hidden="true">
-      <span class="petal" style="left:6%;--sway:26px;animation-duration:15s;animation-delay:0s;"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M8 1 C12 3 15 7 8 15 C1 7 4 3 8 1Z" fill="#E7B9B3" opacity=".8"/></svg></span>
-      <span class="petal" style="left:18%;--sway:-30px;animation-duration:19s;animation-delay:3s;"><svg width="13" height="13" viewBox="0 0 16 16"><path d="M8 1 C12 3 15 7 8 15 C1 7 4 3 8 1Z" fill="#D89B95" opacity=".7"/></svg></span>
-      <span class="petal" style="left:33%;--sway:22px;animation-duration:17s;animation-delay:6s;"><svg width="18" height="18" viewBox="0 0 16 16"><path d="M8 1 C12 3 15 7 8 15 C1 7 4 3 8 1Z" fill="#D4C2AE" opacity=".75"/></svg></span>
-      <span class="petal" style="left:48%;--sway:-24px;animation-duration:21s;animation-delay:1.5s;"><svg width="12" height="12" viewBox="0 0 16 16"><path d="M8 1 C12 3 15 7 8 15 C1 7 4 3 8 1Z" fill="#E7B9B3" opacity=".7"/></svg></span>
-      <span class="petal" style="left:63%;--sway:28px;animation-duration:16s;animation-delay:4.5s;"><svg width="15" height="15" viewBox="0 0 16 16"><path d="M8 1 C12 3 15 7 8 15 C1 7 4 3 8 1Z" fill="#D89B95" opacity=".78"/></svg></span>
-      <span class="petal" style="left:77%;--sway:-26px;animation-duration:20s;animation-delay:7.5s;"><svg width="17" height="17" viewBox="0 0 16 16"><path d="M8 1 C12 3 15 7 8 15 C1 7 4 3 8 1Z" fill="#D4C2AE" opacity=".72"/></svg></span>
-      <span class="petal" style="left:90%;--sway:20px;animation-duration:18s;animation-delay:2.5s;"><svg width="13" height="13" viewBox="0 0 16 16"><path d="M8 1 C12 3 15 7 8 15 C1 7 4 3 8 1Z" fill="#E7B9B3" opacity=".7"/></svg></span>
+      <span class="petal" style="left:6%;--sway:26px;animation-duration:15s;animation-delay:0s;"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M8 1 C12 3 15 7 8 15 C1 7 4 3 8 1Z" fill="#C96B72" opacity=".8"/></svg></span>
+      <span class="petal petal--leaf" style="left:18%;--sway:-30px;animation-duration:19s;animation-delay:3s;"><svg width="14" height="14" viewBox="0 0 16 16"><path d="M8 1 C12 3 15 7 8 15 C1 7 4 3 8 1Z" fill="#3F7A6C" opacity=".7"/></svg></span>
+      <span class="petal" style="left:33%;--sway:22px;animation-duration:17s;animation-delay:6s;"><svg width="18" height="18" viewBox="0 0 16 16"><path d="M8 1 C12 3 15 7 8 15 C1 7 4 3 8 1Z" fill="#A84F57" opacity=".75"/></svg></span>
+      <span class="petal petal--leaf" style="left:48%;--sway:-24px;animation-duration:21s;animation-delay:1.5s;"><svg width="13" height="13" viewBox="0 0 16 16"><path d="M8 1 C12 3 15 7 8 15 C1 7 4 3 8 1Z" fill="#7FB5A3" opacity=".7"/></svg></span>
+      <span class="petal" style="left:63%;--sway:28px;animation-duration:16s;animation-delay:4.5s;"><svg width="15" height="15" viewBox="0 0 16 16"><path d="M8 1 C12 3 15 7 8 15 C1 7 4 3 8 1Z" fill="#C96B72" opacity=".78"/></svg></span>
+      <span class="petal petal--leaf" style="left:77%;--sway:-26px;animation-duration:20s;animation-delay:7.5s;"><svg width="17" height="17" viewBox="0 0 16 16"><path d="M8 1 C12 3 15 7 8 15 C1 7 4 3 8 1Z" fill="#3F7A6C" opacity=".65"/></svg></span>
+      <span class="petal" style="left:90%;--sway:20px;animation-duration:18s;animation-delay:2.5s;"><svg width="13" height="13" viewBox="0 0 16 16"><path d="M8 1 C12 3 15 7 8 15 C1 7 4 3 8 1Z" fill="#A84F57" opacity=".7"/></svg></span>
     </div>
 
     <!-- ============ MAIN CONTENT ============ -->
@@ -52,11 +77,15 @@
       <!-- Opening / Salam -->
       <section class="sec sec--salam">
         <div class="salam-glow" data-parallax="0.14" aria-hidden="true"></div>
+        <svg class="sprig sprig--salam" data-reveal="zoom" data-parallax="0.06" width="46" height="58" viewBox="0 0 46 58" aria-hidden="true">
+          <use href="#orn-leaf" width="30" height="12" transform="translate(6,30) rotate(-30)" style="color:#7FB5A3" opacity=".8"/>
+          <use href="#orn-bud" width="16" height="22" transform="translate(14,0)"/>
+        </svg>
         <div data-reveal class="salam-inner">
           <div class="eyebrow">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
           <div class="divider">
             <span class="divider-line divider-line--l"></span>
-            <svg class="dove" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.25C12.9665 14.25 13.8967 13.8813 14.5909 13.2247C15.2852 12.5681 15.6977 11.6935 15.75 10.75C15.6977 9.80653 15.2852 8.93193 14.5909 8.27533C13.8967 7.61872 12.9665 7.25 12 7.25C10.067 7.25 8.5 8.81701 8.5 10.75C8.5 12.683 10.067 14.25 12 14.25Z" stroke="#A4856C" stroke-width="1.2"/><path d="M12 10.75L12 10.75" stroke="#A4856C" stroke-width="1.5" stroke-linecap="round"/><path d="M8.5 10.75C6.5 8.75 4.5 9.25 3.5 10.75C2.5 12.25 4.5 12.75 6.5 10.75" stroke="#A4856C" stroke-width="1.2"/><path d="M15.75 10.75C17.75 8.75 19.75 9.25 20.75 10.75C21.75 12.25 19.75 12.75 17.75 10.75" stroke="#A4856C" stroke-width="1.2"/></svg>
+            <svg class="dove" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 14.25C12.9665 14.25 13.8967 13.8813 14.5909 13.2247C15.2852 12.5681 15.6977 11.6935 15.75 10.75C15.6977 9.80653 15.2852 8.93193 14.5909 8.27533C13.8967 7.61872 12.9665 7.25 12 7.25C10.067 7.25 8.5 8.81701 8.5 10.75C8.5 12.683 10.067 14.25 12 14.25Z" stroke="#3F7A6C" stroke-width="1.2"/><path d="M12 10.75L12 10.75" stroke="#3F7A6C" stroke-width="1.5" stroke-linecap="round"/><path d="M8.5 10.75C6.5 8.75 4.5 9.25 3.5 10.75C2.5 12.25 4.5 12.75 6.5 10.75" stroke="#3F7A6C" stroke-width="1.2"/><path d="M15.75 10.75C17.75 8.75 19.75 9.25 20.75 10.75C21.75 12.25 19.75 12.75 17.75 10.75" stroke="#3F7A6C" stroke-width="1.2"/></svg>
             <span class="divider-line divider-line--r"></span>
           </div>
           <p class="lead-italic">Assalamu'alaikum Warahmatullahi Wabarakatuh</p>
@@ -79,10 +108,14 @@
 
       <!-- Mempelai -->
       <section class="sec sec--mempelai">
+        <svg class="sprig sprig--mempelai" data-reveal="left" data-parallax="0.05" width="70" height="40" viewBox="0 0 70 40" aria-hidden="true">
+          <use href="#orn-leaf" width="44" height="18" transform="translate(0,14) rotate(-10)" style="color:#7FB5A3" opacity=".85"/>
+          <use href="#orn-rose" width="24" height="24" transform="translate(40,0)"/>
+        </svg>
         <div data-reveal="wipe" class="eyebrow">The Wedding Of</div>
         <div class="divider divider--wide">
           <span class="divider-line divider-line--l" data-reveal="draw"></span>
-          <svg class="dove" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" data-reveal="zoom"><path d="M12 14.25C12.9665 14.25 13.8967 13.8813 14.5909 13.2247C15.2852 12.5681 15.6977 11.6935 15.75 10.75C15.6977 9.80653 15.2852 8.93193 14.5909 8.27533C13.8967 7.61872 12.9665 7.25 12 7.25C10.067 7.25 8.5 8.81701 8.5 10.75C8.5 12.683 10.067 14.25 12 14.25Z" stroke="#A4856C" stroke-width="1.2"/><path d="M12 10.75L12 10.75" stroke="#A4856C" stroke-width="1.5" stroke-linecap="round"/><path d="M8.5 10.75C6.5 8.75 4.5 9.25 3.5 10.75C2.5 12.25 4.5 12.75 6.5 10.75" stroke="#A4856C" stroke-width="1.2"/><path d="M15.75 10.75C17.75 8.75 19.75 9.25 20.75 10.75C21.75 12.25 19.75 12.75 17.75 10.75" stroke="#A4856C" stroke-width="1.2"/></svg>
+          <svg class="dove" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" data-reveal="zoom"><path d="M12 14.25C12.9665 14.25 13.8967 13.8813 14.5909 13.2247C15.2852 12.5681 15.6977 11.6935 15.75 10.75C15.6977 9.80653 15.2852 8.93193 14.5909 8.27533C13.8967 7.61872 12.9665 7.25 12 7.25C10.067 7.25 8.5 8.81701 8.5 10.75C8.5 12.683 10.067 14.25 12 14.25Z" stroke="#3F7A6C" stroke-width="1.2"/><path d="M12 10.75L12 10.75" stroke="#3F7A6C" stroke-width="1.5" stroke-linecap="round"/><path d="M8.5 10.75C6.5 8.75 4.5 9.25 3.5 10.75C2.5 12.25 4.5 12.75 6.5 10.75" stroke="#3F7A6C" stroke-width="1.2"/><path d="M15.75 10.75C17.75 8.75 19.75 9.25 20.75 10.75C21.75 12.25 19.75 12.75 17.75 10.75" stroke="#3F7A6C" stroke-width="1.2"/></svg>
           <span class="divider-line divider-line--r" data-reveal="draw"></span>
         </div>
 
@@ -105,9 +138,13 @@
 
       <!-- Save the date + Countdown -->
       <section class="sec sec--date">
+        <svg class="sprig sprig--date" data-reveal="right" data-parallax="0.05" width="70" height="40" viewBox="0 0 70 40" aria-hidden="true">
+          <use href="#orn-leaf" width="44" height="18" transform="translate(20,14) rotate(190)" style="color:#7FB5A3" opacity=".85"/>
+          <use href="#orn-rose" width="24" height="24" transform="translate(2,0)"/>
+        </svg>
         <div class="divider divider--wide">
           <span class="divider-line divider-line--l" data-reveal="draw"></span>
-          <svg class="dove" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" data-reveal="zoom"><path d="M12 14.25C12.9665 14.25 13.8967 13.8813 14.5909 13.2247C15.2852 12.5681 15.6977 11.6935 15.75 10.75C15.6977 9.80653 15.2852 8.93193 14.5909 8.27533C13.8967 7.61872 12.9665 7.25 12 7.25C10.067 7.25 8.5 8.81701 8.5 10.75C8.5 12.683 10.067 14.25 12 14.25Z" stroke="#A4856C" stroke-width="1.2"/><path d="M12 10.75L12 10.75" stroke="#A4856C" stroke-width="1.5" stroke-linecap="round"/><path d="M8.5 10.75C6.5 8.75 4.5 9.25 3.5 10.75C2.5 12.25 4.5 12.75 6.5 10.75" stroke="#A4856C" stroke-width="1.2"/><path d="M15.75 10.75C17.75 8.75 19.75 9.25 20.75 10.75C21.75 12.25 19.75 12.75 17.75 10.75" stroke="#A4856C" stroke-width="1.2"/></svg>
+          <svg class="dove" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" data-reveal="zoom"><path d="M12 14.25C12.9665 14.25 13.8967 13.8813 14.5909 13.2247C15.2852 12.5681 15.6977 11.6935 15.75 10.75C15.6977 9.80653 15.2852 8.93193 14.5909 8.27533C13.8967 7.61872 12.9665 7.25 12 7.25C10.067 7.25 8.5 8.81701 8.5 10.75C8.5 12.683 10.067 14.25 12 14.25Z" stroke="#3F7A6C" stroke-width="1.2"/><path d="M12 10.75L12 10.75" stroke="#3F7A6C" stroke-width="1.5" stroke-linecap="round"/><path d="M8.5 10.75C6.5 8.75 4.5 9.25 3.5 10.75C2.5 12.25 4.5 12.75 6.5 10.75" stroke="#3F7A6C" stroke-width="1.2"/><path d="M15.75 10.75C17.75 8.75 19.75 9.25 20.75 10.75C21.75 12.25 19.75 12.75 17.75 10.75" stroke="#3F7A6C" stroke-width="1.2"/></svg>
           <span class="divider-line divider-line--r" data-reveal="draw"></span>
         </div>
         <div data-reveal="wipe" class="eyebrow">Save The Date</div>
@@ -137,7 +174,7 @@
         <div data-reveal="wipe" class="eyebrow">Rangkaian Acara</div>
         <div class="divider divider--wide">
           <span class="divider-line divider-line--l" data-reveal="draw"></span>
-          <svg class="dove" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" data-reveal="zoom"><path d="M12 14.25C12.9665 14.25 13.8967 13.8813 14.5909 13.2247C15.2852 12.5681 15.6977 11.6935 15.75 10.75C15.6977 9.80653 15.2852 8.93193 14.5909 8.27533C13.8967 7.61872 12.9665 7.25 12 7.25C10.067 7.25 8.5 8.81701 8.5 10.75C8.5 12.683 10.067 14.25 12 14.25Z" stroke="#A4856C" stroke-width="1.2"/><path d="M12 10.75L12 10.75" stroke="#A4856C" stroke-width="1.5" stroke-linecap="round"/><path d="M8.5 10.75C6.5 8.75 4.5 9.25 3.5 10.75C2.5 12.25 4.5 12.75 6.5 10.75" stroke="#A4856C" stroke-width="1.2"/><path d="M15.75 10.75C17.75 8.75 19.75 9.25 20.75 10.75C21.75 12.25 19.75 12.75 17.75 10.75" stroke="#A4856C" stroke-width="1.2"/></svg>
+          <svg class="dove" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" data-reveal="zoom"><path d="M12 14.25C12.9665 14.25 13.8967 13.8813 14.5909 13.2247C15.2852 12.5681 15.6977 11.6935 15.75 10.75C15.6977 9.80653 15.2852 8.93193 14.5909 8.27533C13.8967 7.61872 12.9665 7.25 12 7.25C10.067 7.25 8.5 8.81701 8.5 10.75C8.5 12.683 10.067 14.25 12 14.25Z" stroke="#3F7A6C" stroke-width="1.2"/><path d="M12 10.75L12 10.75" stroke="#3F7A6C" stroke-width="1.5" stroke-linecap="round"/><path d="M8.5 10.75C6.5 8.75 4.5 9.25 3.5 10.75C2.5 12.25 4.5 12.75 6.5 10.75" stroke="#3F7A6C" stroke-width="1.2"/><path d="M15.75 10.75C17.75 8.75 19.75 9.25 20.75 10.75C21.75 12.25 19.75 12.75 17.75 10.75" stroke="#3F7A6C" stroke-width="1.2"/></svg>
           <span class="divider-line divider-line--r" data-reveal="draw"></span>
         </div>
 
@@ -167,6 +204,72 @@
         </div>
       </section>
 
+      <!-- Gallery -->
+      <section class="sec sec--gallery">
+        <div data-reveal="wipe" class="eyebrow">Galeri Kami</div>
+        <div class="divider divider--wide">
+          <span class="divider-line divider-line--l" data-reveal="draw"></span>
+          <svg class="dove" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" data-reveal="zoom"><path d="M12 14.25C12.9665 14.25 13.8967 13.8813 14.5909 13.2247C15.2852 12.5681 15.6977 11.6935 15.75 10.75C15.6977 9.80653 15.2852 8.93193 14.5909 8.27533C13.8967 7.61872 12.9665 7.25 12 7.25C10.067 7.25 8.5 8.81701 8.5 10.75C8.5 12.683 10.067 14.25 12 14.25Z" stroke="#3F7A6C" stroke-width="1.2"/><path d="M12 10.75L12 10.75" stroke="#3F7A6C" stroke-width="1.5" stroke-linecap="round"/><path d="M8.5 10.75C6.5 8.75 4.5 9.25 3.5 10.75C2.5 12.25 4.5 12.75 6.5 10.75" stroke="#3F7A6C" stroke-width="1.2"/><path d="M15.75 10.75C17.75 8.75 19.75 9.25 20.75 10.75C21.75 12.25 19.75 12.75 17.75 10.75" stroke="#3F7A6C" stroke-width="1.2"/></svg>
+          <span class="divider-line divider-line--r" data-reveal="draw"></span>
+        </div>
+        <p class="body-text">Beberapa momen bahagia yang ingin kami bagikan.</p>
+
+        <div class="gallery-grid">
+          <div class="gallery-item" data-reveal="zoom">
+            <div class="gallery-placeholder"><svg width="26" height="26" viewBox="0 0 40 40"><use href="#orn-rose" width="40" height="40" opacity=".55"/></svg></div>
+            <img src="gallery/1.jpg" alt="Momen kami 1" loading="lazy" onerror="this.style.display='none'">
+          </div>
+          <div class="gallery-item" data-reveal="zoom">
+            <div class="gallery-placeholder"><svg width="26" height="26" viewBox="0 0 40 40"><use href="#orn-rose" width="40" height="40" opacity=".55"/></svg></div>
+            <img src="gallery/2.jpg" alt="Momen kami 2" loading="lazy" onerror="this.style.display='none'">
+          </div>
+          <div class="gallery-item" data-reveal="zoom">
+            <div class="gallery-placeholder"><svg width="26" height="26" viewBox="0 0 40 40"><use href="#orn-rose" width="40" height="40" opacity=".55"/></svg></div>
+            <img src="gallery/3.jpg" alt="Momen kami 3" loading="lazy" onerror="this.style.display='none'">
+          </div>
+          <div class="gallery-item" data-reveal="zoom">
+            <div class="gallery-placeholder"><svg width="26" height="26" viewBox="0 0 40 40"><use href="#orn-rose" width="40" height="40" opacity=".55"/></svg></div>
+            <img src="gallery/4.jpg" alt="Momen kami 4" loading="lazy" onerror="this.style.display='none'">
+          </div>
+          <div class="gallery-item" data-reveal="zoom">
+            <div class="gallery-placeholder"><svg width="26" height="26" viewBox="0 0 40 40"><use href="#orn-rose" width="40" height="40" opacity=".55"/></svg></div>
+            <img src="gallery/5.jpg" alt="Momen kami 5" loading="lazy" onerror="this.style.display='none'">
+          </div>
+          <div class="gallery-item" data-reveal="zoom">
+            <div class="gallery-placeholder"><svg width="26" height="26" viewBox="0 0 40 40"><use href="#orn-rose" width="40" height="40" opacity=".55"/></svg></div>
+            <img src="gallery/6.jpg" alt="Momen kami 6" loading="lazy" onerror="this.style.display='none'">
+          </div>
+        </div>
+      </section>
+
+      <!-- Gift / Amplop Digital -->
+      <section class="sec sec--gift">
+        <div data-reveal="wipe" class="eyebrow">Tanda Kasih</div>
+        <div class="divider divider--wide">
+          <span class="divider-line divider-line--l" data-reveal="draw"></span>
+          <svg class="dove" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" data-reveal="zoom"><path d="M12 14.25C12.9665 14.25 13.8967 13.8813 14.5909 13.2247C15.2852 12.5681 15.6977 11.6935 15.75 10.75C15.6977 9.80653 15.2852 8.93193 14.5909 8.27533C13.8967 7.61872 12.9665 7.25 12 7.25C10.067 7.25 8.5 8.81701 8.5 10.75C8.5 12.683 10.067 14.25 12 14.25Z" stroke="#3F7A6C" stroke-width="1.2"/><path d="M12 10.75L12 10.75" stroke="#3F7A6C" stroke-width="1.5" stroke-linecap="round"/><path d="M8.5 10.75C6.5 8.75 4.5 9.25 3.5 10.75C2.5 12.25 4.5 12.75 6.5 10.75" stroke="#3F7A6C" stroke-width="1.2"/><path d="M15.75 10.75C17.75 8.75 19.75 9.25 20.75 10.75C21.75 12.25 19.75 12.75 17.75 10.75" stroke="#3F7A6C" stroke-width="1.2"/></svg>
+          <span class="divider-line divider-line--r" data-reveal="draw"></span>
+        </div>
+        <p class="body-text">Doa restu Bapak/Ibu/Saudara/i adalah karunia terindah bagi kami. Namun jika ingin memberi tanda kasih, kami sediakan pilihan berikut.</p>
+
+        <button type="button" class="gift-toggle" id="giftToggle" data-reveal="zoom">Kirim Hadiah</button>
+
+        <div class="gift-panel" id="giftPanel" hidden>
+          <div class="bank-card" data-reveal="left">
+            <div class="bank-name">Bank BCA</div>
+            <div class="bank-number">0000 0000 0000</div>
+            <div class="bank-holder">a.n. Falah Fauzan</div>
+            <button type="button" class="copy-btn" data-copy="0000000000">Salin Nomor</button>
+          </div>
+          <div class="bank-card" data-reveal="right">
+            <div class="bank-name">Bank Mandiri</div>
+            <div class="bank-number">0000 0000 0000</div>
+            <div class="bank-holder">a.n. Risyqaa Syafitri</div>
+            <button type="button" class="copy-btn" data-copy="0000000000">Salin Nomor</button>
+          </div>
+        </div>
+      </section>
+
       <!-- RSVP -->
       <section class="sec sec--rsvp" id="rsvpSection">
         <div class="rsvp-glow" data-parallax="0.1" aria-hidden="true"></div>
@@ -174,7 +277,7 @@
           <div data-reveal="wipe" class="eyebrow eyebrow--dark">Konfirmasi Kehadiran</div>
           <div class="divider">
             <span class="divider-line divider-line--l" data-reveal="draw"></span>
-            <svg class="dove" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" data-reveal="zoom"><path d="M12 14.25C12.9665 14.25 13.8967 13.8813 14.5909 13.2247C15.2852 12.5681 15.6977 11.6935 15.75 10.75C15.6977 9.80653 15.2852 8.93193 14.5909 8.27533C13.8967 7.61872 12.9665 7.25 12 7.25C10.067 7.25 8.5 8.81701 8.5 10.75C8.5 12.683 10.067 14.25 12 14.25Z" stroke="#A4856C" stroke-width="1.2"/><path d="M12 10.75L12 10.75" stroke="#A4856C" stroke-width="1.5" stroke-linecap="round"/><path d="M8.5 10.75C6.5 8.75 4.5 9.25 3.5 10.75C2.5 12.25 4.5 12.75 6.5 10.75" stroke="#A4856C" stroke-width="1.2"/><path d="M15.75 10.75C17.75 8.75 19.75 9.25 20.75 10.75C21.75 12.25 19.75 12.75 17.75 10.75" stroke="#A4856C" stroke-width="1.2"/></svg>
+            <svg class="dove" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" data-reveal="zoom"><path d="M12 14.25C12.9665 14.25 13.8967 13.8813 14.5909 13.2247C15.2852 12.5681 15.6977 11.6935 15.75 10.75C15.6977 9.80653 15.2852 8.93193 14.5909 8.27533C13.8967 7.61872 12.9665 7.25 12 7.25C10.067 7.25 8.5 8.81701 8.5 10.75C8.5 12.683 10.067 14.25 12 14.25Z" stroke="#3F7A6C" stroke-width="1.2"/><path d="M12 10.75L12 10.75" stroke="#3F7A6C" stroke-width="1.5" stroke-linecap="round"/><path d="M8.5 10.75C6.5 8.75 4.5 9.25 3.5 10.75C2.5 12.25 4.5 12.75 6.5 10.75" stroke="#3F7A6C" stroke-width="1.2"/><path d="M15.75 10.75C17.75 8.75 19.75 9.25 20.75 10.75C21.75 12.25 19.75 12.75 17.75 10.75" stroke="#3F7A6C" stroke-width="1.2"/></svg>
             <span class="divider-line divider-line--r" data-reveal="draw"></span>
           </div>
           <p class="rsvp-intro">Merupakan kehormatan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.</p>
@@ -227,7 +330,7 @@
           <p class="lead-italic lead-italic--tight">Wassalamu'alaikum Warahmatullahi Wabarakatuh</p>
           <div class="divider divider--wide">
             <span class="divider-line divider-line--l" data-reveal="draw"></span>
-            <svg class="dove" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" data-reveal="zoom"><path d="M12 14.25C12.9665 14.25 13.8967 13.8813 14.5909 13.2247C15.2852 12.5681 15.6977 11.6935 15.75 10.75C15.6977 9.80653 15.2852 8.93193 14.5909 8.27533C13.8967 7.61872 12.9665 7.25 12 7.25C10.067 7.25 8.5 8.81701 8.5 10.75C8.5 12.683 10.067 14.25 12 14.25Z" stroke="#A4856C" stroke-width="1.2"/><path d="M12 10.75L12 10.75" stroke="#A4856C" stroke-width="1.5" stroke-linecap="round"/><path d="M8.5 10.75C6.5 8.75 4.5 9.25 3.5 10.75C2.5 12.25 4.5 12.75 6.5 10.75" stroke="#A4856C" stroke-width="1.2"/><path d="M15.75 10.75C17.75 8.75 19.75 9.25 20.75 10.75C21.75 12.25 19.75 12.75 17.75 10.75" stroke="#A4856C" stroke-width="1.2"/></svg>
+            <svg class="dove" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" data-reveal="zoom"><path d="M12 14.25C12.9665 14.25 13.8967 13.8813 14.5909 13.2247C15.2852 12.5681 15.6977 11.6935 15.75 10.75C15.6977 9.80653 15.2852 8.93193 14.5909 8.27533C13.8967 7.61872 12.9665 7.25 12 7.25C10.067 7.25 8.5 8.81701 8.5 10.75C8.5 12.683 10.067 14.25 12 14.25Z" stroke="#3F7A6C" stroke-width="1.2"/><path d="M12 10.75L12 10.75" stroke="#3F7A6C" stroke-width="1.5" stroke-linecap="round"/><path d="M8.5 10.75C6.5 8.75 4.5 9.25 3.5 10.75C2.5 12.25 4.5 12.75 6.5 10.75" stroke="#3F7A6C" stroke-width="1.2"/><path d="M15.75 10.75C17.75 8.75 19.75 9.25 20.75 10.75C21.75 12.25 19.75 12.75 17.75 10.75" stroke="#3F7A6C" stroke-width="1.2"/></svg>
             <span class="divider-line divider-line--r" data-reveal="draw"></span>
           </div>
           <div class="eyebrow eyebrow--muted">Kami Yang Berbahagia</div>
@@ -247,35 +350,35 @@
 
       <!-- cover botanical corners -->
       <div class="cover-corner cover-corner--tl" aria-hidden="true">
-        <svg width="96" height="96" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M89.3739 25.468C87.2389 27.603 84.6289 29.263 81.7819 30.328C78.9349 31.393 75.9409 31.838 72.9239 31.633C66.7389 31.213 61.0189 28.393 56.9839 23.893C52.9489 19.393 50.9389 13.753 51.3989 7.543C51.5089 6.028 51.8689 4.573 52.4689 3.253" stroke="#A4856C" stroke-width="1.5" stroke-linecap="round"/>
-          <path d="M72.9238 31.633C75.0588 33.768 77.6688 35.428 80.5158 36.493C83.3628 37.558 86.3568 38.003 89.3738 37.798C95.5588 37.378 101.279 34.558 105.314 30.058C109.349 25.558 111.359 19.918 110.899 13.708C110.789 12.193 110.429 10.738 109.829 9.418" stroke="#A4856C" stroke-width="1.5" stroke-linecap="round"/>
-          <circle cx="52" cy="4" r="3" fill="#D4C2AE"/>
-          <circle cx="110" cy="13" r="3" fill="#D4C2AE"/>
+        <svg width="104" height="104" viewBox="0 0 130 130" fill="none">
+          <use href="#orn-leaf" width="46" height="19" transform="translate(0,8) rotate(38)" style="color:#3F7A6C" opacity=".9"/>
+          <use href="#orn-leaf" width="34" height="15" transform="translate(14,30) rotate(64)" style="color:#7FB5A3" opacity=".85"/>
+          <use href="#orn-rose" width="26" height="26" transform="translate(2,0)"/>
+          <use href="#orn-bud" width="11" height="15" transform="translate(2,40) rotate(-12)"/>
         </svg>
       </div>
       <div class="cover-corner cover-corner--tr" aria-hidden="true">
-        <svg width="96" height="96" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M89.3739 25.468C87.2389 27.603 84.6289 29.263 81.7819 30.328C78.9349 31.393 75.9409 31.838 72.9239 31.633C66.7389 31.213 61.0189 28.393 56.9839 23.893C52.9489 19.393 50.9389 13.753 51.3989 7.543C51.5089 6.028 51.8689 4.573 52.4689 3.253" stroke="#A4856C" stroke-width="1.5" stroke-linecap="round"/>
-          <path d="M72.9238 31.633C75.0588 33.768 77.6688 35.428 80.5158 36.493C83.3628 37.558 86.3568 38.003 89.3738 37.798C95.5588 37.378 101.279 34.558 105.314 30.058C109.349 25.558 111.359 19.918 110.899 13.708C110.789 12.193 110.429 10.738 109.829 9.418" stroke="#A4856C" stroke-width="1.5" stroke-linecap="round"/>
-          <circle cx="52" cy="4" r="3" fill="#D4C2AE"/>
-          <circle cx="110" cy="13" r="3" fill="#D4C2AE"/>
+        <svg width="104" height="104" viewBox="0 0 130 130" fill="none">
+          <use href="#orn-leaf" width="46" height="19" transform="translate(0,8) rotate(38)" style="color:#3F7A6C" opacity=".9"/>
+          <use href="#orn-leaf" width="34" height="15" transform="translate(14,30) rotate(64)" style="color:#7FB5A3" opacity=".85"/>
+          <use href="#orn-rose" width="26" height="26" transform="translate(2,0)"/>
+          <use href="#orn-bud" width="11" height="15" transform="translate(2,40) rotate(-12)"/>
         </svg>
       </div>
       <div class="cover-corner cover-corner--bl" aria-hidden="true">
-        <svg width="96" height="96" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M89.3739 25.468C87.2389 27.603 84.6289 29.263 81.7819 30.328C78.9349 31.393 75.9409 31.838 72.9239 31.633C66.7389 31.213 61.0189 28.393 56.9839 23.893C52.9489 19.393 50.9389 13.753 51.3989 7.543C51.5089 6.028 51.8689 4.573 52.4689 3.253" stroke="#A4856C" stroke-width="1.5" stroke-linecap="round"/>
-          <path d="M72.9238 31.633C75.0588 33.768 77.6688 35.428 80.5158 36.493C83.3628 37.558 86.3568 38.003 89.3738 37.798C95.5588 37.378 101.279 34.558 105.314 30.058C109.349 25.558 111.359 19.918 110.899 13.708C110.789 12.193 110.429 10.738 109.829 9.418" stroke="#A4856C" stroke-width="1.5" stroke-linecap="round"/>
-          <circle cx="52" cy="4" r="3" fill="#D4C2AE"/>
-          <circle cx="110" cy="13" r="3" fill="#D4C2AE"/>
+        <svg width="104" height="104" viewBox="0 0 130 130" fill="none">
+          <use href="#orn-leaf" width="46" height="19" transform="translate(0,8) rotate(38)" style="color:#3F7A6C" opacity=".9"/>
+          <use href="#orn-leaf" width="34" height="15" transform="translate(14,30) rotate(64)" style="color:#7FB5A3" opacity=".85"/>
+          <use href="#orn-rose" width="26" height="26" transform="translate(2,0)"/>
+          <use href="#orn-bud" width="11" height="15" transform="translate(2,40) rotate(-12)"/>
         </svg>
       </div>
       <div class="cover-corner cover-corner--br" aria-hidden="true">
-        <svg width="96" height="96" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M89.3739 25.468C87.2389 27.603 84.6289 29.263 81.7819 30.328C78.9349 31.393 75.9409 31.838 72.9239 31.633C66.7389 31.213 61.0189 28.393 56.9839 23.893C52.9489 19.393 50.9389 13.753 51.3989 7.543C51.5089 6.028 51.8689 4.573 52.4689 3.253" stroke="#A4856C" stroke-width="1.5" stroke-linecap="round"/>
-          <path d="M72.9238 31.633C75.0588 33.768 77.6688 35.428 80.5158 36.493C83.3628 37.558 86.3568 38.003 89.3738 37.798C95.5588 37.378 101.279 34.558 105.314 30.058C109.349 25.558 111.359 19.918 110.899 13.708C110.789 12.193 110.429 10.738 109.829 9.418" stroke="#A4856C" stroke-width="1.5" stroke-linecap="round"/>
-          <circle cx="52" cy="4" r="3" fill="#D4C2AE"/>
-          <circle cx="110" cy="13" r="3" fill="#D4C2AE"/>
+        <svg width="104" height="104" viewBox="0 0 130 130" fill="none">
+          <use href="#orn-leaf" width="46" height="19" transform="translate(0,8) rotate(38)" style="color:#3F7A6C" opacity=".9"/>
+          <use href="#orn-leaf" width="34" height="15" transform="translate(14,30) rotate(64)" style="color:#7FB5A3" opacity=".85"/>
+          <use href="#orn-rose" width="26" height="26" transform="translate(2,0)"/>
+          <use href="#orn-bud" width="11" height="15" transform="translate(2,40) rotate(-12)"/>
         </svg>
       </div>
 
@@ -284,24 +387,18 @@
 
         <div class="cover-monogram-wrap">
           <svg class="cover-wreath" viewBox="0 0 172 172" width="172" height="172">
-            <g fill="none" stroke="#A4856C" stroke-width="1.1" stroke-linecap="round">
+            <g fill="none" stroke="#7FB5A3" stroke-width="1.1" stroke-linecap="round" opacity=".8">
               <path d="M86 12 C52 14 24 42 22 84"/>
               <path d="M86 160 C120 158 148 130 150 88"/>
             </g>
-            <g>
-              <ellipse cx="60" cy="20" rx="9" ry="4" fill="#D4C2AE" transform="rotate(-32 60 20)"/>
-              <ellipse cx="42" cy="34" rx="10" ry="4.5" fill="#A4856C" opacity="0.7" transform="rotate(-18 42 34)"/>
-              <ellipse cx="29" cy="54" rx="10" ry="4.5" fill="#D4C2AE" transform="rotate(6 29 54)"/>
-              <ellipse cx="23" cy="76" rx="9" ry="4" fill="#A4856C" opacity="0.7" transform="rotate(28 23 76)"/>
-              <ellipse cx="112" cy="152" rx="9" ry="4" fill="#D4C2AE" transform="rotate(-32 112 152)"/>
-              <ellipse cx="130" cy="138" rx="10" ry="4.5" fill="#A4856C" opacity="0.7" transform="rotate(-18 130 138)"/>
-              <ellipse cx="143" cy="118" rx="10" ry="4.5" fill="#D4C2AE" transform="rotate(6 143 118)"/>
-              <ellipse cx="149" cy="96" rx="9" ry="4" fill="#A4856C" opacity="0.7" transform="rotate(28 149 96)"/>
-              <circle cx="86" cy="11" r="6" fill="#A4856C"/><circle cx="86" cy="11" r="2.3" fill="#FCF6EA"/>
-              <circle cx="86" cy="161" r="6" fill="#A4856C"/><circle cx="86" cy="161" r="2.3" fill="#FCF6EA"/>
-              <circle cx="18" cy="86" r="5" fill="#A4856C"/>
-              <circle cx="154" cy="86" r="5" fill="#A4856C"/>
-            </g>
+            <use href="#orn-leaf" width="30" height="12" transform="translate(46,10) rotate(-40)" style="color:#3F7A6C" opacity=".85"/>
+            <use href="#orn-leaf" width="26" height="11" transform="translate(28,30) rotate(-15)" style="color:#7FB5A3" opacity=".8"/>
+            <use href="#orn-leaf" width="26" height="11" transform="translate(112,128) rotate(140)" style="color:#3F7A6C" opacity=".85"/>
+            <use href="#orn-leaf" width="30" height="12" transform="translate(126,108) rotate(165)" style="color:#7FB5A3" opacity=".8"/>
+            <use href="#orn-rose" width="26" height="26" transform="translate(50,18)"/>
+            <use href="#orn-rose" width="20" height="20" transform="translate(18,72)"/>
+            <use href="#orn-rose" width="26" height="26" transform="translate(96,128)"/>
+            <use href="#orn-rose" width="20" height="20" transform="translate(132,80)"/>
           </svg>
           <div class="cover-monogram">
             <div class="cover-monogram-ring" aria-hidden="true"></div>
@@ -328,46 +425,6 @@
         Buka Undangan
       </button>
     </div>
-    </div>
-
-    <!-- ============ CURTAIN ============ -->
-    <div class="curtain" id="curtain" hidden>
-      <div class="curtain-inner">
-
-        <!-- LEFT drape -->
-        <div class="drape drape--left" id="drapeLeft">
-          <div class="drape-damask" aria-hidden="true"></div>
-          <div class="drape-monogram"><div>F</div></div>
-          <div class="drape-edge drape-edge--left"></div>
-          <div class="drape-braid drape-braid--left"></div>
-        </div>
-
-        <!-- RIGHT drape -->
-        <div class="drape drape--right" id="drapeRight">
-          <div class="drape-damask drape-damask--right" aria-hidden="true"></div>
-          <div class="drape-monogram"><div>R</div></div>
-          <div class="drape-edge drape-edge--right"></div>
-          <div class="drape-braid drape-braid--right"></div>
-        </div>
-
-        <!-- VALANCE (top swag) -->
-        <div class="valance" id="valance">
-          <div class="valance-fill"></div>
-          <div class="valance-scallop"></div>
-          <svg class="valance-hem" width="100%" height="72" viewBox="0 0 480 72" preserveAspectRatio="none">
-            <path d="M0 6 Q30 44 60 6 Q90 44 120 6 Q150 44 180 6 Q210 44 240 6 Q270 44 300 6 Q330 44 360 6 Q390 44 420 6 Q450 44 480 6" fill="none" stroke="#B08A54" stroke-width="2.4"/>
-          </svg>
-          <div class="valance-tassels">
-            <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-          </div>
-        </div>
-
-        <!-- scroll hint -->
-        <div class="scroll-hint" id="scrollHint">
-          <div class="scroll-hint-text">Geser ke bawah untuk membuka</div>
-          <div class="scroll-hint-arrow">⌄</div>
-        </div>
-      </div>
     </div>
 
     <!-- ============ MUSIC TOGGLE ============ -->

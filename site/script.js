@@ -39,6 +39,8 @@
     musicBtn: el("musicBtn"),
     musicIcon: el("musicIcon"),
     audio: el("audio"),
+    giftToggle: el("giftToggle"),
+    giftPanel: el("giftPanel"),
   };
 
   const state = {
@@ -181,6 +183,39 @@
     els.rsvpForm.addEventListener("submit", submitRsvp);
   }
 
+  // ---------- gift / amplop ----------
+  function initGift() {
+    if (!els.giftToggle || !els.giftPanel) return;
+    els.giftToggle.addEventListener("click", () => {
+      const opening = els.giftPanel.hidden;
+      els.giftPanel.hidden = !opening;
+      els.giftToggle.textContent = opening ? "Tutup" : "Kirim Hadiah";
+      if (opening) {
+        els.giftPanel.querySelectorAll("[data-reveal]").forEach((n) => {
+          n.classList.remove("in");
+          requestAnimationFrame(() => n.classList.add("in"));
+        });
+      }
+    });
+    els.giftPanel.querySelectorAll(".copy-btn").forEach((btn) => {
+      btn.addEventListener("click", async () => {
+        const text = btn.getAttribute("data-copy") || "";
+        try {
+          await navigator.clipboard.writeText(text);
+        } catch (e) {
+          return;
+        }
+        const original = btn.textContent;
+        btn.textContent = "Tersalin!";
+        btn.classList.add("is-copied");
+        setTimeout(() => {
+          btn.textContent = original;
+          btn.classList.remove("is-copied");
+        }, 1800);
+      });
+    });
+  }
+
   // ---------- scroll-reveal ----------
   let revealObserver = null;
   function setupReveal() {
@@ -287,6 +322,7 @@
     initGuestName();
     initCountdown();
     initRsvp();
+    initGift();
     initMusic();
     initParallax();
     els.openBtn.addEventListener("click", openInvitation);
