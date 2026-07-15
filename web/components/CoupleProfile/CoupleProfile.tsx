@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import FloralLayer from "@/components/FloralLayer";
+import PhotoBloom from "@/components/PhotoBloom";
 import SectionHeading from "@/components/SectionHeading";
 import { useRevealOnScroll } from "@/hooks/useRevealOnScroll";
 
@@ -37,13 +37,11 @@ export default function CoupleProfile({
       ref={sectionRef}
       className="relative overflow-hidden bg-warm-white px-6 py-24"
     >
-      <FloralLayer
-        src="/floral/left-top.svg"
-        width={300}
-        height={300}
+      <PhotoBloom
+        src={floralSide === "left" ? "/images/florals/rose.jpg" : "/images/florals/peony.jpg"}
         className={[
-          "pointer-events-none absolute top-0 w-24 select-none opacity-80 sm:w-32",
-          floralSide === "left" ? "left-0" : "right-0 -scale-x-100",
+          "pointer-events-none absolute -top-4 w-24 opacity-80 drop-shadow-[0_14px_28px_rgba(99,72,28,0.3)] select-none sm:w-32",
+          floralSide === "left" ? "-left-4" : "-right-4",
         ].join(" ")}
       />
 
