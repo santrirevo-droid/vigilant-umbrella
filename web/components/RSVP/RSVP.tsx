@@ -1,13 +1,17 @@
 "use client";
 
 import { useRef, useState, type FormEvent } from "react";
+import FloralLayer from "@/components/FloralLayer";
 import SectionHeading from "@/components/SectionHeading";
+import { useFloralParallax } from "@/hooks/useFloralParallax";
 import { useRevealOnScroll } from "@/hooks/useRevealOnScroll";
 import { useWishes } from "@/hooks/useWishes";
 
 export default function RSVP() {
   const sectionRef = useRef<HTMLElement>(null);
+  const sprayRef = useRef<HTMLImageElement>(null);
   useRevealOnScroll(sectionRef, { stagger: 0.1 });
+  useFloralParallax(sectionRef, sprayRef);
 
   const { wishes, addWish } = useWishes();
   const [attend, setAttend] = useState<"hadir" | "tidak">("hadir");
@@ -44,7 +48,19 @@ export default function RSVP() {
     "mb-2 block text-[10px] font-medium uppercase tracking-[0.2em] text-ink-mute";
 
   return (
-    <section id="rsvp" ref={sectionRef} className="bg-cream/50 px-6 py-24 text-center">
+    <section
+      id="rsvp"
+      ref={sectionRef}
+      className="relative overflow-hidden bg-cream/50 px-6 py-24 text-center"
+    >
+      <FloralLayer
+        ref={sprayRef}
+        src="/floral/floral-wc-spray-e.png"
+        width={585}
+        height={579}
+        className="pointer-events-none absolute left-0 top-0 w-24 select-none opacity-50 sm:w-32"
+      />
+
       <div className="mx-auto max-w-md">
         <SectionHeading eyebrow="Konfirmasi Kehadiran" />
         <p data-reveal className="mt-4 font-display text-base italic text-ink-soft">

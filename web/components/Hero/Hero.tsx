@@ -6,6 +6,7 @@ import MusicPlayer from "@/components/MusicPlayer";
 import { useCoverRefs } from "@/hooks/useCoverRefs";
 import { useIdleMotion } from "@/hooks/useIdleMotion";
 import { useOpenInvitation } from "@/hooks/useOpenInvitation";
+import { usePetalFall } from "@/hooks/usePetalFall";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const COUPLE = {
@@ -23,17 +24,29 @@ const PARTICLE_POSITIONS = [
   "left-[90%] top-[76%] h-2 w-2",
 ];
 
+const PETAL_POSITIONS = [
+  { left: "18%", src: "/floral/floral-wc-petal-1.png", size: "h-5 w-5" },
+  { left: "68%", src: "/floral/floral-wc-petal-2.png", size: "h-4 w-4" },
+  { left: "40%", src: "/floral/floral-wc-petal-1.png", size: "h-4 w-4" },
+  { left: "85%", src: "/floral/floral-wc-petal-2.png", size: "h-5 w-5" },
+  { left: "6%", src: "/floral/floral-wc-petal-2.png", size: "h-3.5 w-3.5" },
+  { left: "56%", src: "/floral/floral-wc-petal-1.png", size: "h-3.5 w-3.5" },
+];
+
 export default function Hero() {
   const refs = useCoverRefs();
   const idle = useIdleMotion(refs);
   const { open } = useOpenInvitation(refs);
   useScrollReveal(refs);
+  usePetalFall(refs.section);
 
   const {
     section,
     coverInner,
     background,
     glow,
+    wcCurtainLeft,
+    wcCurtainRight,
     leaves,
     topCenter,
     leftTop,
@@ -80,6 +93,23 @@ export default function Hero() {
             background:
               "radial-gradient(circle at 50% 34%, rgba(216,175,71,0.45), transparent 62%)",
           }}
+        />
+
+        {/* watercolor curtain — soft background wash behind the vector florals,
+            parts outward first on scroll to sell a "curtain opening" feel */}
+        <FloralLayer
+          ref={wcCurtainLeft}
+          src="/floral/floral-wc-spray-b.png"
+          width={571}
+          height={509}
+          className="pointer-events-none absolute left-0 top-1/2 w-40 -translate-y-1/2 select-none opacity-20 blur-[1px] sm:w-56 md:w-72"
+        />
+        <FloralLayer
+          ref={wcCurtainRight}
+          src="/floral/floral-wc-spray-e.png"
+          width={585}
+          height={579}
+          className="pointer-events-none absolute right-0 top-1/2 w-40 -translate-y-1/2 -scale-x-100 select-none opacity-20 blur-[1px] sm:w-56 md:w-72"
         />
 
         {/* leaves — ambient back layer, swaying idly + slower scroll parallax */}
@@ -141,6 +171,25 @@ export default function Hero() {
                 src="/floral/particle.svg"
                 width={24}
                 height={24}
+                className="h-full w-full select-none"
+              />
+            </div>
+          ))}
+        </div>
+
+        {/* falling watercolor petals — ambient garnish, respects reduced-motion via usePetalFall */}
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
+          {PETAL_POSITIONS.map((petal, i) => (
+            <div
+              key={i}
+              data-petal
+              className={`absolute top-0 opacity-0 ${petal.size}`}
+              style={{ left: petal.left }}
+            >
+              <FloralLayer
+                src={petal.src}
+                width={56}
+                height={56}
                 className="h-full w-full select-none"
               />
             </div>

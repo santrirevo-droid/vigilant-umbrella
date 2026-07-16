@@ -24,6 +24,10 @@ export function useScrollReveal(refs: CoverRefs) {
     const section = refs.section.current;
     if (!section) return;
 
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -81,6 +85,22 @@ export function useScrollReveal(refs: CoverRefs) {
         )
         // the whole cover fades fully so the content behind it shows through
         .to(refs.coverInner.current, { opacity: 0, ease: "none", duration: 0.4 }, 0.62);
+
+      // watercolor curtain — parts outward faster than the vector florals,
+      // so it visually "opens" first. Skipped under reduced-motion: the
+      // layer simply stays put at rest rather than animating away.
+      if (!reduceMotion) {
+        const wcSpeed = SPEED.floral * 1.3;
+        tl.to(
+          refs.wcCurtainLeft.current,
+          { xPercent: -wcSpeed * 140, opacity: 0, ease: "none", duration: 1 },
+          0
+        ).to(
+          refs.wcCurtainRight.current,
+          { xPercent: wcSpeed * 140, opacity: 0, ease: "none", duration: 1 },
+          0
+        );
+      }
     }, section);
 
     return () => ctx.revert();

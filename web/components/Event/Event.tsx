@@ -1,16 +1,32 @@
 "use client";
 
 import { useRef } from "react";
+import FloralLayer from "@/components/FloralLayer";
 import SectionHeading from "@/components/SectionHeading";
+import { useFloralParallax } from "@/hooks/useFloralParallax";
 import { useRevealOnScroll } from "@/hooks/useRevealOnScroll";
 import { events, venue } from "@/lib/weddingData";
 
 export default function Event() {
   const sectionRef = useRef<HTMLElement>(null);
+  const sprayRef = useRef<HTMLImageElement>(null);
   useRevealOnScroll(sectionRef);
+  useFloralParallax(sectionRef, sprayRef);
 
   return (
-    <section id="event" ref={sectionRef} className="bg-warm-white px-6 py-24 text-center">
+    <section
+      id="event"
+      ref={sectionRef}
+      className="relative overflow-hidden bg-warm-white px-6 py-24 text-center"
+    >
+      <FloralLayer
+        ref={sprayRef}
+        src="/floral/floral-wc-spray-c.png"
+        width={324}
+        height={321}
+        className="pointer-events-none absolute left-0 top-0 w-20 select-none opacity-50 sm:w-28"
+      />
+
       <div className="mx-auto max-w-md">
         <SectionHeading eyebrow="Rangkaian Acara" />
 

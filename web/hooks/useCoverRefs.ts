@@ -14,6 +14,8 @@ export function useCoverRefs() {
     coverInner: useRef<HTMLDivElement>(null),
     background: useRef<HTMLDivElement>(null),
     glow: useRef<HTMLDivElement>(null),
+    wcCurtainLeft: useRef<HTMLImageElement>(null),
+    wcCurtainRight: useRef<HTMLImageElement>(null),
     leaves: useRef<HTMLImageElement>(null),
     topCenter: useRef<HTMLImageElement>(null),
     leftTop: useRef<HTMLImageElement>(null),

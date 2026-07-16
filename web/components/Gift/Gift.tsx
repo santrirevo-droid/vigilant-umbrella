@@ -1,13 +1,17 @@
 "use client";
 
 import { useRef, useState } from "react";
+import FloralLayer from "@/components/FloralLayer";
 import SectionHeading from "@/components/SectionHeading";
+import { useFloralParallax } from "@/hooks/useFloralParallax";
 import { useRevealOnScroll } from "@/hooks/useRevealOnScroll";
 import { bankAccounts } from "@/lib/weddingData";
 
 export default function Gift() {
   const sectionRef = useRef<HTMLElement>(null);
+  const sprayRef = useRef<HTMLImageElement>(null);
   useRevealOnScroll(sectionRef, { stagger: 0.15 });
+  useFloralParallax(sectionRef, sprayRef);
 
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
 
@@ -27,6 +31,14 @@ export default function Gift() {
       ref={sectionRef}
       className="relative overflow-hidden bg-gradient-to-b from-cream via-warm-white to-cream px-6 py-24 text-center"
     >
+      <FloralLayer
+        ref={sprayRef}
+        src="/floral/floral-wc-spray-a.png"
+        width={302}
+        height={424}
+        className="pointer-events-none absolute right-0 top-0 w-20 -scale-x-100 select-none opacity-50 sm:w-28"
+      />
+
       {/* soft color blobs for the glass cards to blur against */}
       <div
         aria-hidden="true"

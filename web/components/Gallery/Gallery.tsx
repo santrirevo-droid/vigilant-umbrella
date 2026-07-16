@@ -3,7 +3,9 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import FloralLayer from "@/components/FloralLayer";
 import SectionHeading from "@/components/SectionHeading";
+import { useFloralParallax } from "@/hooks/useFloralParallax";
 import { useRevealOnScroll } from "@/hooks/useRevealOnScroll";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -13,7 +15,9 @@ const PHOTOS = [1, 2, 3, 4, 5, 6];
 export default function Gallery() {
   const sectionRef = useRef<HTMLElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
+  const sprayRef = useRef<HTMLImageElement>(null);
   useRevealOnScroll(sectionRef);
+  useFloralParallax(sectionRef, sprayRef);
 
   useEffect(() => {
     const grid = gridRef.current;
@@ -41,7 +45,19 @@ export default function Gallery() {
   }, []);
 
   return (
-    <section id="gallery" ref={sectionRef} className="bg-warm-white px-6 py-24 text-center">
+    <section
+      id="gallery"
+      ref={sectionRef}
+      className="relative overflow-hidden bg-warm-white px-6 py-24 text-center"
+    >
+      <FloralLayer
+        ref={sprayRef}
+        src="/floral/floral-wc-spray-d.png"
+        width={529}
+        height={466}
+        className="pointer-events-none absolute right-0 top-0 w-24 -scale-x-100 select-none opacity-50 sm:w-32"
+      />
+
       <div className="mx-auto max-w-md">
         <SectionHeading
           eyebrow="Galeri Kami"

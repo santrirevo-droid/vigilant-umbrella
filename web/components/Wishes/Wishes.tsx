@@ -3,7 +3,9 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import FloralLayer from "@/components/FloralLayer";
 import SectionHeading from "@/components/SectionHeading";
+import { useFloralParallax } from "@/hooks/useFloralParallax";
 import { useRevealOnScroll } from "@/hooks/useRevealOnScroll";
 import { useWishes } from "@/hooks/useWishes";
 
@@ -12,7 +14,9 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Wishes() {
   const sectionRef = useRef<HTMLElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
+  const sprayRef = useRef<HTMLImageElement>(null);
   useRevealOnScroll(sectionRef);
+  useFloralParallax(sectionRef, sprayRef);
   const { wishes } = useWishes();
 
   // re-run whenever the wish count changes, so newly-submitted or
@@ -48,7 +52,19 @@ export default function Wishes() {
   }, [wishes.length]);
 
   return (
-    <section id="wishes" ref={sectionRef} className="bg-warm-white px-6 py-24 text-center">
+    <section
+      id="wishes"
+      ref={sectionRef}
+      className="relative overflow-hidden bg-warm-white px-6 py-24 text-center"
+    >
+      <FloralLayer
+        ref={sprayRef}
+        src="/floral/floral-wc-spray-b.png"
+        width={571}
+        height={509}
+        className="pointer-events-none absolute left-0 top-0 w-24 select-none opacity-50 sm:w-32"
+      />
+
       <div className="mx-auto max-w-md">
         <SectionHeading eyebrow="Ucapan &amp; Doa" />
 

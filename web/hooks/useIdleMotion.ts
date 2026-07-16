@@ -30,6 +30,8 @@ export function useIdleMotion(refs: CoverRefs) {
         .to(refs.leftBottom.current, { y: -5, rotation: 1, duration: 6.5 }, 0)
         .to(refs.rightBottom.current, { y: -5, rotation: -1, duration: 6.8 }, 0)
         .to(refs.leaves.current, { rotation: 0.4, duration: 9 }, 0)
+        .to(refs.wcCurtainLeft.current, { y: 10, x: -4, duration: 10 }, 0)
+        .to(refs.wcCurtainRight.current, { y: -10, x: 4, duration: 10.5 }, 0)
         .to(
           refs.glow.current,
           { opacity: 0.22, x: 14, y: -10, duration: 8 },
