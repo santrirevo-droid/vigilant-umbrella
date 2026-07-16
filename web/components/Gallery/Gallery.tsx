@@ -16,8 +16,10 @@ export default function Gallery() {
   const sectionRef = useRef<HTMLElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
   const sprayRef = useRef<HTMLImageElement>(null);
+  const coupleRef = useRef<HTMLImageElement>(null);
   useRevealOnScroll(sectionRef);
   useFloralParallax(sectionRef, sprayRef);
+  useFloralParallax(sectionRef, coupleRef);
 
   useEffect(() => {
     const grid = gridRef.current;
@@ -48,7 +50,7 @@ export default function Gallery() {
     <section
       id="gallery"
       ref={sectionRef}
-      className="relative overflow-hidden bg-warm-white px-6 py-24 text-center"
+      className="relative overflow-hidden px-6 py-24 text-center"
     >
       <FloralLayer
         ref={sprayRef}
@@ -57,6 +59,19 @@ export default function Gallery() {
         height={466}
         className="pointer-events-none absolute right-0 top-0 w-24 -scale-x-100 select-none opacity-50 sm:w-32"
       />
+
+      <div
+        data-reveal
+        className="pointer-events-none absolute bottom-0 right-0 w-24 select-none drop-shadow-[0_10px_20px_rgba(43,20,32,0.25)] sm:w-32"
+      >
+        <FloralLayer
+          ref={coupleRef}
+          src="/couple/couple-exchange.png"
+          width={744}
+          height={1423}
+          className="h-auto w-full"
+        />
+      </div>
 
       <div className="mx-auto max-w-md">
         <SectionHeading
@@ -75,7 +90,7 @@ export default function Gallery() {
               data-gallery-item
               className={[
                 "mb-3 break-inside-avoid overflow-hidden rounded-2xl",
-                "border border-gold/25 bg-gradient-to-br from-cream to-beige/70",
+                "border border-gold/45 bg-gradient-to-br from-cream to-beige/70",
                 i % 3 === 0 ? "aspect-[3/4]" : "aspect-square",
               ].join(" ")}
             >

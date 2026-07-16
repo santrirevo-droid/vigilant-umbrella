@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import FloralLayer from "@/components/FloralLayer";
 import SectionHeading from "@/components/SectionHeading";
+import { useFloralParallax } from "@/hooks/useFloralParallax";
 import { useRevealOnScroll } from "@/hooks/useRevealOnScroll";
 
 type CoupleProfileProps = {
@@ -27,15 +28,22 @@ export default function CoupleProfile({
   floralSide,
 }: CoupleProfileProps) {
   const sectionRef = useRef<HTMLElement>(null);
+  const coupleRef = useRef<HTMLImageElement>(null);
   useRevealOnScroll(sectionRef);
+  useFloralParallax(sectionRef, coupleRef);
 
   const initial = name.trim().charAt(0);
+  const isBride = id === "bride";
+  const coupleCorner = floralSide === "left" ? "right" : "left";
+  const couplePose = isBride
+    ? { src: "/couple/couple-exchange.png", width: 744, height: 1423 }
+    : { src: "/couple/couple-akad.png", width: 899, height: 1443 };
 
   return (
     <section
       id={id}
       ref={sectionRef}
-      className="relative overflow-hidden bg-warm-white px-6 py-24"
+      className="relative overflow-hidden px-6 py-24"
     >
       <FloralLayer
         src="/floral/left-top.svg"
@@ -46,6 +54,22 @@ export default function CoupleProfile({
           floralSide === "left" ? "left-0" : "right-0 -scale-x-100",
         ].join(" ")}
       />
+
+      <div
+        data-reveal
+        className={[
+          "pointer-events-none absolute bottom-0 w-24 select-none drop-shadow-[0_10px_20px_rgba(43,20,32,0.25)] sm:w-32",
+          coupleCorner === "left" ? "left-0" : "right-0",
+        ].join(" ")}
+      >
+        <FloralLayer
+          ref={coupleRef}
+          src={couplePose.src}
+          width={couplePose.width}
+          height={couplePose.height}
+          className="h-auto w-full"
+        />
+      </div>
 
       <div className="relative mx-auto flex max-w-md flex-col items-center text-center">
         <SectionHeading eyebrow={eyebrow} />

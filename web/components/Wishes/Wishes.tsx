@@ -15,8 +15,10 @@ export default function Wishes() {
   const sectionRef = useRef<HTMLElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
   const sprayRef = useRef<HTMLImageElement>(null);
+  const coupleRef = useRef<HTMLImageElement>(null);
   useRevealOnScroll(sectionRef);
   useFloralParallax(sectionRef, sprayRef);
+  useFloralParallax(sectionRef, coupleRef);
   const { wishes } = useWishes();
 
   // re-run whenever the wish count changes, so newly-submitted or
@@ -55,7 +57,7 @@ export default function Wishes() {
     <section
       id="wishes"
       ref={sectionRef}
-      className="relative overflow-hidden bg-warm-white px-6 py-24 text-center"
+      className="relative overflow-hidden px-6 pt-24 pb-40 text-center"
     >
       <FloralLayer
         ref={sprayRef}
@@ -64,6 +66,19 @@ export default function Wishes() {
         height={509}
         className="pointer-events-none absolute left-0 top-0 w-24 select-none opacity-50 sm:w-32"
       />
+
+      <div
+        data-reveal
+        className="pointer-events-none absolute bottom-0 left-0 w-24 select-none drop-shadow-[0_10px_20px_rgba(43,20,32,0.25)] sm:w-32"
+      >
+        <FloralLayer
+          ref={coupleRef}
+          src="/couple/couple-bouquet.png"
+          width={867}
+          height={1442}
+          className="h-auto w-full"
+        />
+      </div>
 
       <div className="mx-auto max-w-md">
         <SectionHeading eyebrow="Ucapan &amp; Doa" />
@@ -79,7 +94,7 @@ export default function Wishes() {
                 <div
                   key={wish.id}
                   data-wish-card
-                  className="rounded-2xl border border-gold/25 bg-cream/60 px-5 py-4"
+                  className="rounded-2xl border border-gold/45 bg-paper px-5 py-4"
                 >
                   <div className="flex items-center gap-3">
                     <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gold font-display text-base text-paper">

@@ -10,8 +10,10 @@ import { bankAccounts } from "@/lib/weddingData";
 export default function Gift() {
   const sectionRef = useRef<HTMLElement>(null);
   const sprayRef = useRef<HTMLImageElement>(null);
+  const coupleRef = useRef<HTMLImageElement>(null);
   useRevealOnScroll(sectionRef, { stagger: 0.15 });
   useFloralParallax(sectionRef, sprayRef);
+  useFloralParallax(sectionRef, coupleRef);
 
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
 
@@ -29,7 +31,7 @@ export default function Gift() {
     <section
       id="gift"
       ref={sectionRef}
-      className="relative overflow-hidden bg-gradient-to-b from-cream via-warm-white to-cream px-6 py-24 text-center"
+      className="relative overflow-hidden px-6 py-24 text-center"
     >
       <FloralLayer
         ref={sprayRef}
@@ -38,6 +40,19 @@ export default function Gift() {
         height={424}
         className="pointer-events-none absolute right-0 top-0 w-20 -scale-x-100 select-none opacity-50 sm:w-28"
       />
+
+      <div
+        data-reveal
+        className="pointer-events-none absolute bottom-0 right-0 z-10 w-24 select-none drop-shadow-[0_10px_20px_rgba(43,20,32,0.25)] sm:w-32"
+      >
+        <FloralLayer
+          ref={coupleRef}
+          src="/couple/couple-veil.png"
+          width={904}
+          height={1420}
+          className="h-auto w-full"
+        />
+      </div>
 
       {/* soft color blobs for the glass cards to blur against */}
       <div
@@ -62,7 +77,7 @@ export default function Gift() {
             <div
               key={account.bank}
               data-reveal
-              className="rounded-2xl border border-white/50 bg-white/35 px-6 py-7 shadow-[0_18px_44px_-24px_rgba(58,54,46,0.35)] backdrop-blur-md"
+              className="rounded-2xl border border-gold/35 bg-paper/90 px-6 py-7 shadow-[0_18px_44px_-24px_rgba(58,54,46,0.35)] backdrop-blur-md"
             >
               <div className="font-display text-xl text-ink">{account.bank}</div>
               <div className="mt-2 font-body text-lg tracking-[0.12em] text-gold-dark">
@@ -78,7 +93,7 @@ export default function Gift() {
                   "mt-4 cursor-pointer rounded-full border px-6 py-2.5 text-[10px] font-medium uppercase tracking-[0.18em] transition-colors",
                   copiedIndex === i
                     ? "border-sage-dark bg-sage-dark text-paper"
-                    : "border-gold/40 bg-warm-white/70 text-ink-soft hover:border-gold",
+                    : "border-gold/40 bg-paper/90 text-ink-soft hover:border-gold",
                 ].join(" ")}
               >
                 {copiedIndex === i ? "Tersalin!" : "Salin Nomor"}
@@ -89,7 +104,7 @@ export default function Gift() {
 
         <div
           data-reveal
-          className="mx-auto mt-6 flex aspect-square w-40 flex-col items-center justify-center gap-2 rounded-2xl border border-white/50 bg-white/35 shadow-[0_18px_44px_-24px_rgba(58,54,46,0.35)] backdrop-blur-md"
+          className="mx-auto mt-6 flex aspect-square w-40 flex-col items-center justify-center gap-2 rounded-2xl border border-gold/35 bg-paper/90 shadow-[0_18px_44px_-24px_rgba(58,54,46,0.35)] backdrop-blur-md"
         >
           <svg width="56" height="56" viewBox="0 0 56 56" className="opacity-70">
             <rect x="4" y="4" width="18" height="18" rx="2" fill="none" stroke="#9C7728" strokeWidth="2" />

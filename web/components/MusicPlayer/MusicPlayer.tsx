@@ -61,7 +61,7 @@ const MusicPlayer = forwardRef<MusicPlayerHandle, MusicPlayerProps>(
           aria-label={isPlaying ? "Jeda musik" : "Putar musik"}
           className={[
             "flex h-11 w-11 items-center justify-center rounded-full",
-            "border border-gold/50 bg-warm-white/80 text-gold-dark backdrop-blur-sm",
+            "border border-gold/50 bg-paper text-gold-dark backdrop-blur-sm",
             "shadow-[0_8px_20px_-8px_rgba(58,54,46,0.3)] transition-transform hover:scale-105",
             "cursor-pointer",
             className,

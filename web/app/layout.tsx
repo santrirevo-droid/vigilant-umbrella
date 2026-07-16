@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Cinzel, Inter } from "next/font/google";
+import BackgroundPattern from "@/components/BackgroundPattern";
 import SmoothScroll from "@/components/SmoothScroll";
 import "./globals.css";
 
@@ -39,6 +40,7 @@ export default function RootLayout({
       className={`${cormorant.variable} ${cinzel.variable} ${inter.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-warm-white font-body text-ink">
+        <BackgroundPattern />
         <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>

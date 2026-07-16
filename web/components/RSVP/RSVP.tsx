@@ -10,8 +10,10 @@ import { useWishes } from "@/hooks/useWishes";
 export default function RSVP() {
   const sectionRef = useRef<HTMLElement>(null);
   const sprayRef = useRef<HTMLImageElement>(null);
+  const coupleRef = useRef<HTMLImageElement>(null);
   useRevealOnScroll(sectionRef, { stagger: 0.1 });
   useFloralParallax(sectionRef, sprayRef);
+  useFloralParallax(sectionRef, coupleRef);
 
   const { wishes, addWish } = useWishes();
   const [attend, setAttend] = useState<"hadir" | "tidak">("hadir");
@@ -43,7 +45,7 @@ export default function RSVP() {
   }
 
   const fieldClass =
-    "w-full rounded-xl border border-gold/30 bg-warm-white px-4 py-3 text-sm text-ink outline-none transition-colors focus:border-gold";
+    "w-full rounded-xl border border-gold/45 bg-paper px-4 py-3 text-sm text-ink outline-none transition-colors focus:border-gold";
   const labelClass =
     "mb-2 block text-[10px] font-medium uppercase tracking-[0.2em] text-ink-mute";
 
@@ -51,7 +53,7 @@ export default function RSVP() {
     <section
       id="rsvp"
       ref={sectionRef}
-      className="relative overflow-hidden bg-cream/50 px-6 py-24 text-center"
+      className="relative overflow-hidden px-6 py-24 text-center"
     >
       <FloralLayer
         ref={sprayRef}
@@ -60,6 +62,19 @@ export default function RSVP() {
         height={579}
         className="pointer-events-none absolute left-0 top-0 w-24 select-none opacity-50 sm:w-32"
       />
+
+      <div
+        data-reveal
+        className="pointer-events-none absolute bottom-0 left-0 w-24 select-none drop-shadow-[0_10px_20px_rgba(43,20,32,0.25)] sm:w-32"
+      >
+        <FloralLayer
+          ref={coupleRef}
+          src="/couple/couple-akad.png"
+          width={899}
+          height={1443}
+          className="h-auto w-full"
+        />
+      </div>
 
       <div className="mx-auto max-w-md">
         <SectionHeading eyebrow="Konfirmasi Kehadiran" />
@@ -98,7 +113,7 @@ export default function RSVP() {
                     "flex-1 cursor-pointer rounded-xl border px-3 py-3 text-xs font-medium uppercase tracking-[0.14em] transition-colors",
                     attend === value
                       ? "border-gold bg-gold text-paper"
-                      : "border-gold/30 bg-warm-white text-ink-mute",
+                      : "border-gold/45 bg-paper text-ink-mute",
                   ].join(" ")}
                 >
                   {value === "hadir" ? "Hadir" : "Berhalangan"}

@@ -1,20 +1,20 @@
 @import "tailwindcss";
 
 :root {
-  /* Vibrant Botanical Luxury v2 — bold pink-red background */
-  --warm-white: #e28a98;
+  /* Vibrant Botanical Luxury v3 — deep jewel tones over the pink pattern */
+  --warm-white: #e39aa4;
   --cream: #efb4be;
   --beige: #d46b7c;
   --paper: #fff7f5;
-  --gold: #c89b3c;
-  --gold-light: #d8af47;
-  --gold-dark: #63481c;
-  --ink: #232b28;
-  --ink-soft: #333f39;
-  --ink-mute: #3d4943;
-  --sage: #396e45;
-  --sage-light: #5c9468;
-  --sage-dark: #1f4a30;
+  --gold: #b9862e;
+  --gold-light: #d9a83f;
+  --gold-dark: #5a3c12;
+  --ink: #2b1420;
+  --ink-soft: #4a2432;
+  --ink-mute: #6d3f4c;
+  --sage: #1f6b45;
+  --sage-light: #3f9c68;
+  --sage-dark: #123d27;
 
   /* botanical accents — used across florals and small UI accents */
   --rose: #c52c54;

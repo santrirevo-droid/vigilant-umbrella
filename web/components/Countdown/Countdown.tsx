@@ -22,8 +22,10 @@ function getTimeLeft() {
 export default function Countdown() {
   const sectionRef = useRef<HTMLElement>(null);
   const sprayRef = useRef<HTMLImageElement>(null);
+  const coupleRef = useRef<HTMLImageElement>(null);
   useRevealOnScroll(sectionRef);
   useFloralParallax(sectionRef, sprayRef);
+  useFloralParallax(sectionRef, coupleRef);
 
   // lazy init so the first paint already shows real numbers instead of
   // "--"; the value legitimately differs between server and client render
@@ -46,7 +48,7 @@ export default function Countdown() {
     <section
       id="countdown"
       ref={sectionRef}
-      className="relative overflow-hidden bg-gradient-to-b from-warm-white via-cream to-warm-white px-6 py-24 text-center"
+      className="relative overflow-hidden px-6 py-24 text-center"
     >
       <FloralLayer
         ref={sprayRef}
@@ -55,6 +57,19 @@ export default function Countdown() {
         height={509}
         className="pointer-events-none absolute right-0 top-0 w-24 -scale-x-100 select-none opacity-50 sm:w-32"
       />
+
+      <div
+        data-reveal
+        className="pointer-events-none absolute bottom-0 right-0 w-24 select-none drop-shadow-[0_10px_20px_rgba(43,20,32,0.25)] sm:w-32"
+      >
+        <FloralLayer
+          ref={coupleRef}
+          src="/couple/couple-veil.png"
+          width={904}
+          height={1420}
+          className="h-auto w-full"
+        />
+      </div>
 
       <div className="mx-auto max-w-md">
         <SectionHeading eyebrow="Save The Date" />
@@ -67,7 +82,7 @@ export default function Countdown() {
           {cells.map((cell) => (
             <div
               key={cell.label}
-              className="rounded-2xl border border-gold/30 bg-warm-white/80 px-2 py-5 shadow-[0_10px_28px_-16px_rgba(169,131,74,0.4)]"
+              className="rounded-2xl border border-gold/45 bg-paper px-2 py-5 shadow-[0_10px_28px_-16px_rgba(169,131,74,0.4)]"
             >
               <div
                 suppressHydrationWarning

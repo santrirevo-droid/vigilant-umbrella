@@ -14,7 +14,7 @@ const InvitationButton = forwardRef<HTMLButtonElement, InvitationButtonProps>(
         type="button"
         className={[
           "group relative inline-flex items-center gap-3 rounded-full",
-          "border border-gold/70 bg-warm-white/70 px-9 py-4",
+          "border border-gold/70 bg-paper/90 px-9 py-4",
           "font-body text-[11px] font-medium uppercase tracking-[0.28em] text-ink-soft",
           "shadow-[0_10px_30px_-10px_rgba(169,131,74,0.45)] backdrop-blur-sm",
           "transition-colors duration-300 hover:border-gold hover:bg-gold/10",
