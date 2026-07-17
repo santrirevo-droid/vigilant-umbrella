@@ -23,28 +23,36 @@ export default function RSVP() {
   const [name, setName] = useState("");
   const [guests, setGuests] = useState("2");
   const [message, setMessage] = useState("");
-  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [justSent, setJustSent] = useState(false);
 
   const hadirCount = wishes.filter((w) => w.attend === "hadir").length;
 
-  function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     if (!name.trim()) {
-      setError(true);
+      setErrorMessage("Mohon isi nama Anda terlebih dahulu.");
       return;
     }
-    setError(false);
-    addWish({
-      name: name.trim(),
-      attend,
-      guests: attend === "hadir" ? guests : "",
-      message: message.trim(),
-    });
-    setName("");
-    setMessage("");
-    setJustSent(true);
-    setTimeout(() => setJustSent(false), 2500);
+    setErrorMessage(null);
+    setIsSubmitting(true);
+    try {
+      await addWish({
+        name: name.trim(),
+        attend,
+        guests: attend === "hadir" ? guests : "",
+        message: message.trim(),
+      });
+      setName("");
+      setMessage("");
+      setJustSent(true);
+      setTimeout(() => setJustSent(false), 2500);
+    } catch {
+      setErrorMessage("Gagal mengirim ucapan. Periksa koneksi Anda dan coba lagi.");
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   const fieldClass =
@@ -101,7 +109,7 @@ export default function RSVP() {
               value={name}
               onChange={(e) => {
                 setName(e.target.value);
-                if (error) setError(false);
+                if (errorMessage) setErrorMessage(null);
               }}
               placeholder="Nama Anda"
               autoComplete="name"
@@ -161,18 +169,19 @@ export default function RSVP() {
             />
           </div>
 
-          {error && (
+          {errorMessage && (
             <p data-reveal className="text-xs text-red-500">
-              Mohon isi nama Anda terlebih dahulu.
+              {errorMessage}
             </p>
           )}
 
           <button
             data-reveal
             type="submit"
-            className="mt-1 cursor-pointer rounded-xl bg-gold py-3.5 text-xs font-medium uppercase tracking-[0.22em] text-paper shadow-[0_10px_26px_-10px_rgba(169,131,74,0.55)] transition-opacity hover:opacity-90"
+            disabled={isSubmitting}
+            className="mt-1 cursor-pointer rounded-xl bg-gold py-3.5 text-xs font-medium uppercase tracking-[0.22em] text-paper shadow-[0_10px_26px_-10px_rgba(169,131,74,0.55)] transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
           >
-            {justSent ? "Terkirim, terima kasih" : "Kirim Konfirmasi"}
+            {justSent ? "Terkirim, terima kasih" : isSubmitting ? "Mengirim…" : "Kirim Konfirmasi"}
           </button>
         </form>
 
