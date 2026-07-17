@@ -4,6 +4,7 @@ import { useRef, useState, type FormEvent } from "react";
 import FloralLayer from "@/components/FloralLayer";
 import SectionHeading from "@/components/SectionHeading";
 import { useFloralParallax } from "@/hooks/useFloralParallax";
+import { useIdleFloat } from "@/hooks/useIdleFloat";
 import { useRevealOnScroll } from "@/hooks/useRevealOnScroll";
 import { useWishes } from "@/hooks/useWishes";
 
@@ -15,6 +16,7 @@ export default function RSVP() {
   useRevealOnScroll(sectionRef, { selector: "[data-reveal-faint]", opacity: 0.5 });
   useFloralParallax(sectionRef, sprayRef);
   useFloralParallax(sectionRef, coupleRef);
+  useIdleFloat(coupleRef);
 
   const { wishes, addWish } = useWishes();
   const [attend, setAttend] = useState<"hadir" | "tidak">("hadir");

@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import FloralLayer from "@/components/FloralLayer";
 import SectionHeading from "@/components/SectionHeading";
 import { useFloralParallax } from "@/hooks/useFloralParallax";
+import { useIdleFloat } from "@/hooks/useIdleFloat";
 import { useRevealOnScroll } from "@/hooks/useRevealOnScroll";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -21,6 +22,7 @@ export default function Gallery() {
   useRevealOnScroll(sectionRef, { selector: "[data-reveal-faint]", opacity: 0.5 });
   useFloralParallax(sectionRef, sprayRef);
   useFloralParallax(sectionRef, coupleRef);
+  useIdleFloat(coupleRef);
 
   useEffect(() => {
     const grid = gridRef.current;

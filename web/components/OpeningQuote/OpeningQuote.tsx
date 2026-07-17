@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import FloralLayer from "@/components/FloralLayer";
 import { useFloralParallax } from "@/hooks/useFloralParallax";
+import { useIdleFloat } from "@/hooks/useIdleFloat";
 import { useRevealOnScroll } from "@/hooks/useRevealOnScroll";
 
 export default function OpeningQuote() {
@@ -13,6 +14,7 @@ export default function OpeningQuote() {
   useRevealOnScroll(sectionRef, { selector: "[data-reveal-faint]", opacity: 0.5 });
   useFloralParallax(sectionRef, sprayRef);
   useFloralParallax(sectionRef, coupleRef);
+  useIdleFloat(coupleRef);
 
   return (
     <section

@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import FloralLayer from "@/components/FloralLayer";
 import SectionHeading from "@/components/SectionHeading";
 import { useFloralParallax } from "@/hooks/useFloralParallax";
+import { useIdleFloat } from "@/hooks/useIdleFloat";
 import { useRevealOnScroll } from "@/hooks/useRevealOnScroll";
 import { WEDDING_DATE_ISO } from "@/lib/weddingData";
 
@@ -27,6 +28,7 @@ export default function Countdown() {
   useRevealOnScroll(sectionRef, { selector: "[data-reveal-faint]", opacity: 0.5 });
   useFloralParallax(sectionRef, sprayRef);
   useFloralParallax(sectionRef, coupleRef);
+  useIdleFloat(coupleRef);
 
   // lazy init so the first paint already shows real numbers instead of
   // "--"; the value legitimately differs between server and client render

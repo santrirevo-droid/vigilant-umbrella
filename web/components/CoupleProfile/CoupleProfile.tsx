@@ -4,6 +4,7 @@ import { useRef } from "react";
 import FloralLayer from "@/components/FloralLayer";
 import SectionHeading from "@/components/SectionHeading";
 import { useFloralParallax } from "@/hooks/useFloralParallax";
+import { useIdleFloat } from "@/hooks/useIdleFloat";
 import { useRevealOnScroll } from "@/hooks/useRevealOnScroll";
 
 type CoupleProfileProps = {
@@ -32,6 +33,7 @@ export default function CoupleProfile({
   useRevealOnScroll(sectionRef);
   useRevealOnScroll(sectionRef, { selector: "[data-reveal-faint]", opacity: 0.8 });
   useFloralParallax(sectionRef, coupleRef);
+  useIdleFloat(coupleRef);
 
   const initial = name.trim().charAt(0);
   const isBride = id === "bride";

@@ -2,13 +2,21 @@
 
 import { useCallback, useRef, useState } from "react";
 import gsap from "gsap";
+import { useLenis } from "lenis/react";
 import type { CoverRefs } from "./useCoverRefs";
+
+// easeInOutCubic — gentle glide in, cruise, gentle glide out
+const easeInOutCubic = (t: number) =>
+  t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 
 /**
  * Orchestrates the "Buka Undangan" cover animation (Tahap 2):
  * scroll locks, music starts, the florals bloom toward the wreath,
  * the wreath appears, the title lifts with a soft zoom, and the
- * background gets a brief glow — then scroll unlocks.
+ * background gets a brief glow — then scroll unlocks and, once
+ * unlocked, Lenis carries the visitor on a slow autoscroll all the
+ * way down through the rest of the invitation. Skipped under
+ * reduced-motion so those visitors keep manual control.
  *
  * Kept separate from the Hero markup so the animation timeline can
  * be tuned without touching layout/JSX.
@@ -16,6 +24,7 @@ import type { CoverRefs } from "./useCoverRefs";
 export function useOpenInvitation(refs: CoverRefs) {
   const [isOpened, setIsOpened] = useState(false);
   const isAnimating = useRef(false);
+  const lenis = useLenis();
 
   const open = useCallback(() => {
     if (isAnimating.current) return;
@@ -30,6 +39,15 @@ export function useOpenInvitation(refs: CoverRefs) {
         defaults: { ease: "power3.out" },
         onComplete: () => {
           document.documentElement.classList.remove("scroll-locked");
+
+          if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+            return;
+          }
+
+          lenis?.scrollTo("bottom", {
+            duration: 9,
+            easing: easeInOutCubic,
+          });
         },
       })
       .set(refs.button.current, { pointerEvents: "none" }, 0)
