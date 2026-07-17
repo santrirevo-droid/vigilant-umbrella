@@ -17,6 +17,7 @@ export default function Wishes() {
   const sprayRef = useRef<HTMLImageElement>(null);
   const coupleRef = useRef<HTMLImageElement>(null);
   useRevealOnScroll(sectionRef);
+  useRevealOnScroll(sectionRef, { selector: "[data-reveal-faint]", opacity: 0.5 });
   useFloralParallax(sectionRef, sprayRef);
   useFloralParallax(sectionRef, coupleRef);
   const { wishes } = useWishes();
@@ -59,17 +60,22 @@ export default function Wishes() {
       ref={sectionRef}
       className="relative overflow-hidden px-6 pt-24 pb-40 text-center"
     >
-      <FloralLayer
-        ref={sprayRef}
-        src="/floral/floral-wc-spray-b.png"
-        width={571}
-        height={509}
+      <div
+        data-reveal-faint
         className="pointer-events-none absolute left-0 top-0 w-24 select-none opacity-50 sm:w-32"
-      />
+      >
+        <FloralLayer
+          ref={sprayRef}
+          src="/floral/floral-wc-spray-b.png"
+          width={571}
+          height={509}
+          className="h-auto w-full"
+        />
+      </div>
 
       <div
         data-reveal
-        className="pointer-events-none absolute bottom-0 left-0 w-24 select-none drop-shadow-[0_10px_20px_rgba(43,20,32,0.25)] sm:w-32"
+        className="pointer-events-none absolute bottom-0 left-0 z-20 w-28 select-none drop-shadow-[0_10px_20px_rgba(43,20,32,0.25)] sm:w-40"
       >
         <FloralLayer
           ref={coupleRef}

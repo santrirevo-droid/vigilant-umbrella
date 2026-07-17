@@ -30,6 +30,7 @@ export default function CoupleProfile({
   const sectionRef = useRef<HTMLElement>(null);
   const coupleRef = useRef<HTMLImageElement>(null);
   useRevealOnScroll(sectionRef);
+  useRevealOnScroll(sectionRef, { selector: "[data-reveal-faint]", opacity: 0.8 });
   useFloralParallax(sectionRef, coupleRef);
 
   const initial = name.trim().charAt(0);
@@ -45,20 +46,25 @@ export default function CoupleProfile({
       ref={sectionRef}
       className="relative overflow-hidden px-6 py-24"
     >
-      <FloralLayer
-        src="/floral/left-top.svg"
-        width={300}
-        height={300}
+      <div
+        data-reveal-faint
         className={[
           "pointer-events-none absolute top-0 w-24 select-none opacity-80 sm:w-32",
-          floralSide === "left" ? "left-0" : "right-0 -scale-x-100",
+          floralSide === "left" ? "left-0" : "right-0",
         ].join(" ")}
-      />
+      >
+        <FloralLayer
+          src="/floral/left-top.svg"
+          width={300}
+          height={300}
+          className={floralSide === "left" ? "h-auto w-full" : "h-auto w-full -scale-x-100"}
+        />
+      </div>
 
       <div
         data-reveal
         className={[
-          "pointer-events-none absolute bottom-0 w-24 select-none drop-shadow-[0_10px_20px_rgba(43,20,32,0.25)] sm:w-32",
+          "pointer-events-none absolute bottom-0 z-20 w-28 select-none drop-shadow-[0_10px_20px_rgba(43,20,32,0.25)] sm:w-40",
           coupleCorner === "left" ? "left-0" : "right-0",
         ].join(" ")}
       >

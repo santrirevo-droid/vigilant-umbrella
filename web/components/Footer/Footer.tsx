@@ -16,18 +16,28 @@ export default function Footer() {
       ref={sectionRef}
       className="relative overflow-hidden bg-ink px-6 py-24 text-center"
     >
-      <FloralLayer
-        src="/floral/footer-sprig.svg"
-        width={220}
-        height={220}
+      <div
+        data-reveal
         className="pointer-events-none absolute left-0 top-0 w-32 select-none sm:w-40"
-      />
-      <FloralLayer
-        src="/floral/footer-sprig.svg"
-        width={220}
-        height={220}
-        className="pointer-events-none absolute bottom-0 right-0 w-32 rotate-180 select-none sm:w-40"
-      />
+      >
+        <FloralLayer
+          src="/floral/footer-sprig.svg"
+          width={220}
+          height={220}
+          className="h-auto w-full"
+        />
+      </div>
+      <div
+        data-reveal
+        className="pointer-events-none absolute bottom-0 right-0 w-32 select-none sm:w-40"
+      >
+        <FloralLayer
+          src="/floral/footer-sprig.svg"
+          width={220}
+          height={220}
+          className="h-auto w-full rotate-180"
+        />
+      </div>
 
       <div className="relative mx-auto max-w-md">
         <p data-reveal className="font-display text-base italic text-paper/80">

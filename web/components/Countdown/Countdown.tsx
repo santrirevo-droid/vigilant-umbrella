@@ -24,6 +24,7 @@ export default function Countdown() {
   const sprayRef = useRef<HTMLImageElement>(null);
   const coupleRef = useRef<HTMLImageElement>(null);
   useRevealOnScroll(sectionRef);
+  useRevealOnScroll(sectionRef, { selector: "[data-reveal-faint]", opacity: 0.5 });
   useFloralParallax(sectionRef, sprayRef);
   useFloralParallax(sectionRef, coupleRef);
 
@@ -50,17 +51,22 @@ export default function Countdown() {
       ref={sectionRef}
       className="relative overflow-hidden px-6 py-24 text-center"
     >
-      <FloralLayer
-        ref={sprayRef}
-        src="/floral/floral-wc-spray-b.png"
-        width={571}
-        height={509}
-        className="pointer-events-none absolute right-0 top-0 w-24 -scale-x-100 select-none opacity-50 sm:w-32"
-      />
+      <div
+        data-reveal-faint
+        className="pointer-events-none absolute right-0 top-0 w-24 select-none opacity-50 sm:w-32"
+      >
+        <FloralLayer
+          ref={sprayRef}
+          src="/floral/floral-wc-spray-b.png"
+          width={571}
+          height={509}
+          className="h-auto w-full -scale-x-100"
+        />
+      </div>
 
       <div
         data-reveal
-        className="pointer-events-none absolute bottom-0 right-0 w-24 select-none drop-shadow-[0_10px_20px_rgba(43,20,32,0.25)] sm:w-32"
+        className="pointer-events-none absolute bottom-0 right-0 z-20 w-28 select-none drop-shadow-[0_10px_20px_rgba(43,20,32,0.25)] sm:w-40"
       >
         <FloralLayer
           ref={coupleRef}

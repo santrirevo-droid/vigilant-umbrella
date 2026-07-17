@@ -19,7 +19,7 @@ export const couple: Record<
     role: "putra",
     father: "Bapak Nonot Suhartono",
     mother: "Ibu Heriana Martawati",
-    instagram: "@falahfauzan",
+    instagram: "@falfavzan",
   },
   bride: {
     name: "Risyqaa Syafitri",
@@ -27,7 +27,7 @@ export const couple: Record<
     role: "putri",
     father: "Bapak Safawi",
     mother: "Ibu Tuty Oktavia",
-    instagram: "@risyqaasyafitri",
+    instagram: "@rsyqaaa",
   },
 };
 
