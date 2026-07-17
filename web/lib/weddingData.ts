@@ -14,19 +14,19 @@ export const couple: Record<
   }
 > = {
   groom: {
-    name: "Falah Fauzan",
+    name: "Falah Fauzan, B.Ec.",
     shortName: "Falah",
     role: "putra",
-    father: "Bapak Nonot Suhartono",
-    mother: "Ibu Heriana Martawati",
+    father: "Bapak Drh. Nonot Suhartono",
+    mother: "Ibu Drh. Heriana Martawati",
     instagram: "@falfavzan",
   },
   bride: {
-    name: "Risyqaa Syafitri",
+    name: "Risyqaa Syafitri, M.Mat.",
     shortName: "Risyqaa",
     role: "putri",
-    father: "Bapak Safawi",
-    mother: "Ibu Tuty Oktavia",
+    father: "Bapak Ir. Safawi",
+    mother: "Ibu Tuty Oktavia, S.E.",
     instagram: "@rsyqaaa",
   },
 };
@@ -51,11 +51,11 @@ export const venue = {
 };
 
 export const bankAccounts = [
-  { bank: "Bank Mandiri", number: "1460021830521", holder: couple.bride.name },
+  { bank: "Bank Mandiri", number: "1460021830521", holder: "Risyqaa Syafitri" },
 ];
 
 export const giftAddress = {
-  recipient: couple.groom.name,
+  recipient: "Falah Fauzan",
   address:
     "Jl. Alam Indah 2 No.7, Cibatu, Cikarang Sel., Kabupaten Bekasi, Jawa Barat 17530, Indonesia",
 };
