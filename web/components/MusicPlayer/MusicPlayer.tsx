@@ -17,7 +17,7 @@ type MusicPlayerProps = {
 };
 
 const MusicPlayer = forwardRef<MusicPlayerHandle, MusicPlayerProps>(
-  ({ src = "/music/wedding-song.mp3", className = "" }, ref) => {
+  ({ src = "/music/wedding-song.m4a", className = "" }, ref) => {
     const audioRef = useRef<HTMLAudioElement>(null);
     const [isPlaying, setIsPlaying] = useState(false);
     const [hasStarted, setHasStarted] = useState(false);
