@@ -91,7 +91,7 @@ export default function CoupleProfile({
 
         <h3
           data-reveal
-          className="mt-6 max-w-full font-display text-[clamp(2rem,8vw,2.75rem)] font-medium leading-tight text-ink"
+          className="mt-6 max-w-full font-display text-[clamp(2rem,8vw,2.75rem)] font-semibold leading-tight tracking-wide text-gold-dark"
         >
           {name}
         </h3>

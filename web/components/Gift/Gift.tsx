@@ -88,7 +88,7 @@ export default function Gift() {
               className="rounded-2xl border border-gold/35 bg-paper/90 px-6 py-7 shadow-[0_18px_44px_-24px_rgba(58,54,46,0.35)] backdrop-blur-md"
             >
               <div className="font-display text-xl font-medium text-ink">{account.bank}</div>
-              <div className="mt-2 font-body text-lg font-medium tracking-[0.12em] text-gold-dark">
+              <div className="mt-2 font-mono text-lg font-semibold tabular-nums tracking-[0.16em] text-gold-dark">
                 {account.number}
               </div>
               <div className="mt-1 font-body text-sm text-ink-soft">
@@ -114,7 +114,7 @@ export default function Gift() {
             className="rounded-2xl border border-gold/35 bg-paper/90 px-6 py-7 shadow-[0_18px_44px_-24px_rgba(58,54,46,0.35)] backdrop-blur-md"
           >
             <div className="font-display text-xl font-medium text-ink">Alamat Pengiriman Kado</div>
-            <div className="mt-2 font-body text-base leading-relaxed text-gold-dark">
+            <div className="mt-2 font-mono text-base leading-relaxed tracking-wide text-gold-dark">
               {giftAddress.address}
             </div>
             <div className="mt-1 font-body text-sm text-ink-soft">

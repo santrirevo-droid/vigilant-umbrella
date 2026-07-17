@@ -209,7 +209,7 @@ export default function Hero() {
 
             {/* wreath — the frame and title fused into one piece; shrinks
                 away fastest on scroll (see useScrollReveal SPEED.wreath) */}
-            <div className="relative w-full max-w-[20rem] sm:max-w-[24rem]">
+            <div className="relative w-full max-w-[21rem] sm:max-w-[25rem] md:max-w-[27rem]">
               <FloralLayer
                 ref={wreath}
                 src="/floral/floral-wc-wreath.png"
@@ -222,13 +222,13 @@ export default function Hero() {
                 ref={title}
                 className="absolute inset-0 flex flex-col items-center justify-center gap-1"
               >
-                <span className="font-display text-[clamp(2.75rem,9vw,4.25rem)] font-medium leading-none tracking-tight text-ink">
+                <span className="font-display text-[clamp(2.5rem,8vw,5rem)] font-semibold leading-none tracking-wide text-gold-dark">
                   {couple.groom.shortName}
                 </span>
                 <span className="font-accent text-xl text-gold-dark">
                   &amp;
                 </span>
-                <span className="font-display text-[clamp(2.75rem,9vw,4.25rem)] font-medium leading-none tracking-tight text-ink">
+                <span className="font-display text-[clamp(2.5rem,8vw,5rem)] font-semibold leading-none tracking-wide text-gold-dark">
                   {couple.bride.shortName}
                 </span>
               </h1>
@@ -238,7 +238,7 @@ export default function Hero() {
               <p className="font-accent text-[11px] font-medium uppercase tracking-[0.34em] text-ink-mute">
                 Save the Date
               </p>
-              <p className="font-display text-xl font-medium tracking-wide text-ink sm:text-2xl">
+              <p className="font-display text-xl font-semibold tracking-wide text-gold-dark sm:text-2xl">
                 18 · 08 · 2026
               </p>
             </div>

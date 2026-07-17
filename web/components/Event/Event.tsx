@@ -58,11 +58,11 @@ export default function Event() {
             <div
               key={event.title}
               data-reveal
-              className="rounded-2xl border border-gold/45 bg-paper px-6 py-8 shadow-[0_14px_36px_-20px_rgba(169,131,74,0.4)]"
+              className="rounded-2xl border border-gold/45 bg-paper/90 px-6 py-8 shadow-[0_14px_36px_-20px_rgba(169,131,74,0.4)] backdrop-blur-sm"
             >
               <h3 className="font-display text-2xl font-medium text-ink">{event.title}</h3>
               <div className="mx-auto mt-3 h-px w-9 bg-gold" />
-              <p className="mt-4 font-body text-base font-medium tracking-wide text-gold-dark">{event.time}</p>
+              <p className="mt-4 font-body text-base font-semibold tracking-wide text-gold-dark">{event.time}</p>
               <p className="mt-1 font-body text-sm text-ink-soft">{event.date}</p>
             </div>
           ))}
@@ -70,20 +70,20 @@ export default function Event() {
 
         <div
           data-reveal
-          className="mt-6 rounded-2xl border border-gold/45 bg-paper px-6 py-8"
+          className="mt-6 rounded-2xl border border-gold/45 bg-paper/90 px-6 py-8 backdrop-blur-sm"
         >
           <p className="font-accent text-xs uppercase tracking-[0.24em] text-ink-mute">
             Bertempat di
           </p>
           <h3 className="mt-3 font-display text-xl font-medium text-ink">{venue.name}</h3>
-          <p className="mt-1 font-body text-sm text-ink-soft">{venue.location}</p>
+          <p className="mt-1 font-body text-base text-ink-soft">{venue.location}</p>
           <a
             href={venue.mapsUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-6 inline-flex items-center gap-2 rounded-full bg-gold px-7 py-3 text-xs font-medium uppercase tracking-[0.2em] text-paper shadow-[0_10px_26px_-10px_rgba(169,131,74,0.55)] transition-opacity hover:opacity-90"
+            className="mt-6 inline-flex items-center gap-2 rounded-full bg-gold px-7 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-ink shadow-[0_10px_26px_-10px_rgba(169,131,74,0.55)] transition-opacity hover:opacity-90"
           >
-            <span className="h-1.5 w-1.5 rounded-full bg-paper" />
+            <span className="h-1.5 w-1.5 rounded-full bg-ink" />
             Lihat Lokasi
           </a>
         </div>

@@ -126,9 +126,9 @@ export default function RSVP() {
                   type="button"
                   onClick={() => setAttend(value)}
                   className={[
-                    "flex-1 cursor-pointer rounded-xl border px-3 py-3 text-xs font-medium uppercase tracking-[0.14em] transition-colors",
+                    "flex-1 cursor-pointer rounded-xl border px-3 py-3 text-xs font-semibold uppercase tracking-[0.14em] transition-colors",
                     attend === value
-                      ? "border-gold bg-gold text-paper"
+                      ? "border-gold bg-gold text-ink"
                       : "border-gold/45 bg-paper text-ink-mute",
                   ].join(" ")}
                 >
@@ -179,7 +179,7 @@ export default function RSVP() {
             data-reveal
             type="submit"
             disabled={isSubmitting}
-            className="mt-1 cursor-pointer rounded-xl bg-gold py-3.5 text-xs font-medium uppercase tracking-[0.22em] text-paper shadow-[0_10px_26px_-10px_rgba(169,131,74,0.55)] transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
+            className="mt-1 cursor-pointer rounded-xl bg-gold py-3.5 text-xs font-semibold uppercase tracking-[0.22em] text-ink shadow-[0_10px_26px_-10px_rgba(169,131,74,0.55)] transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
           >
             {justSent ? "Terkirim, terima kasih" : isSubmitting ? "Mengirim…" : "Kirim Konfirmasi"}
           </button>

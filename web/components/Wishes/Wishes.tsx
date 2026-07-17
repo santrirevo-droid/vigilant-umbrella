@@ -93,7 +93,7 @@ export default function Wishes() {
 
         <div ref={listRef} className="mt-10">
           {wishes.length === 0 ? (
-            <p data-reveal className="font-body text-sm text-ink-mute">
+            <p data-reveal className="font-body text-base text-ink-mute">
               Jadilah yang pertama mengirimkan ucapan &amp; doa.
             </p>
           ) : (
@@ -105,7 +105,7 @@ export default function Wishes() {
                   className="rounded-2xl border border-gold/45 bg-paper px-5 py-4"
                 >
                   <div className="flex items-center gap-3">
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gold font-display text-base text-paper">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gold font-display text-base font-semibold text-ink">
                       {wish.name.trim().charAt(0).toUpperCase() || "?"}
                     </span>
                     <div className="min-w-0">
@@ -127,7 +127,7 @@ export default function Wishes() {
                     </div>
                   </div>
                   {wish.message && (
-                    <p className="mt-3 font-body text-sm leading-relaxed text-ink-soft">
+                    <p className="mt-3 font-body text-base leading-relaxed text-ink-soft">
                       {wish.message}
                     </p>
                   )}

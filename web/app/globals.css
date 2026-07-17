@@ -1,27 +1,25 @@
 @import "tailwindcss";
 
 :root {
-  /* Editorial Luxury — warm neutral paper, one gold accent. Everything
-     else stays a quiet, desaturated neutral so the accent actually reads
-     as an accent instead of competing with five other hues. */
-  --warm-white: #fdf9f4;
-  --cream: #f8f0e6;
-  --beige: #ecdfc9;
-  --paper: #fffdfa;
+  /* Blush Botanical Luxury — pink stays the dominant overall color, gold is
+     the single accent used only where something needs to stand out. */
+  --warm-white: #e39aa4;
+  --cream: #efb4be;
+  --beige: #d46b7c;
+  --paper: #fff7f5;
 
   --gold: #b9862e;
-  --gold-light: #d9b36b;
-  --gold-dark: #7a5a22;
+  --gold-light: #d9a83f;
+  --gold-dark: #5a3c12;
 
-  --ink: #2b2620;
-  --ink-soft: #5c5347;
-  --ink-mute: #948a7c;
+  --ink: #2b1420;
+  --ink-soft: #4a2432;
+  --ink-mute: #6d3f4c;
 
-  /* kept only as a small functional signal (RSVP "hadir" status) — not
-     used decoratively elsewhere, so it never competes with gold */
-  --sage: #7c9a7e;
-  --sage-light: #a8c2aa;
-  --sage-dark: #4f6b52;
+  /* kept only as a small functional signal (RSVP "hadir" status) */
+  --sage: #1f6b45;
+  --sage-light: #3f9c68;
+  --sage-dark: #123d27;
 }
 
 @theme inline {
@@ -42,6 +40,12 @@
   --font-display: var(--font-display);
   --font-accent: var(--font-accent);
   --font-body: var(--font-body);
+}
+
+:root {
+  /* only 2 real font families are loaded (display + body) — the small
+     uppercase "accent" labels reuse the body font rather than a 3rd family */
+  --font-accent: var(--font-body);
 }
 
 body {

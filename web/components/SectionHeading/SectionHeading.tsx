@@ -5,6 +5,10 @@ type SectionHeadingProps = {
   title?: string;
   dark?: boolean;
   className?: string;
+  /** force a small kicker treatment even without a title — for spots where
+   * the real "title" of the moment is a different element below (Hero's
+   * couple name, Footer's closing names) rather than this label itself */
+  kickerOnly?: boolean;
 };
 
 export default function SectionHeading({
@@ -12,7 +16,11 @@ export default function SectionHeading({
   title,
   dark = false,
   className = "",
+  kickerOnly = false,
 }: SectionHeadingProps) {
+  const headline = title ?? eyebrow;
+  const showKicker = Boolean(title) || kickerOnly;
+
   return (
     <div className="relative">
       <div
@@ -31,28 +39,30 @@ export default function SectionHeading({
         data-reveal
         className={`relative flex flex-col items-center text-center ${className}`}
       >
-        <p
-          className={[
-            "font-accent text-xs font-medium uppercase tracking-[0.42em]",
-            dark ? "text-gold-light" : "text-gold-dark",
-          ].join(" ")}
-        >
-          {eyebrow}
-        </p>
+        {showKicker && (
+          <p
+            className={[
+              "font-accent text-xs font-semibold uppercase tracking-[0.32em]",
+              dark ? "text-gold-light" : "text-gold-dark",
+            ].join(" ")}
+          >
+            {eyebrow}
+          </p>
+        )}
         <FloralLayer
           src="/floral/gold-ornament.svg"
           width={200}
           height={36}
           className="my-4 h-5 w-32 select-none sm:w-40"
         />
-        {title && (
+        {kickerOnly ? null : (
           <h2
             className={[
-              "font-display text-[clamp(2.125rem,5vw,2.5rem)] font-medium leading-[1.15] tracking-tight",
+              "font-display text-[clamp(1.5rem,4vw,2.25rem)] font-semibold leading-[1.2] tracking-wide",
               dark ? "text-paper" : "text-ink",
             ].join(" ")}
           >
-            {title}
+            {headline}
           </h2>
         )}
       </div>

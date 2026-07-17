@@ -49,17 +49,17 @@ export default function Footer() {
         </p>
 
         <div className="mt-10">
-          <SectionHeading eyebrow="Kami Yang Berbahagia" dark />
+          <SectionHeading eyebrow="Kami Yang Berbahagia" dark kickerOnly />
         </div>
 
         <h2 data-reveal className="mt-2 flex flex-col items-center gap-1">
-          <span className="font-display text-[clamp(2.5rem,13vw,4.5rem)] font-medium leading-none text-paper">
+          <span className="font-display text-[clamp(2.5rem,13vw,4.5rem)] font-semibold leading-none tracking-wide text-gold-light">
             {couple.groom.shortName}
           </span>
           <span className="my-0.5 font-accent text-lg text-gold-light">
             &amp;
           </span>
-          <span className="font-display text-[clamp(2.5rem,13vw,4.5rem)] font-medium leading-none text-paper">
+          <span className="font-display text-[clamp(2.5rem,13vw,4.5rem)] font-semibold leading-none tracking-wide text-gold-light">
             {couple.bride.shortName}
           </span>
         </h2>
