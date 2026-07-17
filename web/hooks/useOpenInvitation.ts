@@ -3,19 +3,96 @@
 import { useCallback, useRef, useState } from "react";
 import gsap from "gsap";
 import { useLenis } from "lenis/react";
+import type Lenis from "lenis";
 import type { CoverRefs } from "./useCoverRefs";
 
 // easeInOutCubic — gentle glide in, cruise, gentle glide out
 const easeInOutCubic = (t: number) =>
   t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 
+// every section below the cover, in page order — the autoscroll hops
+// between these one at a time instead of gliding the whole document
+// length in one continuous (and far too rushed) motion
+const AUTOSCROLL_STOPS = [
+  "#opening-quote",
+  "#bride",
+  "#groom",
+  "#countdown",
+  "#event",
+  "#gallery",
+  "#rsvp",
+  "#gift",
+  "#wishes",
+  "#footer",
+];
+
+const AUTOSCROLL_HOP_DURATION = 1.6; // s — glide between two sections
+const AUTOSCROLL_PAUSE = 1800; // ms — dwell time to actually read a section
+
+/**
+ * Carries the visitor down through the invitation one section at a time:
+ * glide, pause to read, glide to the next. Cancels itself the instant the
+ * visitor scrolls/touches/presses a key themselves, so it never fights
+ * manual scrolling.
+ */
+function autoScrollThroughInvitation(lenis: Lenis) {
+  let cancelled = false;
+  let pauseTimer: ReturnType<typeof setTimeout>;
+
+  const cleanup = () => {
+    window.removeEventListener("wheel", cancel);
+    window.removeEventListener("touchstart", cancel);
+    window.removeEventListener("keydown", cancel);
+  };
+
+  const cancel = () => {
+    if (cancelled) return;
+    cancelled = true;
+    clearTimeout(pauseTimer);
+    cleanup();
+  };
+
+  window.addEventListener("wheel", cancel, { passive: true, once: true });
+  window.addEventListener("touchstart", cancel, { passive: true, once: true });
+  window.addEventListener("keydown", cancel, { once: true });
+
+  let index = 0;
+  const advance = () => {
+    if (cancelled) return;
+
+    const target = AUTOSCROLL_STOPS[index];
+    index += 1;
+
+    if (!target || !document.querySelector(target)) {
+      if (index < AUTOSCROLL_STOPS.length) advance();
+      else cleanup();
+      return;
+    }
+
+    lenis.scrollTo(target, {
+      duration: AUTOSCROLL_HOP_DURATION,
+      easing: easeInOutCubic,
+      onComplete: () => {
+        if (cancelled) return;
+        if (index < AUTOSCROLL_STOPS.length) {
+          pauseTimer = setTimeout(advance, AUTOSCROLL_PAUSE);
+        } else {
+          cleanup();
+        }
+      },
+    });
+  };
+
+  advance();
+}
+
 /**
  * Orchestrates the "Buka Undangan" cover animation (Tahap 2):
  * scroll locks, music starts, the florals bloom toward the wreath,
  * the wreath appears, the title lifts with a soft zoom, and the
  * background gets a brief glow — then scroll unlocks and, once
- * unlocked, Lenis carries the visitor on a slow autoscroll all the
- * way down through the rest of the invitation. Skipped under
+ * unlocked, autoScrollThroughInvitation carries the visitor down
+ * through the rest of the page at a readable pace. Skipped under
  * reduced-motion so those visitors keep manual control.
  *
  * Kept separate from the Hero markup so the animation timeline can
@@ -44,10 +121,7 @@ export function useOpenInvitation(refs: CoverRefs) {
             return;
           }
 
-          lenis?.scrollTo("bottom", {
-            duration: 9,
-            easing: easeInOutCubic,
-          });
+          if (lenis) autoScrollThroughInvitation(lenis);
         },
       })
       .set(refs.button.current, { pointerEvents: "none" }, 0)

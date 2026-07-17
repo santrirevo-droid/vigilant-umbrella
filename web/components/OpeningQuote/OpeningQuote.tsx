@@ -18,6 +18,7 @@ export default function OpeningQuote() {
 
   return (
     <section
+      id="opening-quote"
       ref={sectionRef}
       className="relative flex min-h-svh w-full items-center justify-center overflow-hidden px-6 text-center"
     >
