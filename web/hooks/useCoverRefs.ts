@@ -26,6 +26,7 @@ export function useCoverRefs() {
     content: useRef<HTMLDivElement>(null),
     title: useRef<HTMLHeadingElement>(null),
     button: useRef<HTMLButtonElement>(null),
+    scrollHint: useRef<HTMLDivElement>(null),
     music: useRef<MusicPlayerHandle>(null),
   };
 }

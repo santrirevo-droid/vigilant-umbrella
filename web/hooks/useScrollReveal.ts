@@ -53,16 +53,56 @@ export function useScrollReveal(refs: CoverRefs) {
           { yPercent: -SPEED.leaves * base, opacity: 0, ease: "none", duration: 1 },
           0
         )
-        // Layer 1 — left florals move left
+        // Layer 1 — left florals part outward from their own corner, like a
+        // curtain being pulled open: scale up while sliding diagonally out
+        // (transform-origin set per-corner in Hero.tsx via origin-* classes).
         .to(
-          [refs.leftTop.current, refs.leftBottom.current],
-          { xPercent: -SPEED.floral * 140, opacity: 0, ease: "none", duration: 1 },
+          refs.leftTop.current,
+          {
+            xPercent: -SPEED.floral * 140,
+            yPercent: -SPEED.floral * 60,
+            scale: 1.55,
+            opacity: 0,
+            ease: "none",
+            duration: 1,
+          },
           0
         )
-        // Layer 2 — right florals move right
         .to(
-          [refs.rightTop.current, refs.rightBottom.current],
-          { xPercent: SPEED.floral * 140, opacity: 0, ease: "none", duration: 1 },
+          refs.leftBottom.current,
+          {
+            xPercent: -SPEED.floral * 140,
+            yPercent: SPEED.floral * 60,
+            scale: 1.55,
+            opacity: 0,
+            ease: "none",
+            duration: 1,
+          },
+          0
+        )
+        // Layer 2 — right florals part the same way, mirrored
+        .to(
+          refs.rightTop.current,
+          {
+            xPercent: SPEED.floral * 140,
+            yPercent: -SPEED.floral * 60,
+            scale: 1.55,
+            opacity: 0,
+            ease: "none",
+            duration: 1,
+          },
+          0
+        )
+        .to(
+          refs.rightBottom.current,
+          {
+            xPercent: SPEED.floral * 140,
+            yPercent: SPEED.floral * 60,
+            scale: 1.55,
+            opacity: 0,
+            ease: "none",
+            duration: 1,
+          },
           0
         )
         // Layer 3 — top garland moves up
@@ -75,6 +115,13 @@ export function useScrollReveal(refs: CoverRefs) {
         .to(
           refs.frame.current,
           { scale: 0, opacity: 0, ease: "none", duration: 0.65 },
+          0
+        )
+        // scroll hint — the first thing to go; its job is done the moment
+        // the visitor starts scrolling
+        .to(
+          refs.scrollHint.current,
+          { opacity: 0, ease: "none", duration: 0.35 },
           0
         )
         // invitation heading lifts away with the cover

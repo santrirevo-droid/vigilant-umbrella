@@ -57,6 +57,7 @@ export default function Hero() {
     content,
     title,
     button,
+    scrollHint,
     music,
   } = refs;
 
@@ -136,7 +137,7 @@ export default function Hero() {
           width={300}
           height={300}
           priority
-          className="pointer-events-none absolute left-0 top-0 w-32 select-none sm:w-44 md:w-56"
+          className="pointer-events-none absolute left-0 top-0 w-32 origin-top-left select-none sm:w-44 md:w-56"
         />
         <FloralLayer
           ref={rightTop}
@@ -144,7 +145,7 @@ export default function Hero() {
           width={300}
           height={300}
           priority
-          className="pointer-events-none absolute right-0 top-0 w-32 -scale-x-100 select-none sm:w-44 md:w-56"
+          className="pointer-events-none absolute right-0 top-0 w-32 origin-top-right -scale-x-100 select-none sm:w-44 md:w-56"
         />
 
         {/* smaller accent blooms + gold — bottom corners */}
@@ -153,14 +154,14 @@ export default function Hero() {
           src="/floral/left-bottom.svg"
           width={220}
           height={220}
-          className="pointer-events-none absolute bottom-0 left-0 w-24 select-none sm:w-32 md:w-36"
+          className="pointer-events-none absolute bottom-0 left-0 w-24 origin-bottom-left select-none sm:w-32 md:w-36"
         />
         <FloralLayer
           ref={rightBottom}
           src="/floral/left-bottom.svg"
           width={220}
           height={220}
-          className="pointer-events-none absolute bottom-0 right-0 w-24 -scale-x-100 select-none sm:w-32 md:w-36"
+          className="pointer-events-none absolute bottom-0 right-0 w-24 origin-bottom-right -scale-x-100 select-none sm:w-32 md:w-36"
         />
 
         {/* floating gold particles */}
@@ -246,6 +247,18 @@ export default function Hero() {
               }}
             />
           </div>
+        </div>
+
+        {/* scroll hint — fades out the instant the visitor starts scrolling */}
+        <div
+          ref={scrollHint}
+          aria-hidden="true"
+          className="pointer-events-none absolute bottom-6 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2 motion-reduce:hidden"
+        >
+          <span className="font-accent text-[10px] font-medium uppercase tracking-[0.34em] text-sage-dark/70">
+            Scroll
+          </span>
+          <span className="h-3 w-3 animate-bounce border-b-[1.5px] border-r-[1.5px] border-gold-dark/70 [transform:rotate(45deg)]" />
         </div>
       </div>
 
