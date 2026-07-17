@@ -8,11 +8,7 @@ import { useIdleMotion } from "@/hooks/useIdleMotion";
 import { useOpenInvitation } from "@/hooks/useOpenInvitation";
 import { usePetalFall } from "@/hooks/usePetalFall";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-
-const COUPLE = {
-  groom: "Falah",
-  bride: "Risyqaa",
-};
+import { couple } from "@/lib/weddingData";
 
 const PARTICLE_POSITIONS = [
   "left-[12%] top-[18%] h-3 w-3",
@@ -53,7 +49,7 @@ export default function Hero() {
     rightTop,
     leftBottom,
     rightBottom,
-    frame,
+    wreath,
     content,
     title,
     button,
@@ -199,16 +195,6 @@ export default function Hero() {
 
         {/* content column */}
         <div className="relative z-10 mx-auto flex min-h-svh w-full max-w-md flex-col items-center justify-center px-6 py-24 text-center">
-          {/* frame — shrinks away on scroll */}
-          <FloralLayer
-            ref={frame}
-            src="/frame/frame.svg"
-            width={160}
-            height={160}
-            priority
-            className="mb-2 h-28 w-28 select-none sm:h-32 sm:w-32"
-          />
-
           <div ref={content} className="flex flex-col items-center">
             <p className="font-accent text-[11px] font-medium uppercase tracking-[0.42em] text-gold-dark">
               The Wedding
@@ -221,21 +207,42 @@ export default function Hero() {
               className="my-5 h-5 w-36 select-none sm:w-44"
             />
 
-            <h1 ref={title} className="flex flex-col items-center gap-1">
-              <span className="font-display text-[clamp(2.75rem,15vw,5.25rem)] font-medium leading-none text-ink">
-                {COUPLE.groom}
-              </span>
-              <span className="my-1 font-accent text-xl text-gold-dark">
-                &amp;
-              </span>
-              <span className="font-display text-[clamp(2.75rem,15vw,5.25rem)] font-medium leading-none text-ink">
-                {COUPLE.bride}
-              </span>
-            </h1>
+            {/* wreath — the frame and title fused into one piece; shrinks
+                away fastest on scroll (see useScrollReveal SPEED.wreath) */}
+            <div className="relative w-full max-w-[19rem] sm:max-w-[22rem]">
+              <FloralLayer
+                ref={wreath}
+                src="/floral/floral-wc-wreath.png"
+                width={744}
+                height={711}
+                priority
+                className="w-full select-none"
+              />
+              <h1
+                ref={title}
+                className="absolute inset-0 flex flex-col items-center justify-center gap-0.5"
+              >
+                <span className="font-display text-[clamp(2rem,9vw,3.25rem)] font-medium leading-none text-ink">
+                  {couple.groom.shortName}
+                </span>
+                <span className="font-accent text-lg text-gold-dark">
+                  &amp;
+                </span>
+                <span className="font-display text-[clamp(2rem,9vw,3.25rem)] font-medium leading-none text-ink">
+                  {couple.bride.shortName}
+                </span>
+              </h1>
+            </div>
 
-            <p className="mt-5 font-display text-lg italic tracking-wide text-ink-soft">
-              18 · 08 · 2026
-            </p>
+            <div className="mt-8 flex flex-col items-center gap-3">
+              <p className="font-display text-base italic tracking-wide text-ink-soft">
+                Save the Date
+              </p>
+              <span aria-hidden="true" className="h-6 w-px bg-gold/40" />
+              <p className="font-display text-lg italic tracking-wide text-ink-soft">
+                18 · 08 · 2026
+              </p>
+            </div>
           </div>
 
           <div className="mt-12">

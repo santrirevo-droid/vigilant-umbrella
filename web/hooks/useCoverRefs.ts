@@ -22,7 +22,7 @@ export function useCoverRefs() {
     rightTop: useRef<HTMLImageElement>(null),
     leftBottom: useRef<HTMLImageElement>(null),
     rightBottom: useRef<HTMLImageElement>(null),
-    frame: useRef<HTMLImageElement>(null),
+    wreath: useRef<HTMLImageElement>(null),
     content: useRef<HTMLDivElement>(null),
     title: useRef<HTMLHeadingElement>(null),
     button: useRef<HTMLButtonElement>(null),

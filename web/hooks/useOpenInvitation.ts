@@ -6,8 +6,8 @@ import type { CoverRefs } from "./useCoverRefs";
 
 /**
  * Orchestrates the "Buka Undangan" cover animation (Tahap 2):
- * scroll locks, music starts, the florals bloom toward the frame,
- * the frame appears, the title lifts with a soft zoom, and the
+ * scroll locks, music starts, the florals bloom toward the wreath,
+ * the wreath appears, the title lifts with a soft zoom, and the
  * background gets a brief glow — then scroll unlocks.
  *
  * Kept separate from the Hero markup so the animation timeline can
@@ -46,7 +46,7 @@ export function useOpenInvitation(refs: CoverRefs) {
         0.05
       )
       .fromTo(
-        refs.frame.current,
+        refs.wreath.current,
         { scale: 0.82, opacity: 0.4 },
         { scale: 1, opacity: 1, duration: 0.85, ease: "back.out(1.6)" },
         0.15

@@ -11,13 +11,13 @@ gsap.registerPlugin(ScrollTrigger);
  * Tahap 3 — Scroll Reveal.
  *
  * Pins the Hero while the cover disperses: florals fly out left/right/up,
- * the frame shrinks away, the background eases back, and the whole cover
+ * the wreath shrinks away, the background eases back, and the whole cover
  * fades so the invitation content underneath is revealed. Driven entirely
  * by GSAP ScrollTrigger with scrub — no CSS animation.
  *
  * Relative parallax speed per the design spec (bigger = travels further
  * for the same scroll distance = feels like it's moving "faster"):
- * background 0.5, leaves 0.8, florals 1, frame 1.5.
+ * background 0.5, leaves 0.8, florals 1, wreath 1.5.
  */
 export function useScrollReveal(refs: CoverRefs) {
   useEffect(() => {
@@ -40,7 +40,7 @@ export function useScrollReveal(refs: CoverRefs) {
         },
       });
 
-      const SPEED = { background: 0.5, leaves: 0.8, floral: 1, frame: 1.5 };
+      const SPEED = { background: 0.5, leaves: 0.8, floral: 1, wreath: 1.5 };
       const base = 22; // vh of travel at speed 1
 
       tl.to(
@@ -111,9 +111,9 @@ export function useScrollReveal(refs: CoverRefs) {
           { yPercent: -SPEED.floral * base * 1.4, opacity: 0, ease: "none", duration: 1 },
           0
         )
-        // frame shrinks then disappears (fastest layer)
+        // wreath shrinks then disappears (fastest layer)
         .to(
-          refs.frame.current,
+          refs.wreath.current,
           { scale: 0, opacity: 0, ease: "none", duration: 0.65 },
           0
         )
