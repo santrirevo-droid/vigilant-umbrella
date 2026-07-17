@@ -3,7 +3,6 @@ import OpeningQuote from "@/components/OpeningQuote";
 import CoupleProfile from "@/components/CoupleProfile";
 import Countdown from "@/components/Countdown";
 import Event from "@/components/Event";
-import Gallery from "@/components/Gallery";
 import RSVP from "@/components/RSVP";
 import Gift from "@/components/Gift";
 import Wishes from "@/components/Wishes";
@@ -39,7 +38,6 @@ export default function Home() {
 
       <Countdown />
       <Event />
-      <Gallery />
       <RSVP />
       <Gift />
       <Wishes />

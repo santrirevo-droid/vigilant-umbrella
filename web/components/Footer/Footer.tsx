@@ -63,10 +63,6 @@ export default function Footer() {
             {couple.bride.shortName}
           </span>
         </h2>
-
-        <p data-reveal className="mt-10 font-accent text-[10px] uppercase tracking-[0.3em] text-paper/40">
-          Made with GSAP &amp; Lenis
-        </p>
       </div>
     </footer>
   );

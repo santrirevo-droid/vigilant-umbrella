@@ -19,7 +19,6 @@ const AUTOSCROLL_STOPS = [
   "#groom",
   "#countdown",
   "#event",
-  "#gallery",
   "#rsvp",
   "#gift",
   "#wishes",
