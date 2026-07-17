@@ -47,10 +47,15 @@ export const events = [
 export const venue = {
   name: "Mempawah Convention Center",
   location: "Mempawah, Kalimantan Barat",
-  mapsUrl: "https://share.google/PXh2WLLQuSQCdtW2h",
+  mapsUrl: "https://maps.app.goo.gl/izf4Vvh5txNW6AZo7",
 };
 
 export const bankAccounts = [
-  { bank: "Bank BCA", number: "0000 0000 0000", holder: couple.groom.name },
-  { bank: "Bank Mandiri", number: "0000 0000 0000", holder: couple.bride.name },
+  { bank: "Bank Mandiri", number: "1460021830521", holder: couple.bride.name },
 ];
+
+export const giftAddress = {
+  recipient: couple.groom.name,
+  address:
+    "Jl. Alam Indah 2 No.7, Cibatu, Cikarang Sel., Kabupaten Bekasi, Jawa Barat 17530, Indonesia",
+};
