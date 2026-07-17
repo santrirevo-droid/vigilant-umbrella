@@ -40,11 +40,11 @@ export default function Footer() {
       </div>
 
       <div className="relative mx-auto max-w-md">
-        <p data-reveal className="font-display text-base italic text-paper/80">
+        <p data-reveal className="font-display text-lg italic leading-relaxed text-paper/80">
           Atas kehadiran dan doa restu Bapak/Ibu/Saudara/i, kami
           sekeluarga mengucapkan terima kasih.
         </p>
-        <p data-reveal className="mt-3 font-display text-base italic text-paper/80">
+        <p data-reveal className="mt-3 font-display text-lg italic leading-relaxed text-paper/80">
           Wassalamu&apos;alaikum Warahmatullahi Wabarakatuh
         </p>
 

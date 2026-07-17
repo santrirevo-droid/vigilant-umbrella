@@ -73,32 +73,32 @@ export default function Gift() {
       />
 
       <div className="relative mx-auto max-w-md">
-        <SectionHeading eyebrow="Tanda Kasih" />
-        <p data-reveal className="mt-4 text-sm font-light leading-relaxed text-ink-soft">
+        <SectionHeading eyebrow="Gift" title="Tanda Kasih" />
+        <p data-reveal className="mt-4 font-body text-base leading-relaxed text-ink-soft">
           Doa restu Bapak/Ibu/Saudara/i adalah karunia terindah bagi kami.
           Namun jika ingin memberi tanda kasih, kami sediakan pilihan
           berikut.
         </p>
 
-        <div className="mt-8 flex flex-col gap-4">
+        <div className="mt-8 flex flex-col gap-5">
           {bankAccounts.map((account) => (
             <div
               key={account.bank}
               data-reveal
               className="rounded-2xl border border-gold/35 bg-paper/90 px-6 py-7 shadow-[0_18px_44px_-24px_rgba(58,54,46,0.35)] backdrop-blur-md"
             >
-              <div className="font-display text-xl text-ink">{account.bank}</div>
-              <div className="mt-2 font-body text-lg tracking-[0.12em] text-gold-dark">
+              <div className="font-display text-xl font-medium text-ink">{account.bank}</div>
+              <div className="mt-2 font-body text-lg font-medium tracking-[0.12em] text-gold-dark">
                 {account.number}
               </div>
-              <div className="mt-1 text-xs font-light text-ink-soft">
+              <div className="mt-1 font-body text-sm text-ink-soft">
                 a.n. {account.holder}
               </div>
               <button
                 type="button"
                 onClick={() => handleCopy(account.number, account.bank)}
                 className={[
-                  "mt-4 cursor-pointer rounded-full border px-6 py-2.5 text-[10px] font-medium uppercase tracking-[0.18em] transition-colors",
+                  "mt-4 cursor-pointer rounded-full border px-6 py-2.5 text-xs font-medium uppercase tracking-[0.18em] transition-colors",
                   copiedKey === account.bank
                     ? "border-sage-dark bg-sage-dark text-paper"
                     : "border-gold/40 bg-paper/90 text-ink-soft hover:border-gold",
@@ -113,18 +113,18 @@ export default function Gift() {
             data-reveal
             className="rounded-2xl border border-gold/35 bg-paper/90 px-6 py-7 shadow-[0_18px_44px_-24px_rgba(58,54,46,0.35)] backdrop-blur-md"
           >
-            <div className="font-display text-xl text-ink">Alamat Pengiriman Kado</div>
-            <div className="mt-2 font-body text-sm leading-relaxed text-gold-dark">
+            <div className="font-display text-xl font-medium text-ink">Alamat Pengiriman Kado</div>
+            <div className="mt-2 font-body text-base leading-relaxed text-gold-dark">
               {giftAddress.address}
             </div>
-            <div className="mt-1 text-xs font-light text-ink-soft">
+            <div className="mt-1 font-body text-sm text-ink-soft">
               a.n. {giftAddress.recipient}
             </div>
             <button
               type="button"
               onClick={() => handleCopy(giftAddress.address, "address")}
               className={[
-                "mt-4 cursor-pointer rounded-full border px-6 py-2.5 text-[10px] font-medium uppercase tracking-[0.18em] transition-colors",
+                "mt-4 cursor-pointer rounded-full border px-6 py-2.5 text-xs font-medium uppercase tracking-[0.18em] transition-colors",
                 copiedKey === "address"
                   ? "border-sage-dark bg-sage-dark text-paper"
                   : "border-gold/40 bg-paper/90 text-ink-soft hover:border-gold",

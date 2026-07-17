@@ -196,8 +196,8 @@ export default function Hero() {
         {/* content column */}
         <div className="relative z-10 mx-auto flex min-h-svh w-full max-w-md flex-col items-center justify-center px-6 py-24 text-center">
           <div ref={content} className="flex flex-col items-center">
-            <p className="font-accent text-[11px] font-medium uppercase tracking-[0.42em] text-gold-dark">
-              The Wedding
+            <p className="font-accent text-xs font-medium uppercase tracking-[0.42em] text-gold-dark">
+              The Wedding Of
             </p>
 
             <FloralLayer
@@ -209,7 +209,7 @@ export default function Hero() {
 
             {/* wreath — the frame and title fused into one piece; shrinks
                 away fastest on scroll (see useScrollReveal SPEED.wreath) */}
-            <div className="relative w-full max-w-[19rem] sm:max-w-[22rem]">
+            <div className="relative w-full max-w-[20rem] sm:max-w-[24rem]">
               <FloralLayer
                 ref={wreath}
                 src="/floral/floral-wc-wreath.png"
@@ -220,26 +220,25 @@ export default function Hero() {
               />
               <h1
                 ref={title}
-                className="absolute inset-0 flex flex-col items-center justify-center gap-0.5"
+                className="absolute inset-0 flex flex-col items-center justify-center gap-1"
               >
-                <span className="font-display text-[clamp(2rem,9vw,3.25rem)] font-medium leading-none text-ink">
+                <span className="font-display text-[clamp(2.75rem,9vw,4.25rem)] font-medium leading-none tracking-tight text-ink">
                   {couple.groom.shortName}
                 </span>
-                <span className="font-accent text-lg text-gold-dark">
+                <span className="font-accent text-xl text-gold-dark">
                   &amp;
                 </span>
-                <span className="font-display text-[clamp(2rem,9vw,3.25rem)] font-medium leading-none text-ink">
+                <span className="font-display text-[clamp(2.75rem,9vw,4.25rem)] font-medium leading-none tracking-tight text-ink">
                   {couple.bride.shortName}
                 </span>
               </h1>
             </div>
 
-            <div className="mt-8 flex flex-col items-center gap-3">
-              <p className="font-display text-base italic tracking-wide text-ink-soft">
+            <div className="mt-9 flex flex-col items-center gap-2">
+              <p className="font-accent text-[11px] font-medium uppercase tracking-[0.34em] text-ink-mute">
                 Save the Date
               </p>
-              <span aria-hidden="true" className="h-6 w-px bg-gold/40" />
-              <p className="font-display text-lg italic tracking-wide text-ink-soft">
+              <p className="font-display text-xl font-medium tracking-wide text-ink sm:text-2xl">
                 18 · 08 · 2026
               </p>
             </div>

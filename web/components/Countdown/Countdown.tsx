@@ -80,25 +80,25 @@ export default function Countdown() {
       </div>
 
       <div className="mx-auto max-w-md">
-        <SectionHeading eyebrow="Save The Date" />
+        <SectionHeading eyebrow="Save The Date" title="Menghitung Hari" />
 
-        <p data-reveal className="-mt-2 font-display text-2xl italic text-ink-soft sm:text-3xl">
+        <p data-reveal className="mt-1 font-display text-xl font-medium tracking-wide text-ink sm:text-2xl">
           18 Agustus 2026
         </p>
 
-        <div data-reveal className="mt-10 grid grid-cols-4 gap-3">
+        <div data-reveal className="mt-10 grid grid-cols-4 gap-3 sm:gap-4">
           {cells.map((cell) => (
             <div
               key={cell.label}
-              className="rounded-2xl border border-gold/45 bg-paper px-2 py-5 shadow-[0_10px_28px_-16px_rgba(169,131,74,0.4)]"
+              className="rounded-2xl border border-gold/45 bg-paper px-2 py-6 shadow-[0_10px_28px_-16px_rgba(169,131,74,0.4)]"
             >
               <div
                 suppressHydrationWarning
-                className="font-display text-3xl text-gold-dark tabular-nums sm:text-4xl"
+                className="font-display text-4xl font-medium text-gold-dark tabular-nums sm:text-5xl"
               >
                 {String(cell.value).padStart(2, "0")}
               </div>
-              <div className="mt-1.5 font-accent text-[9.5px] uppercase tracking-[0.18em] text-ink-mute">
+              <div className="mt-2 font-accent text-[11px] uppercase tracking-[0.16em] text-ink-mute">
                 {cell.label}
               </div>
             </div>

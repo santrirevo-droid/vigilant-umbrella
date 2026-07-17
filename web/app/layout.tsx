@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Cinzel, Inter } from "next/font/google";
+import { Playfair_Display, Cinzel, Plus_Jakarta_Sans } from "next/font/google";
 import BackgroundPattern from "@/components/BackgroundPattern";
 import SmoothScroll from "@/components/SmoothScroll";
 import "./globals.css";
 
-const cormorant = Cormorant_Garamond({
+const playfair = Playfair_Display({
   variable: "--font-display",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["500", "600", "700"],
   style: ["normal", "italic"],
 });
 
@@ -17,10 +17,10 @@ const cinzel = Cinzel({
   weight: ["400", "500", "600"],
 });
 
-const inter = Inter({
+const plusJakarta = Plus_Jakarta_Sans({
   variable: "--font-body",
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
+  weight: ["300", "400", "500", "600"],
 });
 
 export const metadata: Metadata = {
@@ -37,7 +37,7 @@ export default function RootLayout({
   return (
     <html
       lang="id"
-      className={`${cormorant.variable} ${cinzel.variable} ${inter.variable} h-full antialiased`}
+      className={`${playfair.variable} ${cinzel.variable} ${plusJakarta.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-warm-white font-body text-ink">
         <BackgroundPattern />

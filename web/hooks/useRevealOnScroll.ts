@@ -20,27 +20,23 @@ type RevealOptions = {
   opacity?: number;
   /** starting scale, eases up to 1 */
   scale?: number;
-  /** starting blur in px, eases down to 0 */
-  blur?: number;
 };
 
 /**
- * Generic "section entrance" reveal: elements fade, rise, unblur and
- * settle into scale once when scrolled into view — an elegant "emerging"
- * feel. Driven by GSAP ScrollTrigger (not scrub — this plays once, unlike
- * the Hero's pinned scroll-reveal timeline).
+ * Generic "section entrance" reveal: elements fade, rise and settle into
+ * scale once when scrolled into view. Driven by GSAP ScrollTrigger (not
+ * scrub — this plays once, unlike the Hero's pinned scroll-reveal timeline).
  */
 export function useRevealOnScroll(
   containerRef: RefObject<HTMLElement | null>,
   {
-    y = 40,
-    duration = 1.1,
-    stagger = 0.12,
+    y = 22,
+    duration = 0.55,
+    stagger = 0.08,
     start = "top 82%",
     selector = "[data-reveal]",
     opacity = 1,
-    scale = 0.94,
-    blur = 8,
+    scale = 0.97,
   }: RevealOptions = {}
 ) {
   useEffect(() => {
@@ -56,11 +52,11 @@ export function useRevealOnScroll(
       const els = matched.length ? matched : [container];
 
       if (reduceMotion) {
-        gsap.set(els, { opacity, y: 0, scale: 1, filter: "blur(0px)" });
+        gsap.set(els, { opacity, y: 0, scale: 1 });
         return;
       }
 
-      gsap.set(els, { opacity: 0, y, scale, filter: `blur(${blur}px)` });
+      gsap.set(els, { opacity: 0, y, scale });
       ScrollTrigger.create({
         trigger: container,
         start,
@@ -70,15 +66,14 @@ export function useRevealOnScroll(
             opacity,
             y: 0,
             scale: 1,
-            filter: "blur(0px)",
             duration,
             stagger,
-            ease: "power4.out",
+            ease: "power3.out",
           });
         },
       });
     }, container);
 
     return () => ctx.revert();
-  }, [containerRef, y, duration, stagger, start, selector, opacity, scale, blur]);
+  }, [containerRef, y, duration, stagger, start, selector, opacity, scale]);
 }

@@ -1,28 +1,27 @@
 @import "tailwindcss";
 
 :root {
-  /* Vibrant Botanical Luxury v3 — deep jewel tones over the pink pattern */
-  --warm-white: #e39aa4;
-  --cream: #efb4be;
-  --beige: #d46b7c;
-  --paper: #fff7f5;
-  --gold: #b9862e;
-  --gold-light: #d9a83f;
-  --gold-dark: #5a3c12;
-  --ink: #2b1420;
-  --ink-soft: #4a2432;
-  --ink-mute: #6d3f4c;
-  --sage: #1f6b45;
-  --sage-light: #3f9c68;
-  --sage-dark: #123d27;
+  /* Editorial Luxury — warm neutral paper, one gold accent. Everything
+     else stays a quiet, desaturated neutral so the accent actually reads
+     as an accent instead of competing with five other hues. */
+  --warm-white: #fdf9f4;
+  --cream: #f8f0e6;
+  --beige: #ecdfc9;
+  --paper: #fffdfa;
 
-  /* botanical accents — used across florals and small UI accents */
-  --rose: #c52c54;
-  --peony: #ff5d8f;
-  --magnolia: #fff5d8;
-  --hydrangea: #6e73d8;
-  --orchid: #c84fe8;
-  --berry: #d43650;
+  --gold: #b9862e;
+  --gold-light: #d9b36b;
+  --gold-dark: #7a5a22;
+
+  --ink: #2b2620;
+  --ink-soft: #5c5347;
+  --ink-mute: #948a7c;
+
+  /* kept only as a small functional signal (RSVP "hadir" status) — not
+     used decoratively elsewhere, so it never competes with gold */
+  --sage: #7c9a7e;
+  --sage-light: #a8c2aa;
+  --sage-dark: #4f6b52;
 }
 
 @theme inline {
@@ -39,13 +38,6 @@
   --color-sage: var(--sage);
   --color-sage-light: var(--sage-light);
   --color-sage-dark: var(--sage-dark);
-
-  --color-rose: var(--rose);
-  --color-peony: var(--peony);
-  --color-magnolia: var(--magnolia);
-  --color-hydrangea: var(--hydrangea);
-  --color-orchid: var(--orchid);
-  --color-berry: var(--berry);
 
   --font-display: var(--font-display);
   --font-accent: var(--font-accent);

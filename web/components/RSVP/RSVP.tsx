@@ -56,9 +56,9 @@ export default function RSVP() {
   }
 
   const fieldClass =
-    "w-full rounded-xl border border-gold/45 bg-paper px-4 py-3 text-sm text-ink outline-none transition-colors focus:border-gold";
+    "w-full rounded-xl border border-gold/45 bg-paper px-4 py-3 text-base text-ink outline-none transition-colors focus:border-gold";
   const labelClass =
-    "mb-2 block text-[10px] font-medium uppercase tracking-[0.2em] text-ink-mute";
+    "mb-2 block text-xs font-medium uppercase tracking-[0.2em] text-ink-mute";
 
   return (
     <section
@@ -93,8 +93,8 @@ export default function RSVP() {
       </div>
 
       <div className="mx-auto max-w-md">
-        <SectionHeading eyebrow="Konfirmasi Kehadiran" />
-        <p data-reveal className="mt-4 font-display text-base italic text-ink-soft">
+        <SectionHeading eyebrow="RSVP" title="Konfirmasi Kehadiran" />
+        <p data-reveal className="mt-4 font-display text-lg italic leading-relaxed text-ink-soft">
           Merupakan kehormatan bagi kami apabila Bapak/Ibu/Saudara/i
           berkenan hadir dan memberikan doa restu.
         </p>
@@ -187,15 +187,15 @@ export default function RSVP() {
 
         <div data-reveal className="mt-10 flex justify-center gap-10">
           <div>
-            <div className="font-display text-3xl text-gold-dark">{wishes.length}</div>
-            <div className="mt-1 font-accent text-[10px] uppercase tracking-[0.18em] text-ink-mute">
+            <div className="font-display text-3xl font-medium text-gold-dark">{wishes.length}</div>
+            <div className="mt-1.5 font-accent text-xs uppercase tracking-[0.18em] text-ink-mute">
               Ucapan
             </div>
           </div>
           <div className="w-px bg-gold/25" />
           <div>
-            <div className="font-display text-3xl text-gold-dark">{hadirCount}</div>
-            <div className="mt-1 font-accent text-[10px] uppercase tracking-[0.18em] text-ink-mute">
+            <div className="font-display text-3xl font-medium text-gold-dark">{hadirCount}</div>
+            <div className="mt-1.5 font-accent text-xs uppercase tracking-[0.18em] text-ink-mute">
               Hadir
             </div>
           </div>

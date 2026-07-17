@@ -96,7 +96,7 @@ export default function CoupleProfile({
           {name}
         </h3>
 
-        <p data-reveal className="mt-4 max-w-xs font-body text-sm leading-relaxed text-ink-soft">
+        <p data-reveal className="mt-4 max-w-xs font-body text-base leading-relaxed text-ink-soft">
           {role === "putra" ? "Putra" : "Putri"} dari {father}
           <br />
           &amp; {mother}
@@ -108,7 +108,7 @@ export default function CoupleProfile({
             href={`https://instagram.com/${instagram.replace(/^@/, "")}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-5 inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-gold-dark transition-colors hover:text-ink"
+            className="mt-5 inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.2em] text-gold-dark transition-colors hover:text-ink"
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
               <rect x="3" y="3" width="18" height="18" rx="5" />

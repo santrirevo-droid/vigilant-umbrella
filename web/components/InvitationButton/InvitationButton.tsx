@@ -14,17 +14,17 @@ const InvitationButton = forwardRef<HTMLButtonElement, InvitationButtonProps>(
         type="button"
         className={[
           "group relative inline-flex items-center gap-3 rounded-full",
-          "border border-gold/70 bg-paper/90 px-9 py-4",
-          "font-body text-[11px] font-medium uppercase tracking-[0.28em] text-ink-soft",
-          "shadow-[0_10px_30px_-10px_rgba(169,131,74,0.45)] backdrop-blur-sm",
-          "transition-colors duration-300 hover:border-gold hover:bg-gold/10",
+          "bg-gold px-10 py-[1.125rem]",
+          "font-body text-xs font-medium uppercase tracking-[0.28em] text-paper",
+          "shadow-[0_14px_34px_-10px_rgba(169,131,74,0.55)]",
+          "transition-opacity duration-300 hover:opacity-90",
           "cursor-pointer",
           className,
         ].join(" ")}
         {...props}
       >
         <span className="relative flex h-2 w-2">
-          <span className="absolute inline-flex h-full w-full rotate-45 bg-gold" />
+          <span className="absolute inline-flex h-full w-full rotate-45 bg-paper" />
         </span>
         {label}
       </button>

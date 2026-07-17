@@ -49,15 +49,15 @@ export default function OpeningQuote() {
       </div>
 
       <div className="max-w-md">
-        <p data-reveal className="font-accent text-[11px] font-medium uppercase tracking-[0.42em] text-gold-dark">
+        <p data-reveal className="font-accent text-xs font-medium uppercase tracking-[0.42em] text-gold-dark">
           Opening Quote
         </p>
-        <p data-reveal className="mt-6 font-display text-2xl italic leading-relaxed text-ink-soft">
+        <p data-reveal className="mt-7 font-display text-[1.5rem] italic leading-[1.6] tracking-wide text-ink-soft sm:text-[1.625rem]">
           &ldquo;Dan di antara tanda-tanda kekuasaan-Nya ialah Dia
           menciptakan untukmu pasangan hidup dari jenismu sendiri, agar
           kamu cenderung dan merasa tenteram kepadanya.&rdquo;
         </p>
-        <p data-reveal className="mt-4 font-accent text-xs uppercase tracking-[0.3em] text-ink-mute">
+        <p data-reveal className="mt-5 font-accent text-xs uppercase tracking-[0.3em] text-ink-mute">
           Q.S. Ar-Rum : 21
         </p>
       </div>

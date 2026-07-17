@@ -89,11 +89,11 @@ export default function Wishes() {
       </div>
 
       <div className="mx-auto max-w-md">
-        <SectionHeading eyebrow="Ucapan &amp; Doa" />
+        <SectionHeading eyebrow="Guestbook" title="Ucapan & Doa" />
 
         <div ref={listRef} className="mt-10">
           {wishes.length === 0 ? (
-            <p data-reveal className="text-sm font-light text-ink-mute">
+            <p data-reveal className="font-body text-sm text-ink-mute">
               Jadilah yang pertama mengirimkan ucapan &amp; doa.
             </p>
           ) : (
@@ -109,12 +109,12 @@ export default function Wishes() {
                       {wish.name.trim().charAt(0).toUpperCase() || "?"}
                     </span>
                     <div className="min-w-0">
-                      <div className="truncate text-sm font-medium text-ink">
+                      <div className="truncate font-body text-sm font-medium text-ink">
                         {wish.name}
                       </div>
                       <div
                         className={[
-                          "text-[10.5px] tracking-wide",
+                          "text-xs tracking-wide",
                           wish.attend === "hadir" ? "text-sage-dark" : "text-red-400",
                         ].join(" ")}
                       >
@@ -127,7 +127,7 @@ export default function Wishes() {
                     </div>
                   </div>
                   {wish.message && (
-                    <p className="mt-3 text-[13.5px] font-light leading-relaxed text-ink-soft">
+                    <p className="mt-3 font-body text-sm leading-relaxed text-ink-soft">
                       {wish.message}
                     </p>
                   )}

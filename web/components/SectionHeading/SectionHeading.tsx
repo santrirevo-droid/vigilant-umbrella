@@ -33,7 +33,7 @@ export default function SectionHeading({
       >
         <p
           className={[
-            "font-accent text-[11px] font-medium uppercase tracking-[0.42em]",
+            "font-accent text-xs font-medium uppercase tracking-[0.42em]",
             dark ? "text-gold-light" : "text-gold-dark",
           ].join(" ")}
         >
@@ -43,12 +43,12 @@ export default function SectionHeading({
           src="/floral/gold-ornament.svg"
           width={200}
           height={36}
-          className="my-5 h-5 w-36 select-none sm:w-44"
+          className="my-4 h-5 w-32 select-none sm:w-40"
         />
         {title && (
           <h2
             className={[
-              "font-display text-4xl leading-tight sm:text-5xl",
+              "font-display text-[clamp(2.125rem,5vw,2.5rem)] font-medium leading-[1.15] tracking-tight",
               dark ? "text-paper" : "text-ink",
             ].join(" ")}
           >
