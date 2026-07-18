@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { Redis } from "@upstash/redis";
+import { getRedis } from "@/lib/redis";
 
 const WISHES_KEY = "wishes:v1";
 const MAX_WISHES = 500;
@@ -11,16 +11,6 @@ export type Wish = {
   guests: string;
   message: string;
 };
-
-// Vercel's Storage tab can inject either the legacy "Vercel KV" names or the
-// native Upstash marketplace names depending on how the store was attached —
-// support both rather than assuming one.
-function getRedis() {
-  const url = process.env.KV_REST_API_URL ?? process.env.UPSTASH_REDIS_REST_URL;
-  const token = process.env.KV_REST_API_TOKEN ?? process.env.UPSTASH_REDIS_REST_TOKEN;
-  if (!url || !token) return null;
-  return new Redis({ url, token });
-}
 
 function notConfigured() {
   // a fresh Response each call — a shared module-level instance would have
