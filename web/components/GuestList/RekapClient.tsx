@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { buildInviteLink, buildWhatsAppShareUrl } from "@/lib/inviteLink";
 
 type GuestEntry = {
   id: string;
@@ -22,6 +23,23 @@ export default function RekapClient() {
   const [clusters, setClusters] = useState<DuplicateCluster[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [copiedId, setCopiedId] = useState<string | null>(null);
+
+  async function handleCopyLink(entry: GuestEntry) {
+    const link = buildInviteLink(window.location.origin, entry.name);
+    try {
+      await navigator.clipboard.writeText(link);
+      setCopiedId(entry.id);
+      setTimeout(() => setCopiedId((current) => (current === entry.id ? null : current)), 2000);
+    } catch {
+      // clipboard access failure — rare, not worth replacing the whole page for
+    }
+  }
+
+  function handleShareWhatsApp(entry: GuestEntry) {
+    const link = buildInviteLink(window.location.origin, entry.name);
+    window.open(buildWhatsAppShareUrl(link, entry.name), "_blank", "noopener,noreferrer");
+  }
 
   useEffect(() => {
     let cancelled = false;
@@ -130,6 +148,21 @@ export default function RekapClient() {
                   {entry.relation && (
                     <p className="mt-0.5 truncate text-base text-ink-soft">{entry.relation}</p>
                   )}
+
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    <button
+                      onClick={() => handleShareWhatsApp(entry)}
+                      className="min-h-11 rounded-lg bg-sage px-4 text-base font-semibold text-white"
+                    >
+                      Kirim WhatsApp
+                    </button>
+                    <button
+                      onClick={() => handleCopyLink(entry)}
+                      className="min-h-11 rounded-lg border border-border px-4 text-base font-semibold text-ink"
+                    >
+                      {copiedId === entry.id ? "Tersalin!" : "Salin Link"}
+                    </button>
+                  </div>
                 </li>
               ))}
             </ul>

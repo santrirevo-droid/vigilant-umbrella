@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import Link from "next/link";
 import type { Family } from "@/lib/families";
+import { buildInviteLink, buildWhatsAppShareUrl } from "@/lib/inviteLink";
 
 type GuestEntry = {
   id: string;
@@ -46,6 +47,7 @@ export default function GuestListClient({ family }: { family: Family }) {
   const [formError, setFormError] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [pendingDeleteId, setPendingDeleteId] = useState<string | null>(null);
+  const [copiedId, setCopiedId] = useState<string | null>(null);
 
   const searchTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const searchRequestId = useRef(0);
@@ -154,6 +156,22 @@ export default function GuestListClient({ family }: { family: Family }) {
     setIsSubmitting(false);
   }
 
+  async function handleCopyLink(entry: GuestEntry) {
+    const link = buildInviteLink(window.location.origin, entry.name);
+    try {
+      await navigator.clipboard.writeText(link);
+      setCopiedId(entry.id);
+      setTimeout(() => setCopiedId((current) => (current === entry.id ? null : current)), 2000);
+    } catch {
+      setFormError("Gagal menyalin link. Coba lagi.");
+    }
+  }
+
+  function handleShareWhatsApp(entry: GuestEntry) {
+    const link = buildInviteLink(window.location.origin, entry.name);
+    window.open(buildWhatsAppShareUrl(link, entry.name), "_blank", "noopener,noreferrer");
+  }
+
   async function handleDelete(id: string) {
     try {
       const res = await fetch(`/api/guest-list/${id}`, {
@@ -260,7 +278,7 @@ export default function GuestListClient({ family }: { family: Family }) {
             {entries.map((entry) => (
               <li
                 key={entry.id}
-                className="flex items-center justify-between gap-4 rounded-xl border border-border bg-paper px-5 py-4"
+                className="rounded-xl border border-border bg-paper px-5 py-4"
               >
                 <div className="min-w-0">
                   <p className="truncate text-xl font-medium text-ink">
@@ -276,29 +294,44 @@ export default function GuestListClient({ family }: { family: Family }) {
                   )}
                 </div>
 
-                {pendingDeleteId === entry.id ? (
-                  <div className="flex shrink-0 gap-2">
-                    <button
-                      onClick={() => handleDelete(entry.id)}
-                      className="min-h-11 rounded-lg bg-red-600 px-4 text-base font-semibold text-white"
-                    >
-                      Ya, Hapus
-                    </button>
-                    <button
-                      onClick={() => setPendingDeleteId(null)}
-                      className="min-h-11 rounded-lg border border-border px-4 text-base font-semibold text-ink"
-                    >
-                      Batal
-                    </button>
-                  </div>
-                ) : (
+                <div className="mt-3 flex flex-wrap gap-2">
                   <button
-                    onClick={() => setPendingDeleteId(entry.id)}
-                    className="min-h-11 shrink-0 rounded-lg border border-border px-4 text-base font-semibold text-ink-soft"
+                    onClick={() => handleShareWhatsApp(entry)}
+                    className="min-h-11 rounded-lg bg-sage px-4 text-base font-semibold text-white"
                   >
-                    Hapus
+                    Kirim WhatsApp
                   </button>
-                )}
+                  <button
+                    onClick={() => handleCopyLink(entry)}
+                    className="min-h-11 rounded-lg border border-border px-4 text-base font-semibold text-ink"
+                  >
+                    {copiedId === entry.id ? "Tersalin!" : "Salin Link"}
+                  </button>
+
+                  {pendingDeleteId === entry.id ? (
+                    <>
+                      <button
+                        onClick={() => handleDelete(entry.id)}
+                        className="min-h-11 rounded-lg bg-red-600 px-4 text-base font-semibold text-white"
+                      >
+                        Ya, Hapus
+                      </button>
+                      <button
+                        onClick={() => setPendingDeleteId(null)}
+                        className="min-h-11 rounded-lg border border-border px-4 text-base font-semibold text-ink"
+                      >
+                        Batal
+                      </button>
+                    </>
+                  ) : (
+                    <button
+                      onClick={() => setPendingDeleteId(entry.id)}
+                      className="min-h-11 rounded-lg border border-border px-4 text-base font-semibold text-ink-soft"
+                    >
+                      Hapus
+                    </button>
+                  )}
+                </div>
               </li>
             ))}
           </ul>
