@@ -17,24 +17,30 @@ type GuestEntry = {
 type SimilarMatch = { name: string; familyLabel: string; score: number };
 
 const fieldClass =
-  "min-h-14 w-full rounded-xl border-2 border-border bg-paper px-4 py-3 text-xl text-ink outline-none transition-colors focus:border-gold-dark";
+  "w-full rounded-xl border-2 border-border bg-paper px-4 py-3 text-xl text-ink outline-none transition-colors focus:border-gold-dark";
 const labelClass = "mb-2 block text-lg font-semibold text-ink";
 const buttonClass =
   "min-h-14 rounded-xl px-6 py-3 text-lg font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-60";
+
+function parseNameLines(text: string): string[] {
+  return text
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean);
+}
 
 export default function GuestListClient({ family }: { family: Family }) {
   const [entries, setEntries] = useState<GuestEntry[]>([]);
   const [isLoadingList, setIsLoadingList] = useState(true);
 
-  const [name, setName] = useState("");
-  const [relation, setRelation] = useState("");
-  const [guestCount, setGuestCount] = useState(1);
-  const [similar, setSimilar] = useState<SimilarMatch[]>([]);
-  // Tracks which exact name text the "tetap tambahkan" checkbox was ticked
-  // for, so editing the name after confirming automatically un-confirms it
-  // without needing an effect to reset a separate boolean.
-  const [confirmedName, setConfirmedName] = useState<string | null>(null);
-  const confirmedDespiteSimilar = confirmedName !== null && confirmedName === name.trim();
+  const [namesText, setNamesText] = useState("");
+  const [similar, setSimilar] = useState<Record<string, SimilarMatch[]>>({});
+  // Tracks which exact textarea text the "tetap tambahkan" checkbox was
+  // ticked for, so editing the names after confirming automatically
+  // un-confirms it without needing an effect to reset a separate boolean.
+  const [confirmedText, setConfirmedText] = useState<string | null>(null);
+  const hasSimilar = Object.keys(similar).length > 0;
+  const confirmedDespiteSimilar = confirmedText !== null && confirmedText === namesText;
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formError, setFormError] = useState<string | null>(null);
@@ -64,71 +70,88 @@ export default function GuestListClient({ family }: { family: Family }) {
   useEffect(() => {
     if (searchTimer.current) clearTimeout(searchTimer.current);
 
-    async function runSearch(query: string) {
-      if (query.length < 2) {
-        setSimilar([]);
+    async function runSearch(lines: string[]) {
+      if (lines.length === 0) {
+        setSimilar({});
         return;
       }
       const requestId = ++searchRequestId.current;
       try {
-        const res = await fetch(`/api/guest-list/search?q=${encodeURIComponent(query)}`);
-        const data = await res.json();
-        if (requestId === searchRequestId.current && res.ok) {
-          setSimilar(data.matches ?? []);
+        const results = await Promise.all(
+          lines.map(async (line) => {
+            const res = await fetch(`/api/guest-list/search?q=${encodeURIComponent(line)}`);
+            const data = await res.json();
+            return [line, res.ok ? (data.matches as SimilarMatch[] ?? []) : []] as const;
+          })
+        );
+        if (requestId !== searchRequestId.current) return;
+        const next: Record<string, SimilarMatch[]> = {};
+        for (const [line, matches] of results) {
+          if (matches.length > 0) next[line] = matches;
         }
+        setSimilar(next);
       } catch {
         // ignore — duplicate check is a helper, not a hard requirement
       }
     }
 
-    searchTimer.current = setTimeout(() => runSearch(name.trim()), 400);
+    searchTimer.current = setTimeout(() => runSearch(parseNameLines(namesText)), 400);
 
     return () => {
       if (searchTimer.current) clearTimeout(searchTimer.current);
     };
-  }, [name]);
+  }, [namesText]);
 
   const totalPeople = entries.reduce((sum, entry) => sum + entry.guestCount, 0);
+  const nameLines = parseNameLines(namesText);
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    if (!name.trim()) {
-      setFormError("Mohon isi nama tamu terlebih dahulu.");
+    if (nameLines.length === 0) {
+      setFormError("Mohon isi minimal satu nama tamu.");
       return;
     }
-    if (similar.length > 0 && !confirmedDespiteSimilar) {
+    if (hasSimilar && !confirmedDespiteSimilar) {
       setFormError("Mohon periksa nama mirip di atas sebelum menambahkan.");
       return;
     }
 
     setFormError(null);
     setIsSubmitting(true);
-    try {
-      const res = await fetch("/api/guest-list", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          familySlug: family.slug,
-          name: name.trim(),
-          relation: relation.trim(),
-          guestCount,
-        }),
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error ?? "Gagal menambahkan tamu.");
 
-      setEntries((current) => [data.entry, ...current]);
-      setSuccessMessage(`"${data.entry.name}" berhasil ditambahkan.`);
-      setName("");
-      setRelation("");
-      setGuestCount(1);
-      setSimilar([]);
-      setConfirmedName(null);
-    } catch (err) {
-      setFormError(err instanceof Error ? err.message : "Gagal menambahkan tamu.");
-    } finally {
-      setIsSubmitting(false);
+    const added: GuestEntry[] = [];
+    const failed: string[] = [];
+    for (const line of nameLines) {
+      try {
+        const res = await fetch("/api/guest-list", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ familySlug: family.slug, name: line }),
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error();
+        added.push(data.entry);
+      } catch {
+        failed.push(line);
+      }
     }
+
+    if (added.length > 0) {
+      setEntries((current) => [...added.reverse(), ...current]);
+    }
+    if (failed.length === 0) {
+      setSuccessMessage(
+        added.length === 1 ? `"${added[0].name}" berhasil ditambahkan.` : `${added.length} nama berhasil ditambahkan.`
+      );
+      setNamesText("");
+      setSimilar({});
+      setConfirmedText(null);
+    } else {
+      setFormError(`Gagal menambahkan: ${failed.join(", ")}. Nama lainnya sudah tersimpan.`);
+      setNamesText(failed.join("\n"));
+    }
+
+    setIsSubmitting(false);
   }
 
   async function handleDelete(id: string) {
@@ -155,35 +178,41 @@ export default function GuestListClient({ family }: { family: Family }) {
 
       <h1 className="mt-4 text-3xl font-bold text-ink">{family.label}</h1>
       <p className="mt-2 text-xl text-ink-soft">
-        Tuliskan nama tamu yang ingin Anda undang, satu per satu.
+        Tuliskan nama tamu yang ingin Anda undang, satu nama per baris.
       </p>
 
       <form onSubmit={handleSubmit} className="mt-8 flex flex-col gap-6 rounded-2xl border border-border bg-paper p-6">
         <div>
-          <label className={labelClass} htmlFor="guest-name">
+          <label className={labelClass} htmlFor="guest-names">
             Nama Tamu
           </label>
-          <input
-            id="guest-name"
-            value={name}
+          <textarea
+            id="guest-names"
+            value={namesText}
             onChange={(e) => {
-              setName(e.target.value);
+              setNamesText(e.target.value);
               if (formError) setFormError(null);
             }}
-            placeholder="Contoh: Budi Santoso"
-            autoComplete="off"
-            className={fieldClass}
+            placeholder={"Contoh:\nBudi Santoso\nSiti Aminah\nAhmad Fauzi"}
+            rows={5}
+            className={`${fieldClass} resize-y`}
           />
+          {nameLines.length > 0 && (
+            <p className="mt-2 text-base text-ink-soft">{nameLines.length} nama akan ditambahkan.</p>
+          )}
 
-          {similar.length > 0 && (
+          {hasSimilar && (
             <div className="mt-3 rounded-xl border-2 border-amber-400 bg-amber-50 px-4 py-3">
               <p className="text-lg font-semibold text-amber-900">
                 ⚠️ Sudah ada nama mirip:
               </p>
-              <ul className="mt-2 flex flex-col gap-1">
-                {similar.map((match, i) => (
-                  <li key={i} className="text-lg text-amber-900">
-                    {match.name} <span className="text-base text-amber-700">— {match.familyLabel}</span>
+              <ul className="mt-2 flex flex-col gap-2">
+                {Object.entries(similar).map(([line, matches]) => (
+                  <li key={line} className="text-lg text-amber-900">
+                    {line}
+                    <span className="block text-base text-amber-700">
+                      mirip dengan {matches.map((m) => `${m.name} (${m.familyLabel})`).join(", ")}
+                    </span>
                   </li>
                 ))}
               </ul>
@@ -192,52 +221,12 @@ export default function GuestListClient({ family }: { family: Family }) {
                   type="checkbox"
                   className="h-6 w-6"
                   checked={confirmedDespiteSimilar}
-                  onChange={(e) => setConfirmedName(e.target.checked ? name.trim() : null)}
+                  onChange={(e) => setConfirmedText(e.target.checked ? namesText : null)}
                 />
-                Ini orang yang berbeda, tetap tambahkan
+                Ini semua orang yang berbeda, tetap tambahkan
               </label>
             </div>
           )}
-        </div>
-
-        <div>
-          <label className={labelClass} htmlFor="guest-count">
-            Jumlah Orang
-          </label>
-          <div className="flex items-center gap-4">
-            <button
-              type="button"
-              onClick={() => setGuestCount((n) => Math.max(1, n - 1))}
-              aria-label="Kurangi jumlah orang"
-              className="flex h-14 w-14 items-center justify-center rounded-xl border-2 border-border text-2xl font-bold text-ink"
-            >
-              −
-            </button>
-            <span id="guest-count" className="min-w-10 text-center text-2xl font-semibold text-ink">
-              {guestCount}
-            </span>
-            <button
-              type="button"
-              onClick={() => setGuestCount((n) => Math.min(20, n + 1))}
-              aria-label="Tambah jumlah orang"
-              className="flex h-14 w-14 items-center justify-center rounded-xl border-2 border-border text-2xl font-bold text-ink"
-            >
-              +
-            </button>
-          </div>
-        </div>
-
-        <div>
-          <label className={labelClass} htmlFor="guest-relation">
-            Keterangan (opsional)
-          </label>
-          <input
-            id="guest-relation"
-            value={relation}
-            onChange={(e) => setRelation(e.target.value)}
-            placeholder="Contoh: Teman kerja Ayah"
-            className={fieldClass}
-          />
         </div>
 
         {formError && <p className="text-lg font-medium text-red-600">{formError}</p>}
