@@ -57,10 +57,10 @@ export default function Gift() {
             <div
               key={account.bank}
               data-reveal
-              className="rounded-2xl border border-border bg-paper px-6 py-7 shadow-[0_14px_36px_-22px_rgba(58,52,43,0.25)]"
+              className="rounded-2xl border border-border bg-paper px-6 py-7 shadow-[0_14px_36px_-22px_rgba(74,30,43,0.25)]"
             >
               <div className="font-display text-xl font-medium text-ink">{account.bank}</div>
-              <div className="mt-2 font-mono text-lg font-semibold tabular-nums tracking-[0.16em] text-gold-dark">
+              <div className="mt-2 font-mono text-lg font-semibold tabular-nums tracking-[0.16em] text-gold">
                 {account.number}
               </div>
               <div className="mt-1 font-body text-sm text-ink-soft">
@@ -73,7 +73,7 @@ export default function Gift() {
                   "mt-4 min-h-11 cursor-pointer rounded-full border px-6 py-2.5 text-xs font-medium uppercase tracking-[0.18em] transition-colors",
                   copiedKey === account.bank
                     ? "border-sage-dark bg-sage-dark text-paper"
-                    : "border-border bg-paper text-ink-soft hover:border-gold",
+                    : "border-border bg-paper text-ink-soft hover:border-gold-dark",
                 ].join(" ")}
               >
                 {copiedKey === account.bank ? "Tersalin ✓" : "Salin Nomor"}
@@ -83,10 +83,10 @@ export default function Gift() {
 
           <div
             data-reveal
-            className="rounded-2xl border border-border bg-paper px-6 py-7 shadow-[0_14px_36px_-22px_rgba(58,52,43,0.25)]"
+            className="rounded-2xl border border-border bg-paper px-6 py-7 shadow-[0_14px_36px_-22px_rgba(74,30,43,0.25)]"
           >
             <div className="font-display text-xl font-medium text-ink">Alamat Pengiriman Kado</div>
-            <div className="mt-2 font-mono text-base leading-[1.6] tracking-wide text-gold-dark">
+            <div className="mt-2 font-mono text-base leading-[1.6] tracking-wide text-gold">
               {giftAddress.address}
             </div>
             <div className="mt-1 font-body text-sm text-ink-soft">
@@ -99,7 +99,7 @@ export default function Gift() {
                 "mt-4 min-h-11 cursor-pointer rounded-full border px-6 py-2.5 text-xs font-medium uppercase tracking-[0.18em] transition-colors",
                 copiedKey === "address"
                   ? "border-sage-dark bg-sage-dark text-paper"
-                  : "border-border bg-paper text-ink-soft hover:border-gold",
+                  : "border-border bg-paper text-ink-soft hover:border-gold-dark",
               ].join(" ")}
             >
               {copiedKey === "address" ? "Tersalin ✓" : "Salin Alamat"}

@@ -61,7 +61,7 @@ export default function RSVP() {
   const fieldClass =
     "min-h-11 w-full rounded-xl border border-border bg-paper px-4 py-3 text-base text-ink outline-none transition-colors focus:border-gold";
   const labelClass =
-    "mb-2 block text-xs font-medium uppercase tracking-[0.2em] text-ink-mute";
+    "mb-2 block text-xs font-medium uppercase tracking-[0.2em] text-ink-soft";
 
   return (
     <section
@@ -123,8 +123,8 @@ export default function RSVP() {
                   className={[
                     "min-h-11 flex-1 cursor-pointer rounded-xl border px-3 py-3.5 text-sm font-semibold uppercase tracking-[0.1em] transition-colors",
                     attend === value
-                      ? "border-gold bg-gold text-paper"
-                      : "border-border bg-paper text-ink-mute",
+                      ? "border-gold-dark bg-gold-dark text-paper"
+                      : "border-border bg-paper text-ink-soft",
                   ].join(" ")}
                 >
                   {value === "hadir" ? "Hadir" : "Berhalangan"}
@@ -174,7 +174,7 @@ export default function RSVP() {
             data-reveal
             type="submit"
             disabled={isSubmitting}
-            className="mt-1 min-h-11 cursor-pointer rounded-full bg-gold py-3.5 text-xs font-semibold uppercase tracking-[0.22em] text-paper shadow-[0_10px_26px_-10px_rgba(169,139,93,0.55)] transition-colors hover:bg-gold-dark disabled:cursor-not-allowed disabled:opacity-60"
+            className="mt-1 min-h-11 cursor-pointer rounded-full bg-gold-dark py-3.5 text-xs font-semibold uppercase tracking-[0.22em] text-paper shadow-[0_10px_26px_-10px_rgba(122,59,71,0.55)] transition-[filter] hover:brightness-90 disabled:cursor-not-allowed disabled:opacity-60"
           >
             {isSubmitting ? "Mengirim…" : "Kirim Konfirmasi"}
           </button>
@@ -182,7 +182,7 @@ export default function RSVP() {
 
         {sentWish && (
           <div data-reveal className="mt-6 rounded-2xl border border-border bg-paper px-5 py-4 text-left">
-            <p className="font-accent text-[10.5px] font-medium uppercase tracking-[0.3em] text-gold">
+            <p className="font-accent text-sm font-medium tracking-[0.12em] text-ink-soft [font-variant-caps:small-caps]">
               Ucapan Terkirim
             </p>
             <div className="mt-3 flex items-center gap-3">
@@ -217,15 +217,15 @@ export default function RSVP() {
 
         <div data-reveal className="mt-10 flex justify-center gap-10">
           <div>
-            <div className="font-display text-3xl font-medium text-gold-dark">{wishes.length}</div>
-            <div className="mt-1.5 font-accent text-xs uppercase tracking-[0.18em] text-ink-mute">
+            <div className="font-display text-3xl font-medium text-gold">{wishes.length}</div>
+            <div className="mt-1.5 font-accent text-xs uppercase tracking-[0.18em] text-ink-soft">
               Ucapan
             </div>
           </div>
           <div className="w-px bg-border" />
           <div>
-            <div className="font-display text-3xl font-medium text-gold-dark">{hadirCount}</div>
-            <div className="mt-1.5 font-accent text-xs uppercase tracking-[0.18em] text-ink-mute">
+            <div className="font-display text-3xl font-medium text-gold">{hadirCount}</div>
+            <div className="mt-1.5 font-accent text-xs uppercase tracking-[0.18em] text-ink-soft">
               Hadir
             </div>
           </div>

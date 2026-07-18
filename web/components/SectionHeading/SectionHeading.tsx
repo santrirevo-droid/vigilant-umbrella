@@ -23,7 +23,7 @@ export default function SectionHeading({
       className={`flex flex-col items-center gap-2 text-center ${className}`}
     >
       {showKicker && (
-        <p className="font-accent text-[11px] font-medium uppercase tracking-[0.34em] text-gold">
+        <p className="font-accent text-sm font-medium tracking-[0.12em] text-ink-soft [font-variant-caps:small-caps]">
           {eyebrow}
         </p>
       )}

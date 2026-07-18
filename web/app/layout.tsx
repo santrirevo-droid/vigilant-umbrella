@@ -1,20 +1,16 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Jost, Amiri, Great_Vibes } from "next/font/google";
+import { Cormorant_Garamond, Amiri, Great_Vibes } from "next/font/google";
 import BackgroundPattern from "@/components/BackgroundPattern";
 import SmoothScroll from "@/components/SmoothScroll";
 import "./globals.css";
 
+// the one serif that now carries everything except the couple's name —
+// --font-body and --font-accent both alias to this in globals.css
 const cormorant = Cormorant_Garamond({
   variable: "--font-display",
   subsets: ["latin"],
-  weight: ["500", "600"],
+  weight: ["400", "500", "600"],
   style: ["normal", "italic"],
-});
-
-const jost = Jost({
-  variable: "--font-body",
-  subsets: ["latin"],
-  weight: ["300", "400", "500"],
 });
 
 const amiri = Amiri({
@@ -45,7 +41,7 @@ export default function RootLayout({
   return (
     <html
       lang="id"
-      className={`${cormorant.variable} ${jost.variable} ${amiri.variable} ${greatVibes.variable} h-full antialiased`}
+      className={`${cormorant.variable} ${amiri.variable} ${greatVibes.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-warm-white font-body text-ink">
         <BackgroundPattern />

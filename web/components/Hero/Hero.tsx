@@ -63,7 +63,7 @@ export default function Hero() {
           className="pointer-events-none absolute inset-0 opacity-10"
           style={{
             background:
-              "radial-gradient(circle at 50% 32%, rgba(169,139,93,0.4), transparent 62%)",
+              "radial-gradient(circle at 50% 32%, rgba(139,75,88,0.4), transparent 62%)",
           }}
         />
 
@@ -79,7 +79,7 @@ export default function Hero() {
             </p>
 
             <div className="flex flex-col items-center gap-3">
-              <p className="font-accent text-[11px] font-medium uppercase tracking-[0.34em] text-ink-mute">
+              <p className="font-accent text-sm font-medium tracking-[0.12em] text-ink-soft [font-variant-caps:small-caps]">
                 The Wedding Of
               </p>
 
@@ -92,7 +92,7 @@ export default function Hero() {
                 <span className="font-script text-[64px] leading-none">{couple.bride.shortName}</span>
               </h1>
 
-              <p className="font-display text-xl font-medium tracking-wide text-gold-dark">
+              <p className="font-display text-xl font-semibold tracking-wide text-gold">
                 18 · 08 · 2026
               </p>
             </div>

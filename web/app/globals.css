@@ -1,22 +1,22 @@
 @import "tailwindcss";
 
 :root {
-  /* Islamic floral-gold, mobile-first — cream paper, a single gold accent,
-     a lot of empty space instead of scattered florals. */
-  --warm-white: #fbf7f0;
-  --cream: #f3ebdd;
-  --beige: #f5ecda;
+  /* Soft pink, mobile-first — blush background, white cards that "pop",
+     deep wine text, a rose accent. A lot of empty space instead of
+     scattered florals. */
+  --warm-white: #fbeaee;
+  --cream: #fdeef1;
+  --beige: #f6dbe1;
   --paper: #ffffff;
 
-  --gold: #a98b5d;
-  --gold-light: #c7ac82;
-  --gold-dark: #8a6e42;
+  --gold: #8b4b58;
+  --gold-light: #b76e79;
+  --gold-dark: #7a3b47;
 
-  --ink: #3a342b;
-  --ink-soft: #6b6355;
-  --ink-mute: #8f8776;
+  --ink: #4a1e2b;
+  --ink-soft: #6b3f4a;
 
-  --border: rgba(58, 52, 43, 0.12);
+  --border: #e8c4cc;
 
   /* kept only as a small functional signal (RSVP "hadir" status) */
   --sage: #1f6b45;
@@ -34,7 +34,6 @@
   --color-gold-dark: var(--gold-dark);
   --color-ink: var(--ink);
   --color-ink-soft: var(--ink-soft);
-  --color-ink-mute: var(--ink-mute);
   --color-border: var(--border);
   --color-sage: var(--sage);
   --color-sage-light: var(--sage-light);
@@ -48,12 +47,14 @@
 }
 
 :root {
-  /* only 2 real Latin font families carry the running text (display +
-     body) — the small uppercase "accent" labels reuse the body font
-     rather than a 3rd family. Amiri (Arabic) and the script face are
-     both narrow, special-purpose exceptions: liturgical text and the
+  /* only 2 real Latin font families carry the running text — a single
+     serif (Cormorant Garamond) for everything except the couple's name.
+     --font-body and --font-accent both alias to it, so there's no 2nd
+     "generic" sans anywhere. Amiri (Arabic) and the script face are
+     narrow, special-purpose exceptions: liturgical text and the
      couple's name respectively, never for running copy. */
-  --font-accent: var(--font-body);
+  --font-body: var(--font-display);
+  --font-accent: var(--font-display);
 }
 
 body {

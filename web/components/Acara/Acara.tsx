@@ -66,7 +66,7 @@ export default function Acara() {
       <div className="mx-auto max-w-md">
         <SectionHeading eyebrow="Acara" />
 
-        <p data-reveal className="mt-1 font-display text-xl font-semibold tracking-wide text-gold-dark">
+        <p data-reveal className="mt-1 font-display text-xl font-semibold tracking-wide text-gold">
           18 Agustus 2026
         </p>
 
@@ -74,15 +74,15 @@ export default function Acara() {
           {cells.map((cell) => (
             <div
               key={cell.label}
-              className="rounded-2xl border border-border bg-paper px-2 py-6 shadow-[0_10px_28px_-16px_rgba(58,52,43,0.18)]"
+              className="rounded-2xl border border-border bg-paper px-2 py-6 shadow-[0_10px_28px_-16px_rgba(74,30,43,0.18)]"
             >
               <div
                 suppressHydrationWarning
-                className="font-display text-[32px] font-semibold text-gold-dark tabular-nums"
+                className="font-display text-[32px] font-semibold text-gold tabular-nums"
               >
                 {String(cell.value).padStart(2, "0")}
               </div>
-              <div className="mt-2 font-accent text-[10.5px] uppercase tracking-[0.3em] text-ink-mute opacity-70">
+              <div className="mt-2 font-accent text-[10.5px] uppercase tracking-[0.3em] text-ink-soft opacity-70">
                 {cell.label}
               </div>
             </div>
@@ -93,11 +93,11 @@ export default function Acara() {
           {events.map((event) => (
             <div
               key={event.title}
-              className="rounded-2xl border border-border bg-paper px-4 py-6 shadow-[0_10px_28px_-16px_rgba(58,52,43,0.18)]"
+              className="rounded-2xl border border-border bg-paper px-4 py-6 shadow-[0_10px_28px_-16px_rgba(74,30,43,0.18)]"
             >
               <h3 className="font-display text-lg font-medium text-ink">{event.title}</h3>
               <div className="mx-auto mt-2 h-px w-8 bg-gold" />
-              <p className="mt-3 font-body text-sm font-semibold text-gold-dark">{event.time}</p>
+              <p className="mt-3 font-body text-sm font-semibold text-gold">{event.time}</p>
               <p className="mt-1 font-body text-xs text-ink-soft">{event.date}</p>
             </div>
           ))}
@@ -107,7 +107,7 @@ export default function Acara() {
           data-reveal
           className="mt-4 rounded-2xl border border-border bg-paper px-6 py-8"
         >
-          <p className="font-accent text-[11px] uppercase tracking-[0.3em] text-ink-mute">
+          <p className="font-accent text-sm font-medium tracking-[0.12em] text-ink-soft [font-variant-caps:small-caps]">
             Bertempat di
           </p>
           <h3 className="mt-3 font-display text-xl font-medium text-ink">{venue.name}</h3>
@@ -118,7 +118,7 @@ export default function Acara() {
               href={venue.mapsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-11 items-center gap-2 rounded-full bg-gold px-7 py-3.5 text-xs font-semibold uppercase tracking-[0.2em] text-paper shadow-[0_10px_26px_-10px_rgba(169,139,93,0.55)] transition-colors hover:bg-gold-dark"
+              className="inline-flex min-h-11 items-center gap-2 rounded-full bg-gold-dark px-7 py-3.5 text-xs font-semibold uppercase tracking-[0.2em] text-paper shadow-[0_10px_26px_-10px_rgba(122,59,71,0.55)] transition-[filter] hover:brightness-90"
             >
               <span className="h-1.5 w-1.5 rounded-full bg-paper" />
               Lihat Lokasi
@@ -127,7 +127,7 @@ export default function Acara() {
             <a
               href={CALENDAR_ICS_URL}
               download="Pernikahan-Falah-Risyqaa.ics"
-              className="inline-flex min-h-11 items-center gap-2 rounded-full border border-gold px-7 py-3.5 text-xs font-semibold uppercase tracking-[0.2em] text-gold-dark transition-colors hover:border-gold-dark hover:text-gold-dark"
+              className="inline-flex min-h-11 items-center gap-2 rounded-full border border-gold-dark px-7 py-3.5 text-xs font-semibold uppercase tracking-[0.2em] text-gold-dark transition-[filter] hover:brightness-90"
             >
               Simpan ke Kalender
             </a>

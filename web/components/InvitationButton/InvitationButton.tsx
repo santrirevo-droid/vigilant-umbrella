@@ -14,10 +14,10 @@ const InvitationButton = forwardRef<HTMLButtonElement, InvitationButtonProps>(
         type="button"
         className={[
           "group relative inline-flex min-h-11 items-center gap-3 rounded-full",
-          "bg-gold px-10 py-3.5",
+          "bg-gold-dark px-10 py-3.5",
           "font-body text-xs font-semibold uppercase tracking-[0.28em] text-paper",
-          "shadow-[0_14px_34px_-10px_rgba(169,139,93,0.55)]",
-          "transition-colors duration-300 hover:bg-gold-dark",
+          "shadow-[0_14px_34px_-10px_rgba(122,59,71,0.55)]",
+          "transition-[filter] duration-300 hover:brightness-90",
           "cursor-pointer",
           className,
         ].join(" ")}

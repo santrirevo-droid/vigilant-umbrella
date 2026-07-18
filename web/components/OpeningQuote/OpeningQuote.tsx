@@ -32,7 +32,7 @@ export default function OpeningQuote() {
       </div>
 
       <div className="max-w-md">
-        <p className="font-accent text-[11px] font-medium uppercase tracking-[0.34em] text-gold">
+        <p className="font-accent text-sm font-medium tracking-[0.12em] text-ink-soft [font-variant-caps:small-caps]">
           Ayat Pembuka
         </p>
 
@@ -54,7 +54,7 @@ export default function OpeningQuote() {
           cinta dan kasih sayang. Sungguh, pada yang demikian itu terdapat
           tanda-tanda kebesaran Allah bagi kaum yang berpikir.&rdquo;
         </p>
-        <p data-reveal className="mt-5 font-accent text-xs uppercase tracking-[0.3em] text-ink-mute">
+        <p data-reveal className="mt-5 font-accent text-xs uppercase tracking-[0.3em] text-ink-soft">
           Q.S. Ar-Rum : 21
         </p>
       </div>

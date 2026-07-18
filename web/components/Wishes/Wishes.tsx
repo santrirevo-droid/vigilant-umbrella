@@ -76,7 +76,7 @@ export default function Wishes() {
 
         <div ref={listRef} className="mt-10">
           {wishes.length === 0 ? (
-            <p data-reveal className="font-body text-base text-ink-mute">
+            <p data-reveal className="font-body text-base text-ink-soft">
               Jadilah yang pertama mengirimkan ucapan &amp; doa.
             </p>
           ) : (
