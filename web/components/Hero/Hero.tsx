@@ -83,14 +83,24 @@ export default function Hero() {
                 The Wedding Of
               </p>
 
-              <h1
-                ref={title}
-                className="flex flex-col items-center gap-1 leading-none text-ink"
-              >
-                <span className="font-script text-[64px] leading-none">{couple.groom.shortName}</span>
-                <span className="font-script text-3xl leading-none text-gold">&amp;</span>
-                <span className="font-script text-[64px] leading-none">{couple.bride.shortName}</span>
-              </h1>
+              <div className="relative w-full max-w-[21rem] sm:max-w-[25rem] md:max-w-[27rem]">
+                <FloralLayer
+                  src="/floral/floral-wc-wreath.png"
+                  width={744}
+                  height={711}
+                  priority
+                  sizes="(min-width: 768px) 432px, (min-width: 640px) 400px, 336px"
+                  className="w-full select-none"
+                />
+                <h1
+                  ref={title}
+                  className="absolute inset-0 flex flex-col items-center justify-center gap-1 leading-none text-ink"
+                >
+                  <span className="font-script text-[64px] leading-none">{couple.groom.shortName}</span>
+                  <span className="font-script text-3xl leading-none text-gold">&amp;</span>
+                  <span className="font-script text-[64px] leading-none">{couple.bride.shortName}</span>
+                </h1>
+              </div>
 
               <p className="font-display text-xl font-semibold tracking-wide text-gold">
                 18 · 08 · 2026
