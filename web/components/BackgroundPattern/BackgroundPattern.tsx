@@ -1,14 +1,19 @@
 /**
  * Fixed, viewport-covering warm wash behind every section. Rendered once in
- * the root layout, before the scrollable content, so normal DOM paint order
- * (not z-index) keeps it behind everything without needing a stacking-context
- * hack. Replaces the old busy floral pattern image with a quiet gradient so
- * the neutral paper tone reads as premium rather than "template."
+ * the root layout, before the scrollable content.
+ *
+ * Needs an explicit negative z-index: a `position: fixed` element with
+ * z-index:auto paints *after* normal-flow siblings regardless of DOM order
+ * (CSS2.1 stacking order, step 6 vs step 3) — it only stayed behind content
+ * on pages where something else (e.g. Lenis's transformed scroll wrapper)
+ * happened to give that content its own stacking context. Pages without
+ * that had this pane silently covering everything, fading it out top to
+ * bottom to match the gradient. Explicit -z-10 makes it correct everywhere.
  */
 export default function BackgroundPattern() {
   return (
     <div
-      className="fixed inset-0 bg-gradient-to-b from-cream via-warm-white to-beige/40"
+      className="fixed inset-0 -z-10 bg-gradient-to-b from-cream via-warm-white to-beige/40"
       aria-hidden="true"
     />
   );

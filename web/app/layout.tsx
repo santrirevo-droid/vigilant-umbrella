@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Amiri, Great_Vibes } from "next/font/google";
 import BackgroundPattern from "@/components/BackgroundPattern";
-import SmoothScroll from "@/components/SmoothScroll";
 import "./globals.css";
 
 // the one serif that now carries everything except the couple's name —
@@ -55,7 +54,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-warm-white font-body text-ink">
         <BackgroundPattern />
-        <SmoothScroll>{children}</SmoothScroll>
+        {children}
       </body>
     </html>
   );
