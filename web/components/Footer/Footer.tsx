@@ -47,13 +47,13 @@ export default function Footer() {
         </div>
 
         <h2 data-reveal className="mt-2 flex flex-col items-center gap-1">
-          <span className="font-display text-[clamp(2.5rem,13vw,4.5rem)] font-semibold leading-none tracking-wide text-gold-dark">
+          <span className="font-script text-[clamp(3rem,15vw,5.5rem)] leading-none text-gold-dark">
             {couple.groom.shortName}
           </span>
-          <span className="my-0.5 font-display text-lg italic text-gold">
+          <span className="my-0.5 font-script text-2xl leading-none text-gold">
             &amp;
           </span>
-          <span className="font-display text-[clamp(2.5rem,13vw,4.5rem)] font-semibold leading-none tracking-wide text-gold-dark">
+          <span className="font-script text-[clamp(3rem,15vw,5.5rem)] leading-none text-gold-dark">
             {couple.bride.shortName}
           </span>
         </h2>

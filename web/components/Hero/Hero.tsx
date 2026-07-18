@@ -85,11 +85,11 @@ export default function Hero() {
 
               <h1
                 ref={title}
-                className="flex flex-col items-center gap-1 font-display leading-none text-ink"
+                className="flex flex-col items-center gap-1 leading-none text-ink"
               >
-                <span className="text-[46px] font-medium">{couple.groom.shortName}</span>
-                <span className="text-2xl italic text-gold">&amp;</span>
-                <span className="text-[46px] font-medium">{couple.bride.shortName}</span>
+                <span className="font-script text-[64px] leading-none">{couple.groom.shortName}</span>
+                <span className="font-script text-3xl leading-none text-gold">&amp;</span>
+                <span className="font-script text-[64px] leading-none">{couple.bride.shortName}</span>
               </h1>
 
               <p className="font-display text-xl font-medium tracking-wide text-gold-dark">

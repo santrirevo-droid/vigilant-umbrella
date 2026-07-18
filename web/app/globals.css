@@ -44,12 +44,15 @@
   --font-accent: var(--font-accent);
   --font-body: var(--font-body);
   --font-arabic: var(--font-arabic);
+  --font-script: var(--font-script);
 }
 
 :root {
-  /* only 2 real Latin font families are loaded (display + body) — the
-     small uppercase "accent" labels reuse the body font rather than a
-     3rd family. Amiri is loaded separately, for Arabic text only. */
+  /* only 2 real Latin font families carry the running text (display +
+     body) — the small uppercase "accent" labels reuse the body font
+     rather than a 3rd family. Amiri (Arabic) and the script face are
+     both narrow, special-purpose exceptions: liturgical text and the
+     couple's name respectively, never for running copy. */
   --font-accent: var(--font-body);
 }
 

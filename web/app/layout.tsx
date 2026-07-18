@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Jost, Amiri } from "next/font/google";
+import { Cormorant_Garamond, Jost, Amiri, Great_Vibes } from "next/font/google";
 import BackgroundPattern from "@/components/BackgroundPattern";
 import SmoothScroll from "@/components/SmoothScroll";
 import "./globals.css";
@@ -23,6 +23,14 @@ const amiri = Amiri({
   weight: ["400", "700"],
 });
 
+// used only for the couple's name — a flowing script instead of the stiffer
+// serif, everywhere else keeps Cormorant Garamond for legibility
+const greatVibes = Great_Vibes({
+  variable: "--font-script",
+  subsets: ["latin"],
+  weight: ["400"],
+});
+
 export const metadata: Metadata = {
   title: "Falah & Risyqaa — The Wedding Of",
   description:
@@ -37,7 +45,7 @@ export default function RootLayout({
   return (
     <html
       lang="id"
-      className={`${cormorant.variable} ${jost.variable} ${amiri.variable} h-full antialiased`}
+      className={`${cormorant.variable} ${jost.variable} ${amiri.variable} ${greatVibes.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-warm-white font-body text-ink">
         <BackgroundPattern />
