@@ -51,21 +51,13 @@ function findDuplicateClusters(entries: GuestEntry[]): DuplicateCluster[] {
     }));
 }
 
-/** Full guest list across every family — gated by GUEST_LIST_ADMIN_PASSWORD. */
-export async function GET(request: Request) {
-  const adminPassword = process.env.GUEST_LIST_ADMIN_PASSWORD;
-  if (!adminPassword) {
-    return NextResponse.json(
-      { error: "GUEST_LIST_ADMIN_PASSWORD belum diatur di server." },
-      { status: 503 }
-    );
-  }
-
-  const provided = request.headers.get("x-admin-password");
-  if (provided !== adminPassword) {
-    return NextResponse.json({ error: "Kata sandi salah." }, { status: 401 });
-  }
-
+/**
+ * Full guest list across every family, read-only. No password — same "no
+ * auth by design" choice as /api/wishes, since this is a small private tool
+ * shared only within the family. Editing still only happens per-family (see
+ * /api/guest-list/[id]), so this route never needs write access.
+ */
+export async function GET() {
   const redis = getRedis();
   if (!redis) {
     return NextResponse.json({ error: "Storage belum terhubung ke situs ini." }, { status: 503 });

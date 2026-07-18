@@ -33,7 +33,7 @@ export default function DaftarTamuPage() {
 
       <p className="mt-12 text-center text-base text-ink-soft">
         <Link href="/daftar-tamu/rekap" className="underline decoration-border underline-offset-4">
-          Halaman rekap (khusus mempelai)
+          Lihat rekap semua tamu
         </Link>
       </p>
     </main>

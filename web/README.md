@@ -38,13 +38,13 @@ don't independently add the same person without noticing.
 - Edit `lib/families.ts` to set the family names/links before sharing —
   each family gets its own URL (`/daftar-tamu/<slug>`) and only sees its
   own entries; nothing else identifies who is submitting.
-- `/daftar-tamu/rekap` is the combined view for the couple: every family's
-  list, total counts, and clusters of likely-duplicate names. It's gated
-  by the `GUEST_LIST_ADMIN_PASSWORD` environment variable — set it in
-  Vercel's Project Settings → Environment Variables (any value works, it's
-  just a shared password, not a per-user login).
+- `/daftar-tamu/rekap` is a read-only combined view: every family's list,
+  total counts, and clusters of likely-duplicate names. No password — same
+  as the wishes/RSVP list below, it's a small private tool shared only
+  within the family, not a public page. Deleting an entry still only works
+  from the family's own `/daftar-tamu/<slug>` page.
 - Storage reuses the same Redis/KV store as the wishes feature below — no
-  extra provisioning needed, just the one new env var above.
+  extra provisioning needed.
 
 ## Environment variables
 
@@ -54,7 +54,6 @@ Set these in Vercel → Project Settings → Environment Variables (a `.env.loca
 | --- | --- | --- |
 | `KV_REST_API_URL` / `UPSTASH_REDIS_REST_URL` | Wishes, Daftar Tamu | Auto-filled when you attach a Redis/KV store from Vercel's Storage tab — support both names since Vercel injects one or the other depending on how the store was attached. |
 | `KV_REST_API_TOKEN` / `UPSTASH_REDIS_REST_TOKEN` | Wishes, Daftar Tamu | Same as above. |
-| `GUEST_LIST_ADMIN_PASSWORD` | Daftar Tamu rekap page | Pick any password; share it only with the couple. |
 
 ## Deploy on Vercel
 
