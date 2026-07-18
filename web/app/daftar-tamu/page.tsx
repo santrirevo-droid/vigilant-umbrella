@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function DaftarTamuPage() {
   return (
     <main className="mx-auto flex min-h-full max-w-lg flex-col px-6 py-16">
-      <h1 className="font-display text-3xl font-semibold text-ink">Daftar Tamu Undangan</h1>
+      <h1 className="text-3xl font-bold text-ink">Daftar Tamu Undangan</h1>
       <p className="mt-4 text-xl leading-relaxed text-ink-soft">
         Falah &amp; Risyqaa — Selasa, 18 Agustus 2026
       </p>

@@ -59,7 +59,7 @@ export default function RekapClient() {
   if (error) {
     return (
       <main className="mx-auto max-w-lg px-6 py-16">
-        <h1 className="font-display text-3xl font-semibold text-ink">Rekap Daftar Tamu</h1>
+        <h1 className="text-3xl font-bold text-ink">Rekap Daftar Tamu</h1>
         <p className="mt-4 text-lg font-medium text-red-600">{error}</p>
       </main>
     );
@@ -75,7 +75,7 @@ export default function RekapClient() {
 
   return (
     <main className="mx-auto flex min-h-full max-w-2xl flex-col px-6 py-16">
-      <h1 className="font-display text-3xl font-semibold text-ink">Rekap Daftar Tamu</h1>
+      <h1 className="text-3xl font-bold text-ink">Rekap Daftar Tamu</h1>
       <p className="mt-2 text-xl text-ink-soft">
         {entries.length} nama · {totalPeople} orang dari {byFamily.size} keluarga
       </p>
@@ -108,7 +108,7 @@ export default function RekapClient() {
       <div className="mt-10 flex flex-col gap-8">
         {Array.from(byFamily.entries()).map(([familyLabel, familyEntries]) => (
           <section key={familyLabel}>
-            <h2 className="font-display text-2xl font-semibold text-ink">{familyLabel}</h2>
+            <h2 className="text-2xl font-bold text-ink">{familyLabel}</h2>
             <p className="mt-1 text-lg text-ink-soft">
               {familyEntries.length} nama ·{" "}
               {familyEntries.reduce((sum, entry) => sum + entry.guestCount, 0)} orang

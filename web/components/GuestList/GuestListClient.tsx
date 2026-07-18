@@ -153,7 +153,7 @@ export default function GuestListClient({ family }: { family: Family }) {
         ← Ganti keluarga
       </Link>
 
-      <h1 className="mt-4 font-display text-3xl font-semibold text-ink">{family.label}</h1>
+      <h1 className="mt-4 text-3xl font-bold text-ink">{family.label}</h1>
       <p className="mt-2 text-xl text-ink-soft">
         Tuliskan nama tamu yang ingin Anda undang, satu per satu.
       </p>
@@ -255,7 +255,7 @@ export default function GuestListClient({ family }: { family: Family }) {
       </form>
 
       <section className="mt-10">
-        <h2 className="font-display text-2xl font-semibold text-ink">
+        <h2 className="text-2xl font-bold text-ink">
           Tamu yang Sudah Anda Tambahkan
         </h2>
         <p className="mt-1 text-lg text-ink-soft">
