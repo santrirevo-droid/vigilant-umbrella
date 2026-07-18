@@ -8,15 +8,19 @@ type FloralLayerProps = {
   height: number;
   className?: string;
   priority?: boolean;
+  /** actual on-screen width (e.g. "(min-width: 640px) 128px, 96px") — lets
+   * next/image request a properly small file instead of one sized for the
+   * full source resolution passed via width/height. */
+  sizes?: string;
 };
 
 /**
- * A single decorative botanical layer (floral spray, leaves, gold ornament, frame).
- * Kept as its own DOM node — not merged into a background image — so later
- * phases can target it individually with GSAP.
+ * A single decorative botanical layer — one subtle corner accent per
+ * section. Kept as its own DOM node — not merged into a background image —
+ * so it can be targeted individually with GSAP.
  */
 const FloralLayer = forwardRef<HTMLImageElement, FloralLayerProps>(
-  ({ src, alt = "", width, height, className, priority }, ref) => {
+  ({ src, alt = "", width, height, className, priority, sizes }, ref) => {
     return (
       <Image
         ref={ref}
@@ -25,6 +29,7 @@ const FloralLayer = forwardRef<HTMLImageElement, FloralLayerProps>(
         width={width}
         height={height}
         priority={priority}
+        sizes={sizes}
         aria-hidden={alt === "" ? true : undefined}
         className={className}
       />

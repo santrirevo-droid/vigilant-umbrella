@@ -3,59 +3,56 @@
 import { useRef } from "react";
 import FloralLayer from "@/components/FloralLayer";
 import { useFloralParallax } from "@/hooks/useFloralParallax";
-import { useIdleFloat } from "@/hooks/useIdleFloat";
 import { useRevealOnScroll } from "@/hooks/useRevealOnScroll";
 
 export default function OpeningQuote() {
   const sectionRef = useRef<HTMLElement>(null);
   const sprayRef = useRef<HTMLImageElement>(null);
-  const coupleRef = useRef<HTMLImageElement>(null);
   useRevealOnScroll(sectionRef);
-  useRevealOnScroll(sectionRef, { selector: "[data-reveal-faint]", opacity: 0.5 });
   useFloralParallax(sectionRef, sprayRef);
-  useFloralParallax(sectionRef, coupleRef);
-  useIdleFloat(coupleRef);
 
   return (
     <section
-      id="opening-quote"
+      id="ayat-pembuka"
       ref={sectionRef}
-      className="relative flex min-h-svh w-full items-center justify-center overflow-hidden px-6 text-center"
+      className="relative flex min-h-svh w-full items-center justify-center overflow-hidden px-6 py-24 text-center"
     >
       <div
-        data-reveal-faint
-        className="pointer-events-none absolute left-0 top-0 w-20 select-none opacity-50 sm:w-28"
+        aria-hidden="true"
+        className="pointer-events-none absolute left-0 top-0 w-24 select-none opacity-[0.14] sm:w-32"
       >
         <FloralLayer
           ref={sprayRef}
           src="/floral/floral-wc-spray-a.png"
           width={302}
           height={424}
-          className="h-auto w-full"
-        />
-      </div>
-
-      <div
-        data-reveal
-        className="pointer-events-none absolute bottom-0 left-0 z-20 w-28 select-none drop-shadow-[0_10px_20px_rgba(43,20,32,0.25)] sm:w-40"
-      >
-        <FloralLayer
-          ref={coupleRef}
-          src="/couple/couple-bouquet.png"
-          width={867}
-          height={1442}
+          sizes="(min-width: 640px) 128px, 96px"
           className="h-auto w-full"
         />
       </div>
 
       <div className="max-w-md">
-        <p data-reveal className="font-accent text-xs font-medium uppercase tracking-[0.42em] text-gold-dark">
-          Opening Quote
+        <p className="font-accent text-[11px] font-medium uppercase tracking-[0.34em] text-gold">
+          Ayat Pembuka
         </p>
-        <p data-reveal className="mt-7 font-display text-[1.5rem] italic leading-[1.6] tracking-wide text-ink-soft sm:text-[1.625rem]">
+
+        <p
+          data-reveal
+          dir="rtl"
+          lang="ar"
+          className="mt-6 font-arabic text-[26px] leading-[1.9] text-ink"
+        >
+          وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنْفُسِكُمْ أَزْوَاجًا
+          لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً ۚ
+          إِنَّ فِي ذٰلِكَ لَآيَاتٍ لِّقَوْمٍ يَتَفَكَّرُونَ
+        </p>
+
+        <p data-reveal className="mt-6 font-display text-lg italic leading-[1.7] text-ink-soft">
           &ldquo;Dan di antara tanda-tanda kekuasaan-Nya ialah Dia
-          menciptakan untukmu pasangan hidup dari jenismu sendiri, agar
-          kamu cenderung dan merasa tenteram kepadanya.&rdquo;
+          menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar
+          kamu hidup tenang bersamanya. Dia menjadikan di antaramu rasa
+          cinta dan kasih sayang. Sungguh, pada yang demikian itu terdapat
+          tanda-tanda kebesaran Allah bagi kaum yang berpikir.&rdquo;
         </p>
         <p data-reveal className="mt-5 font-accent text-xs uppercase tracking-[0.3em] text-ink-mute">
           Q.S. Ar-Rum : 21

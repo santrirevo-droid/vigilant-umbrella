@@ -6,7 +6,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import FloralLayer from "@/components/FloralLayer";
 import SectionHeading from "@/components/SectionHeading";
 import { useFloralParallax } from "@/hooks/useFloralParallax";
-import { useIdleFloat } from "@/hooks/useIdleFloat";
 import { useRevealOnScroll } from "@/hooks/useRevealOnScroll";
 import { useWishes } from "@/hooks/useWishes";
 
@@ -16,12 +15,8 @@ export default function Wishes() {
   const sectionRef = useRef<HTMLElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
   const sprayRef = useRef<HTMLImageElement>(null);
-  const coupleRef = useRef<HTMLImageElement>(null);
   useRevealOnScroll(sectionRef);
-  useRevealOnScroll(sectionRef, { selector: "[data-reveal-faint]", opacity: 0.5 });
   useFloralParallax(sectionRef, sprayRef);
-  useFloralParallax(sectionRef, coupleRef);
-  useIdleFloat(coupleRef);
   const { wishes } = useWishes();
 
   // re-run whenever the wish count changes, so newly-submitted or
@@ -58,32 +53,20 @@ export default function Wishes() {
 
   return (
     <section
-      id="wishes"
+      id="ucapan"
       ref={sectionRef}
-      className="relative overflow-hidden px-6 pt-24 pb-40 text-center"
+      className="relative overflow-hidden px-6 pt-24 pb-24 text-center"
     >
       <div
-        data-reveal-faint
-        className="pointer-events-none absolute left-0 top-0 w-24 select-none opacity-50 sm:w-32"
+        aria-hidden="true"
+        className="pointer-events-none absolute left-0 top-0 w-24 select-none opacity-[0.14] sm:w-32"
       >
         <FloralLayer
           ref={sprayRef}
           src="/floral/floral-wc-spray-b.png"
           width={571}
           height={509}
-          className="h-auto w-full"
-        />
-      </div>
-
-      <div
-        data-reveal
-        className="pointer-events-none absolute bottom-0 left-0 z-20 w-28 select-none drop-shadow-[0_10px_20px_rgba(43,20,32,0.25)] sm:w-40"
-      >
-        <FloralLayer
-          ref={coupleRef}
-          src="/couple/couple-bouquet.png"
-          width={867}
-          height={1442}
+          sizes="(min-width: 640px) 128px, 96px"
           className="h-auto w-full"
         />
       </div>
@@ -102,10 +85,10 @@ export default function Wishes() {
                 <div
                   key={wish.id}
                   data-wish-card
-                  className="rounded-2xl border border-gold/45 bg-paper px-5 py-4"
+                  className="rounded-2xl border border-border bg-paper px-5 py-4"
                 >
                   <div className="flex items-center gap-3">
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gold font-display text-base font-semibold text-ink">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gold font-display text-base font-semibold text-paper">
                       {wish.name.trim().charAt(0).toUpperCase() || "?"}
                     </span>
                     <div className="min-w-0">
@@ -127,7 +110,7 @@ export default function Wishes() {
                     </div>
                   </div>
                   {wish.message && (
-                    <p className="mt-3 font-body text-base leading-relaxed text-ink-soft">
+                    <p className="mt-3 font-body text-[15px] leading-[1.6] text-ink-soft">
                       {wish.message}
                     </p>
                   )}

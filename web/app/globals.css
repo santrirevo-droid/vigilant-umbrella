@@ -1,20 +1,22 @@
 @import "tailwindcss";
 
 :root {
-  /* Blush Botanical Luxury — pink stays the dominant overall color, gold is
-     the single accent used only where something needs to stand out. */
-  --warm-white: #e39aa4;
-  --cream: #efb4be;
-  --beige: #d46b7c;
-  --paper: #fff7f5;
+  /* Islamic floral-gold, mobile-first — cream paper, a single gold accent,
+     a lot of empty space instead of scattered florals. */
+  --warm-white: #fbf7f0;
+  --cream: #f3ebdd;
+  --beige: #f5ecda;
+  --paper: #ffffff;
 
-  --gold: #b9862e;
-  --gold-light: #d9a83f;
-  --gold-dark: #5a3c12;
+  --gold: #a98b5d;
+  --gold-light: #c7ac82;
+  --gold-dark: #8a6e42;
 
-  --ink: #2b1420;
-  --ink-soft: #4a2432;
-  --ink-mute: #6d3f4c;
+  --ink: #3a342b;
+  --ink-soft: #6b6355;
+  --ink-mute: #8f8776;
+
+  --border: rgba(58, 52, 43, 0.12);
 
   /* kept only as a small functional signal (RSVP "hadir" status) */
   --sage: #1f6b45;
@@ -33,6 +35,7 @@
   --color-ink: var(--ink);
   --color-ink-soft: var(--ink-soft);
   --color-ink-mute: var(--ink-mute);
+  --color-border: var(--border);
   --color-sage: var(--sage);
   --color-sage-light: var(--sage-light);
   --color-sage-dark: var(--sage-dark);
@@ -40,11 +43,13 @@
   --font-display: var(--font-display);
   --font-accent: var(--font-accent);
   --font-body: var(--font-body);
+  --font-arabic: var(--font-arabic);
 }
 
 :root {
-  /* only 2 real font families are loaded (display + body) — the small
-     uppercase "accent" labels reuse the body font rather than a 3rd family */
+  /* only 2 real Latin font families are loaded (display + body) — the
+     small uppercase "accent" labels reuse the body font rather than a
+     3rd family. Amiri is loaded separately, for Arabic text only. */
   --font-accent: var(--font-body);
 }
 

@@ -1,20 +1,26 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Plus_Jakarta_Sans } from "next/font/google";
+import { Cormorant_Garamond, Jost, Amiri } from "next/font/google";
 import BackgroundPattern from "@/components/BackgroundPattern";
 import SmoothScroll from "@/components/SmoothScroll";
 import "./globals.css";
 
-const playfair = Playfair_Display({
+const cormorant = Cormorant_Garamond({
   variable: "--font-display",
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  weight: ["500", "600"],
   style: ["normal", "italic"],
 });
 
-const plusJakarta = Plus_Jakarta_Sans({
+const jost = Jost({
   variable: "--font-body",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
+  weight: ["300", "400", "500"],
+});
+
+const amiri = Amiri({
+  variable: "--font-arabic",
+  subsets: ["arabic", "latin"],
+  weight: ["400", "700"],
 });
 
 export const metadata: Metadata = {
@@ -31,7 +37,7 @@ export default function RootLayout({
   return (
     <html
       lang="id"
-      className={`${playfair.variable} ${plusJakarta.variable} h-full antialiased`}
+      className={`${cormorant.variable} ${jost.variable} ${amiri.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-warm-white font-body text-ink">
         <BackgroundPattern />

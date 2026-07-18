@@ -14,15 +14,13 @@ const easeInOutCubic = (t: number) =>
 // between these one at a time instead of gliding the whole document
 // length in one continuous (and far too rushed) motion
 const AUTOSCROLL_STOPS = [
-  "#opening-quote",
-  "#bride",
-  "#groom",
-  "#countdown",
-  "#event",
+  "#ayat-pembuka",
+  "#mempelai",
+  "#acara",
   "#rsvp",
-  "#gift",
-  "#wishes",
-  "#footer",
+  "#tanda-kasih",
+  "#ucapan",
+  "#penutup",
 ];
 
 const AUTOSCROLL_HOP_DURATION = 1.6; // s — glide between two sections
@@ -86,13 +84,12 @@ function autoScrollThroughInvitation(lenis: Lenis) {
 }
 
 /**
- * Orchestrates the "Buka Undangan" cover animation (Tahap 2):
- * scroll locks, music starts, the florals bloom toward the wreath,
- * the wreath appears, the title lifts with a soft zoom, and the
- * background gets a brief glow — then scroll unlocks and, once
- * unlocked, autoScrollThroughInvitation carries the visitor down
- * through the rest of the page at a readable pace. Skipped under
- * reduced-motion so those visitors keep manual control.
+ * Orchestrates the "Buka Undangan" cover animation (Tahap 2): scroll
+ * locks, music starts, a soft glow blooms and the title lifts with a
+ * gentle zoom — then scroll unlocks and, once unlocked,
+ * autoScrollThroughInvitation carries the visitor down through the rest
+ * of the page at a readable pace. Skipped under reduced-motion so those
+ * visitors keep manual control.
  *
  * Kept separate from the Hero markup so the animation timeline can
  * be tuned without touching layout/JSX.
@@ -126,31 +123,15 @@ export function useOpenInvitation(refs: CoverRefs) {
       .set(refs.button.current, { pointerEvents: "none" }, 0)
       .to(refs.button.current, { opacity: 0, y: 12, duration: 0.35 }, 0)
       .to(refs.glow.current, { opacity: 1, duration: 0.6, ease: "power1.out" }, 0)
-      .to(
-        [refs.topCenter.current, refs.leftTop.current, refs.rightTop.current],
-        { scale: 1.08, y: 8, duration: 0.75 },
-        0.05
-      )
-      .to(
-        [refs.leftBottom.current, refs.rightBottom.current],
-        { scale: 1.08, y: -8, duration: 0.75 },
-        0.05
-      )
-      .fromTo(
-        refs.wreath.current,
-        { scale: 0.82, opacity: 0.4 },
-        { scale: 1, opacity: 1, duration: 0.85, ease: "back.out(1.6)" },
-        0.15
-      )
       .fromTo(
         refs.title.current,
         { scale: 0.94 },
         { scale: 1.05, duration: 0.45, ease: "power2.out" },
-        0.25
+        0.1
       )
-      .to(refs.title.current, { scale: 1, duration: 0.55, ease: "power2.inOut" }, 0.7)
-      .to(refs.glow.current, { opacity: 0, duration: 0.55, ease: "power1.in" }, 0.85);
-  }, [refs]);
+      .to(refs.title.current, { scale: 1, duration: 0.55, ease: "power2.inOut" }, 0.55)
+      .to(refs.glow.current, { opacity: 0, duration: 0.55, ease: "power1.in" }, 0.75);
+  }, [refs, lenis]);
 
   return { isOpened, open };
 }
