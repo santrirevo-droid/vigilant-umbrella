@@ -57,6 +57,15 @@
   --font-accent: var(--font-display);
 }
 
+html {
+  /* Never declared, so browsers with an auto-dark-theme feature (e.g.
+     Android Chrome's "Auto Dark Theme for Web Contents") were guessing
+     this light-pink design was dark-mode-eligible and repainting it with
+     mismatched, near-invisible low-contrast colors. This is a light-only
+     design — say so explicitly. */
+  color-scheme: light;
+}
+
 body {
   background: var(--warm-white);
   color: var(--ink);

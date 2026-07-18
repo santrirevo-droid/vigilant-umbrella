@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Amiri, Great_Vibes } from "next/font/google";
 import BackgroundPattern from "@/components/BackgroundPattern";
 import SmoothScroll from "@/components/SmoothScroll";
@@ -31,6 +31,16 @@ export const metadata: Metadata = {
   title: "Falah & Risyqaa — The Wedding Of",
   description:
     "Undangan pernikahan digital Falah Fauzan & Risyqaa Syafitri — Selasa, 18 Agustus 2026, Mempawah Convention Center.",
+};
+
+// Without this, browsers with an auto-dark-theme feature (e.g. Android
+// Chrome's "Auto Dark Theme for Web Contents") guess at whether this light
+// pink design is dark-mode-eligible and can repaint it with mismatched,
+// near-invisible low-contrast colors. Declaring it explicitly stops that.
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  colorScheme: "light",
 };
 
 export default function RootLayout({
