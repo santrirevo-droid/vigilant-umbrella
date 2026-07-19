@@ -10,11 +10,11 @@ export const metadata: Metadata = {
 export default function DaftarTamuPage() {
   return (
     <main className="mx-auto flex min-h-full max-w-lg flex-col px-6 py-16">
-      <h1 className="text-3xl font-bold text-ink">Daftar Tamu Undangan</h1>
-      <p className="mt-4 text-xl leading-relaxed text-ink-soft">
+      <h1 className="text-3xl font-bold text-on-maroon">Daftar Tamu Undangan</h1>
+      <p className="mt-4 text-xl leading-relaxed text-on-maroon-soft">
         Falah &amp; Risyqaa — Selasa, 18 Agustus 2026
       </p>
-      <p className="mt-6 text-xl leading-relaxed text-ink">
+      <p className="mt-6 text-xl leading-relaxed text-on-maroon">
         Silakan pilih nama keluarga Anda di bawah ini, lalu tuliskan nama-nama
         tamu yang ingin Anda undang.
       </p>
@@ -24,15 +24,15 @@ export default function DaftarTamuPage() {
           <Link
             key={family.slug}
             href={`/daftar-tamu/${family.slug}`}
-            className="min-h-16 rounded-2xl border border-border bg-paper px-6 py-5 text-xl font-semibold text-ink shadow-sm transition-colors hover:border-gold-dark hover:bg-cream"
+            className="min-h-16 rounded-2xl border border-border bg-paper px-6 py-5 text-xl font-semibold text-ink shadow-sm transition-colors hover:border-gold-dark hover:bg-accent/10"
           >
             {family.label}
           </Link>
         ))}
       </div>
 
-      <p className="mt-12 text-center text-base text-ink-soft">
-        <Link href="/daftar-tamu/rekap" className="underline decoration-border underline-offset-4">
+      <p className="mt-12 text-center text-base text-on-maroon-soft">
+        <Link href="/daftar-tamu/rekap" className="underline decoration-accent/60 underline-offset-4">
           Lihat rekap semua tamu
         </Link>
       </p>

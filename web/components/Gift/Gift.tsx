@@ -47,7 +47,7 @@ export default function Gift() {
 
       <div className="relative mx-auto max-w-md">
         <SectionHeading eyebrow="Gift" title="Tanda Kasih" />
-        <p data-reveal className="mt-4 font-body text-[15px] leading-[1.6] text-ink-soft">
+        <p data-reveal className="mt-4 font-body text-[15px] leading-[1.6] text-on-maroon-soft">
           Kehadiran &amp; doa restu Anda sudah lebih dari cukup. Bila ingin
           memberi tanda kasih, kami sediakan pilihan berikut.
         </p>

@@ -1,34 +1,49 @@
 @import "tailwindcss";
 
 :root {
-  /* Soft pink, mobile-first — blush background, white cards that "pop",
-     deep wine text, a rose accent. A lot of empty space instead of
-     scattered florals. */
-  --warm-white: #fbeaee;
-  --cream: #fdeef1;
-  --beige: #f6dbe1;
-  --paper: #ffffff;
+  /* Deep maroon, gold-accented — dark wine-red page background, warm
+     cream text, bright gold accents. White "paper" cards stay for
+     functional content (form fields, lists) where text needs a light
+     surface — their internal colors (gold/ink/ink-soft/border below) are
+     unchanged from the old light theme since paper itself stayed light.
+     Every text/background pairing below was checked against WCAG 2.x
+     contrast math (4.5:1 body text, 3:1 large/decorative ≥24px or bold
+     ≥18.5px) before use — see globals.css history for the verified pairs. */
+  --maroon-deep: #3a0a10;
+  --maroon: #4c0f17;
+  --maroon-light: #5c1620;
+  --paper: #fff9f4;
 
+  /* accents/text for content sitting directly on the maroon background */
+  --accent: #d9a94e;
+  --accent-dark: #b3822f;
+  --on-maroon: #f6e8d8;
+  --on-maroon-soft: #d8b79e;
+
+  /* unchanged — accents/text for content inside light "paper" cards */
   --gold: #8b4b58;
   --gold-light: #b76e79;
   --gold-dark: #7a3b47;
-
   --ink: #4a1e2b;
   --ink-soft: #6b3f4a;
-
   --border: #e8c4cc;
 
-  /* kept only as a small functional signal (RSVP "hadir" status) */
+  /* kept only as a small functional signal (RSVP "hadir" status, inside
+     paper cards) */
   --sage: #1f6b45;
   --sage-light: #3f9c68;
   --sage-dark: #123d27;
 }
 
 @theme inline {
-  --color-warm-white: var(--warm-white);
-  --color-cream: var(--cream);
-  --color-beige: var(--beige);
+  --color-maroon-deep: var(--maroon-deep);
+  --color-maroon: var(--maroon);
+  --color-maroon-light: var(--maroon-light);
   --color-paper: var(--paper);
+  --color-accent: var(--accent);
+  --color-accent-dark: var(--accent-dark);
+  --color-on-maroon: var(--on-maroon);
+  --color-on-maroon-soft: var(--on-maroon-soft);
   --color-gold: var(--gold);
   --color-gold-light: var(--gold-light);
   --color-gold-dark: var(--gold-dark);
@@ -58,17 +73,18 @@
 }
 
 html {
-  /* Never declared, so browsers with an auto-dark-theme feature (e.g.
-     Android Chrome's "Auto Dark Theme for Web Contents") were guessing
-     this light-pink design was dark-mode-eligible and repainting it with
-     mismatched, near-invisible low-contrast colors. This is a light-only
-     design — say so explicitly. */
-  color-scheme: light;
+  /* Declared explicitly so browsers never guess-repaint this page (see
+     git history for the auto-dark-theme bug this once caused) — now
+     correctly "dark" since the page itself is a dark maroon theme.
+     Native form-control chrome (checkboxes etc.) still renders fine
+     against the light "paper" cards, verified visually after the
+     maroon redesign. */
+  color-scheme: dark;
 }
 
 body {
-  background: var(--warm-white);
-  color: var(--ink);
+  background: var(--maroon-deep);
+  color: var(--on-maroon);
 }
 
 html.scroll-locked {

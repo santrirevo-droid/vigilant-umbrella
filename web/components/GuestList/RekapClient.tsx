@@ -69,7 +69,7 @@ export default function RekapClient() {
   if (isLoading) {
     return (
       <main className="mx-auto max-w-lg px-6 py-16">
-        <p className="text-xl text-ink-soft">Memuat…</p>
+        <p className="text-xl text-on-maroon-soft">Memuat…</p>
       </main>
     );
   }
@@ -77,8 +77,8 @@ export default function RekapClient() {
   if (error) {
     return (
       <main className="mx-auto max-w-lg px-6 py-16">
-        <h1 className="text-3xl font-bold text-ink">Rekap Daftar Tamu</h1>
-        <p className="mt-4 text-lg font-medium text-red-600">{error}</p>
+        <h1 className="text-3xl font-bold text-on-maroon">Rekap Daftar Tamu</h1>
+        <p className="mt-4 text-lg font-medium text-red-400">{error}</p>
       </main>
     );
   }
@@ -93,8 +93,8 @@ export default function RekapClient() {
 
   return (
     <main className="mx-auto flex min-h-full max-w-2xl flex-col px-6 py-16">
-      <h1 className="text-3xl font-bold text-ink">Rekap Daftar Tamu</h1>
-      <p className="mt-2 text-xl text-ink-soft">
+      <h1 className="text-3xl font-bold text-on-maroon">Rekap Daftar Tamu</h1>
+      <p className="mt-2 text-xl text-on-maroon-soft">
         {entries.length} nama · {totalPeople} orang dari {byFamily.size} keluarga
       </p>
 
@@ -126,8 +126,8 @@ export default function RekapClient() {
       <div className="mt-10 flex flex-col gap-8">
         {Array.from(byFamily.entries()).map(([familyLabel, familyEntries]) => (
           <section key={familyLabel}>
-            <h2 className="text-2xl font-bold text-ink">{familyLabel}</h2>
-            <p className="mt-1 text-lg text-ink-soft">
+            <h2 className="text-2xl font-bold text-on-maroon">{familyLabel}</h2>
+            <p className="mt-1 text-lg text-on-maroon-soft">
               {familyEntries.length} nama ·{" "}
               {familyEntries.reduce((sum, entry) => sum + entry.guestCount, 0)} orang
             </p>
@@ -170,9 +170,9 @@ export default function RekapClient() {
         ))}
       </div>
 
-      <p className="mt-12 text-base text-ink-soft">
+      <p className="mt-12 text-base text-on-maroon-soft">
         Untuk menghapus atau mengubah nama, buka halaman keluarga masing-masing di{" "}
-        <Link href="/daftar-tamu" className="underline decoration-border underline-offset-4">
+        <Link href="/daftar-tamu" className="underline decoration-accent/60 underline-offset-4">
           /daftar-tamu
         </Link>
         .

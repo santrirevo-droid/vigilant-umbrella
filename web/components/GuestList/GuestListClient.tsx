@@ -190,12 +190,12 @@ export default function GuestListClient({ family }: { family: Family }) {
 
   return (
     <main className="mx-auto flex min-h-full max-w-lg flex-col px-6 py-16">
-      <Link href="/daftar-tamu" className="text-base text-ink-soft underline decoration-border underline-offset-4">
+      <Link href="/daftar-tamu" className="text-base text-on-maroon-soft underline decoration-accent/60 underline-offset-4">
         ← Ganti keluarga
       </Link>
 
-      <h1 className="mt-4 text-3xl font-bold text-ink">{family.label}</h1>
-      <p className="mt-2 text-xl text-ink-soft">
+      <h1 className="mt-4 text-3xl font-bold text-on-maroon">{family.label}</h1>
+      <p className="mt-2 text-xl text-on-maroon-soft">
         Tuliskan nama tamu yang ingin Anda undang, satu nama per baris.
       </p>
 
@@ -262,17 +262,17 @@ export default function GuestListClient({ family }: { family: Family }) {
       </form>
 
       <section className="mt-10">
-        <h2 className="text-2xl font-bold text-ink">
+        <h2 className="text-2xl font-bold text-on-maroon">
           Tamu yang Sudah Anda Tambahkan
         </h2>
-        <p className="mt-1 text-lg text-ink-soft">
+        <p className="mt-1 text-lg text-on-maroon-soft">
           {entries.length} nama · {totalPeople} orang
         </p>
 
         {isLoadingList ? (
-          <p className="mt-4 text-lg text-ink-soft">Memuat…</p>
+          <p className="mt-4 text-lg text-on-maroon-soft">Memuat…</p>
         ) : entries.length === 0 ? (
-          <p className="mt-4 text-lg text-ink-soft">Belum ada nama yang ditambahkan.</p>
+          <p className="mt-4 text-lg text-on-maroon-soft">Belum ada nama yang ditambahkan.</p>
         ) : (
           <ul className="mt-4 flex flex-col gap-3">
             {entries.map((entry) => (

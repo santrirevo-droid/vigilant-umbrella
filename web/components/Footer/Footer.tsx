@@ -14,7 +14,7 @@ export default function Footer() {
     <footer
       id="penutup"
       ref={sectionRef}
-      className="relative overflow-hidden bg-cream px-6 py-24 text-center"
+      className="relative overflow-hidden bg-maroon px-6 py-24 text-center"
     >
       <div
         aria-hidden="true"
@@ -30,15 +30,15 @@ export default function Footer() {
       </div>
 
       <div className="relative mx-auto max-w-md">
-        <p data-reveal className="font-body text-[13px] font-medium uppercase tracking-[0.3em] text-gold">
+        <p data-reveal className="font-body text-[13px] font-medium uppercase tracking-[0.3em] text-accent">
           Assalamu&apos;alaikum Warahmatullahi Wabarakatuh
         </p>
 
-        <p data-reveal className="mt-6 font-display text-lg italic leading-[1.7] text-ink-soft">
+        <p data-reveal className="mt-6 font-display text-lg italic leading-[1.7] text-on-maroon-soft">
           Atas kehadiran serta doa restu Bapak/Ibu/Saudara/i, kami
           sekeluarga mengucapkan terima kasih yang sebesar-besarnya.
         </p>
-        <p data-reveal className="mt-3 font-display text-lg italic leading-[1.7] text-ink-soft">
+        <p data-reveal className="mt-3 font-display text-lg italic leading-[1.7] text-on-maroon-soft">
           Wassalamu&apos;alaikum Warahmatullahi Wabarakatuh
         </p>
 
@@ -47,13 +47,13 @@ export default function Footer() {
         </div>
 
         <h2 data-reveal className="mt-2 flex flex-col items-center gap-1">
-          <span className="font-script text-[clamp(3rem,15vw,5.5rem)] leading-none text-gold">
+          <span className="font-script text-[clamp(3rem,15vw,5.5rem)] leading-none text-accent">
             {couple.groom.shortName}
           </span>
-          <span className="my-0.5 font-script text-2xl leading-none text-gold">
+          <span className="my-0.5 font-script text-2xl leading-none text-accent">
             &amp;
           </span>
-          <span className="font-script text-[clamp(3rem,15vw,5.5rem)] leading-none text-gold">
+          <span className="font-script text-[clamp(3rem,15vw,5.5rem)] leading-none text-accent">
             {couple.bride.shortName}
           </span>
         </h2>

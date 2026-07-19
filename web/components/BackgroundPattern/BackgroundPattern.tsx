@@ -13,7 +13,7 @@
 export default function BackgroundPattern() {
   return (
     <div
-      className="fixed inset-0 -z-10 bg-gradient-to-b from-cream via-warm-white to-beige/40"
+      className="fixed inset-0 -z-10 bg-gradient-to-b from-maroon via-maroon-deep to-maroon-light/40"
       aria-hidden="true"
     />
   );

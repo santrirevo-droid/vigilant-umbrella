@@ -76,7 +76,7 @@ export default function Wishes() {
 
         <div ref={listRef} className="mt-10">
           {wishes.length === 0 ? (
-            <p data-reveal className="font-body text-base text-ink-soft">
+            <p data-reveal className="font-body text-base text-on-maroon-soft">
               Jadilah yang pertama mengirimkan ucapan &amp; doa.
             </p>
           ) : (
@@ -98,7 +98,7 @@ export default function Wishes() {
                       <div
                         className={[
                           "text-xs tracking-wide",
-                          wish.attend === "hadir" ? "text-sage-dark" : "text-red-400",
+                          wish.attend === "hadir" ? "text-sage-dark" : "text-red-700",
                         ].join(" ")}
                       >
                         {wish.attend === "hadir"

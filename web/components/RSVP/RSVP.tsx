@@ -61,7 +61,7 @@ export default function RSVP() {
   const fieldClass =
     "min-h-11 w-full rounded-xl border border-border bg-paper px-4 py-3 text-base text-ink outline-none transition-colors focus:border-gold";
   const labelClass =
-    "mb-2 block text-xs font-medium uppercase tracking-[0.2em] text-ink-soft";
+    "mb-2 block text-xs font-medium uppercase tracking-[0.2em] text-on-maroon-soft";
 
   return (
     <section
@@ -85,7 +85,7 @@ export default function RSVP() {
 
       <div className="mx-auto max-w-md">
         <SectionHeading eyebrow="RSVP" title="Konfirmasi Kehadiran" />
-        <p data-reveal className="mt-4 font-display text-lg italic leading-[1.7] text-ink-soft">
+        <p data-reveal className="mt-4 font-display text-lg italic leading-[1.7] text-on-maroon-soft">
           Merupakan kehormatan bagi kami apabila Bapak/Ibu/Saudara/i
           berkenan hadir dan memberikan doa restu.
         </p>
@@ -123,7 +123,7 @@ export default function RSVP() {
                   className={[
                     "min-h-11 flex-1 cursor-pointer rounded-xl border px-3 py-3.5 text-sm font-semibold uppercase tracking-[0.1em] transition-colors",
                     attend === value
-                      ? "border-gold-dark bg-gold-dark text-paper"
+                      ? "border-accent bg-accent text-maroon-deep"
                       : "border-border bg-paper text-ink-soft",
                   ].join(" ")}
                 >
@@ -165,7 +165,7 @@ export default function RSVP() {
           </div>
 
           {errorMessage && (
-            <p data-reveal className="text-xs text-red-500">
+            <p data-reveal className="text-xs text-red-400">
               {errorMessage}
             </p>
           )}
@@ -174,7 +174,7 @@ export default function RSVP() {
             data-reveal
             type="submit"
             disabled={isSubmitting}
-            className="mt-1 min-h-11 cursor-pointer rounded-full bg-gold-dark py-3.5 text-xs font-semibold uppercase tracking-[0.22em] text-paper shadow-[0_10px_26px_-10px_rgba(122,59,71,0.55)] transition-[filter] hover:brightness-90 disabled:cursor-not-allowed disabled:opacity-60"
+            className="mt-1 min-h-11 cursor-pointer rounded-full bg-accent py-3.5 text-xs font-semibold uppercase tracking-[0.22em] text-maroon-deep shadow-[0_10px_26px_-10px_rgba(0,0,0,0.45)] transition-[filter] hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-60"
           >
             {isSubmitting ? "Mengirim…" : "Kirim Konfirmasi"}
           </button>
@@ -196,7 +196,7 @@ export default function RSVP() {
                 <div
                   className={[
                     "text-xs tracking-wide",
-                    sentWish.attend === "hadir" ? "text-sage-dark" : "text-red-400",
+                    sentWish.attend === "hadir" ? "text-sage-dark" : "text-red-700",
                   ].join(" ")}
                 >
                   {sentWish.attend === "hadir"
@@ -217,15 +217,15 @@ export default function RSVP() {
 
         <div data-reveal className="mt-10 flex justify-center gap-10">
           <div>
-            <div className="font-display text-3xl font-medium text-gold">{wishes.length}</div>
-            <div className="mt-1.5 font-accent text-xs uppercase tracking-[0.18em] text-ink-soft">
+            <div className="font-display text-3xl font-medium text-accent">{wishes.length}</div>
+            <div className="mt-1.5 font-accent text-xs uppercase tracking-[0.18em] text-on-maroon-soft">
               Ucapan
             </div>
           </div>
-          <div className="w-px bg-border" />
+          <div className="w-px bg-accent/30" />
           <div>
-            <div className="font-display text-3xl font-medium text-gold">{hadirCount}</div>
-            <div className="mt-1.5 font-accent text-xs uppercase tracking-[0.18em] text-ink-soft">
+            <div className="font-display text-3xl font-medium text-accent">{hadirCount}</div>
+            <div className="mt-1.5 font-accent text-xs uppercase tracking-[0.18em] text-on-maroon-soft">
               Hadir
             </div>
           </div>

@@ -25,13 +25,13 @@ export default function Hero() {
     <section
       id="cover"
       ref={section}
-      className="relative min-h-svh w-full overflow-hidden bg-warm-white"
+      className="relative min-h-svh w-full overflow-hidden bg-maroon-deep"
     >
       <div ref={coverInner} className="absolute inset-0">
         {/* background */}
         <div
           ref={background}
-          className="absolute inset-0 bg-gradient-to-b from-cream via-warm-white to-beige"
+          className="absolute inset-0 bg-gradient-to-b from-maroon via-maroon-deep to-maroon-light"
         />
 
         {/* paper texture */}
@@ -77,7 +77,7 @@ export default function Hero() {
           className="pointer-events-none absolute inset-0 opacity-10"
           style={{
             background:
-              "radial-gradient(circle at 50% 32%, rgba(139,75,88,0.4), transparent 62%)",
+              "radial-gradient(circle at 50% 32%, rgba(217,169,78,0.35), transparent 62%)",
           }}
         />
 
@@ -87,12 +87,12 @@ export default function Hero() {
             <p
               dir="rtl"
               lang="ar"
-              className="font-arabic text-2xl leading-relaxed text-gold-dark"
+              className="font-arabic text-2xl leading-relaxed text-accent"
             >
               بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
             </p>
 
-            <p className="font-accent text-sm font-medium tracking-[0.12em] text-ink-soft [font-variant-caps:small-caps]">
+            <p className="font-accent text-sm font-medium tracking-[0.12em] text-on-maroon-soft [font-variant-caps:small-caps]">
               The Wedding Of
             </p>
 
@@ -107,19 +107,19 @@ export default function Hero() {
                 sizes="176px"
                 className="absolute inset-0 h-full w-full select-none"
               />
-              <span className="relative font-display text-2xl font-semibold text-gold">
+              <span className="relative font-display text-2xl font-semibold text-accent">
                 {monogram}
               </span>
             </div>
 
             <h1
               ref={title}
-              className="flex flex-wrap items-baseline justify-center gap-x-2 leading-none text-ink"
+              className="flex flex-wrap items-baseline justify-center gap-x-2 leading-none text-on-maroon"
             >
               <span className="font-script text-[clamp(2.25rem,11vw,3.25rem)] leading-none">
                 {couple.groom.shortName}
               </span>
-              <span className="font-script text-[clamp(1.5rem,7vw,2.25rem)] leading-none text-gold">
+              <span className="font-script text-[clamp(1.5rem,7vw,2.25rem)] leading-none text-accent">
                 &amp;
               </span>
               <span className="font-script text-[clamp(2.25rem,11vw,3.25rem)] leading-none">
@@ -128,11 +128,11 @@ export default function Hero() {
             </h1>
 
             <div className="flex items-center gap-3">
-              <span className="h-px w-8 bg-gold/40" />
-              <p className="font-display text-lg font-semibold tracking-wide text-gold">
+              <span className="h-px w-8 bg-accent/40" />
+              <p className="font-display text-lg font-semibold tracking-wide text-accent">
                 18 · 08 · 2026
               </p>
-              <span className="h-px w-8 bg-gold/40" />
+              <span className="h-px w-8 bg-accent/40" />
             </div>
 
             <Suspense fallback={<GuestGreetingFallback />}>
@@ -147,7 +147,7 @@ export default function Hero() {
                 open();
               }}
             />
-            <p className="font-accent text-[11px] tracking-[0.25em] text-ink-soft [font-variant-caps:small-caps]">
+            <p className="font-accent text-[11px] tracking-[0.25em] text-on-maroon-soft [font-variant-caps:small-caps]">
               Ketuk untuk membuka
             </p>
           </div>

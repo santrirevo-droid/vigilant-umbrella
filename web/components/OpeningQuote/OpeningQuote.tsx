@@ -32,7 +32,7 @@ export default function OpeningQuote() {
       </div>
 
       <div className="max-w-md">
-        <p className="font-accent text-sm font-medium tracking-[0.12em] text-ink-soft [font-variant-caps:small-caps]">
+        <p className="font-accent text-sm font-medium tracking-[0.12em] text-on-maroon-soft [font-variant-caps:small-caps]">
           Ayat Pembuka
         </p>
 
@@ -40,21 +40,21 @@ export default function OpeningQuote() {
           data-reveal
           dir="rtl"
           lang="ar"
-          className="mt-6 font-arabic text-[26px] leading-[1.9] text-ink"
+          className="mt-6 font-arabic text-[26px] leading-[1.9] text-on-maroon"
         >
           وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنْفُسِكُمْ أَزْوَاجًا
           لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً ۚ
           إِنَّ فِي ذٰلِكَ لَآيَاتٍ لِّقَوْمٍ يَتَفَكَّرُونَ
         </p>
 
-        <p data-reveal className="mt-6 font-display text-lg italic leading-[1.7] text-ink-soft">
+        <p data-reveal className="mt-6 font-display text-lg italic leading-[1.7] text-on-maroon-soft">
           &ldquo;Dan di antara tanda-tanda kekuasaan-Nya ialah Dia
           menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar
           kamu hidup tenang bersamanya. Dia menjadikan di antaramu rasa
           cinta dan kasih sayang. Sungguh, pada yang demikian itu terdapat
           tanda-tanda kebesaran Allah bagi kaum yang berpikir.&rdquo;
         </p>
-        <p data-reveal className="mt-5 font-accent text-xs uppercase tracking-[0.3em] text-ink-soft">
+        <p data-reveal className="mt-5 font-accent text-xs uppercase tracking-[0.3em] text-on-maroon-soft">
           Q.S. Ar-Rum : 21
         </p>
       </div>
