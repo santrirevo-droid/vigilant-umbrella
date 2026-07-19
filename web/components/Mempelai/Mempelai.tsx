@@ -71,7 +71,7 @@ export default function Mempelai() {
       </div>
 
       <div className="relative mx-auto max-w-md text-center">
-        <SectionHeading eyebrow="Mempelai" />
+        <SectionHeading eyebrow="Mempelai" titleClassName="font-title-mempelai font-medium" />
 
         <p data-reveal className="mx-auto mt-4 max-w-sm font-mempelai text-[15px] leading-[1.6] text-on-maroon-soft">
           Dengan memohon rahmat Allah SWT, kami bermaksud menyelenggarakan

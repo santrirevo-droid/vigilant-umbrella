@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Cormorant_Garamond, Amiri, Montserrat } from "next/font/google";
+import { Cormorant_Garamond, Amiri, Montserrat, Fraunces } from "next/font/google";
 import localFont from "next/font/local";
 import BackgroundPattern from "@/components/BackgroundPattern";
 import "./globals.css";
@@ -36,13 +36,16 @@ const montserrat = Montserrat({
 
 // used only for the couple's full names (Mempelai section headings)
 const cmuSerif = localFont({
-  src: [
-    { path: "../assets/fonts/cmu-serif/CMUSerif-Roman.woff", weight: "400", style: "normal" },
-    { path: "../assets/fonts/cmu-serif/CMUSerif-Bold.woff", weight: "700", style: "normal" },
-    { path: "../assets/fonts/cmu-serif/CMUSerif-Italic.woff", weight: "400", style: "italic" },
-    { path: "../assets/fonts/cmu-serif/CMUSerif-BoldItalic.woff", weight: "700", style: "italic" },
-  ],
+  src: "../assets/fonts/cmu-serif/CMUSerif-BoldItalic.ttf",
   variable: "--font-fullname",
+  weight: "700",
+  style: "italic",
+});
+
+// used only for the "Mempelai" section heading
+const fraunces = Fraunces({
+  variable: "--font-title-mempelai",
+  subsets: ["latin"],
 });
 
 // used only for the couple's Instagram handles — a TypeType trial font, kept
@@ -56,8 +59,8 @@ const ttFors = localFont({
 });
 
 // used only for the RSVP section's "Konfirmasi Kehadiran" heading
-const dayDream = localFont({
-  src: "../assets/fonts/day-dream/DayDream.ttf",
+const magnoliaScript = localFont({
+  src: "../assets/fonts/magnolia-script/MagnoliaScript.otf",
   variable: "--font-rsvp",
   weight: "400",
 });
@@ -86,7 +89,7 @@ export default function RootLayout({
   return (
     <html
       lang="id"
-      className={`${cormorant.variable} ${amiri.variable} ${eyesomeScript.variable} ${montserrat.variable} ${cmuSerif.variable} ${ttFors.variable} ${dayDream.variable} h-full antialiased`}
+      className={`${cormorant.variable} ${amiri.variable} ${eyesomeScript.variable} ${montserrat.variable} ${cmuSerif.variable} ${fraunces.variable} ${ttFors.variable} ${magnoliaScript.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-warm-white font-body text-ink">
         <BackgroundPattern />

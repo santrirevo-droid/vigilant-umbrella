@@ -63,6 +63,7 @@
   --font-fullname: var(--font-fullname);
   --font-handle: var(--font-handle);
   --font-rsvp: var(--font-rsvp);
+  --font-title-mempelai: var(--font-title-mempelai);
 }
 
 :root {
