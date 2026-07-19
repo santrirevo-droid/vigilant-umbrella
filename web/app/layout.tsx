@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
-import { Cormorant_Garamond, Amiri, Great_Vibes } from "next/font/google";
+import { Cormorant_Garamond, Amiri, Montserrat } from "next/font/google";
+import localFont from "next/font/local";
 import BackgroundPattern from "@/components/BackgroundPattern";
 import "./globals.css";
 
@@ -20,10 +21,45 @@ const amiri = Amiri({
 
 // used only for the couple's name — a flowing script instead of the stiffer
 // serif, everywhere else keeps Cormorant Garamond for legibility
-const greatVibes = Great_Vibes({
+const eyesomeScript = localFont({
+  src: "../assets/fonts/eyesome-script/EyesomeScript.otf",
   variable: "--font-script",
+  weight: "400",
+});
+
+// used only for the Mempelai section's descriptive body copy
+const montserrat = Montserrat({
+  variable: "--font-mempelai",
   subsets: ["latin"],
-  weight: ["400"],
+  weight: ["400", "500"],
+});
+
+// used only for the couple's full names (Mempelai section headings)
+const cmuSerif = localFont({
+  src: [
+    { path: "../assets/fonts/cmu-serif/CMUSerif-Roman.woff", weight: "400", style: "normal" },
+    { path: "../assets/fonts/cmu-serif/CMUSerif-Bold.woff", weight: "700", style: "normal" },
+    { path: "../assets/fonts/cmu-serif/CMUSerif-Italic.woff", weight: "400", style: "italic" },
+    { path: "../assets/fonts/cmu-serif/CMUSerif-BoldItalic.woff", weight: "700", style: "italic" },
+  ],
+  variable: "--font-fullname",
+});
+
+// used only for the couple's Instagram handles — a TypeType trial font, kept
+// per explicit user decision despite the trial license's no-public-site
+// clause (see conversation for context); swap for a licensed build once
+// TT Fors is purchased.
+const ttFors = localFont({
+  src: "../assets/fonts/tt-fors/TTForsTrialVariable.ttf",
+  variable: "--font-handle",
+  weight: "100 900",
+});
+
+// used only for the RSVP section's "Konfirmasi Kehadiran" heading
+const dayDream = localFont({
+  src: "../assets/fonts/day-dream/DayDream.ttf",
+  variable: "--font-rsvp",
+  weight: "400",
 });
 
 export const metadata: Metadata = {
@@ -50,7 +86,7 @@ export default function RootLayout({
   return (
     <html
       lang="id"
-      className={`${cormorant.variable} ${amiri.variable} ${greatVibes.variable} h-full antialiased`}
+      className={`${cormorant.variable} ${amiri.variable} ${eyesomeScript.variable} ${montserrat.variable} ${cmuSerif.variable} ${ttFors.variable} ${dayDream.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-warm-white font-body text-ink">
         <BackgroundPattern />

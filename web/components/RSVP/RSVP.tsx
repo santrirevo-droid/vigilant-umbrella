@@ -84,8 +84,12 @@ export default function RSVP() {
       </div>
 
       <div className="mx-auto max-w-md">
-        <SectionHeading eyebrow="RSVP" title="Konfirmasi Kehadiran" />
-        <p data-reveal className="mt-4 font-display text-lg italic leading-[1.7] text-on-maroon-soft">
+        <SectionHeading
+          eyebrow="RSVP"
+          title="Konfirmasi Kehadiran"
+          titleClassName="font-rsvp font-normal"
+        />
+        <p data-reveal className="mt-4 font-display text-lg leading-[1.7] text-on-maroon-soft">
           Merupakan kehormatan bagi kami apabila Bapak/Ibu/Saudara/i
           berkenan hadir dan memberikan doa restu.
         </p>

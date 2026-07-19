@@ -59,6 +59,10 @@
   --font-body: var(--font-body);
   --font-arabic: var(--font-arabic);
   --font-script: var(--font-script);
+  --font-mempelai: var(--font-mempelai);
+  --font-fullname: var(--font-fullname);
+  --font-handle: var(--font-handle);
+  --font-rsvp: var(--font-rsvp);
 }
 
 :root {

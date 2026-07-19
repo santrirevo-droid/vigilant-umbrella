@@ -17,9 +17,9 @@ type Person = {
 function PersonBlock({ person, role }: { person: Person; role: CoupleRole }) {
   return (
     <div data-reveal className="flex flex-col items-center text-center">
-      <h3 className="font-display text-2xl font-medium text-on-maroon">{person.name}</h3>
+      <h3 className="font-fullname text-2xl text-on-maroon">{person.name}</h3>
 
-      <p className="mt-2 max-w-xs font-body text-[15px] leading-[1.6] text-on-maroon-soft">
+      <p className="mt-2 max-w-xs font-mempelai text-[15px] leading-[1.6] text-on-maroon-soft">
         {role === "putra" ? "Putra" : "Putri"} dari {person.father}
         <br />
         &amp; {person.mother}
@@ -30,7 +30,7 @@ function PersonBlock({ person, role }: { person: Person; role: CoupleRole }) {
           href={`https://instagram.com/${person.instagram.replace(/^@/, "")}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-4 inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.2em] text-accent transition-colors hover:text-on-maroon"
+          className="mt-4 inline-flex items-center gap-2 font-handle text-xs font-medium uppercase tracking-[0.2em] text-accent transition-colors hover:text-on-maroon"
         >
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
             <rect x="3" y="3" width="18" height="18" rx="5" />
@@ -73,7 +73,7 @@ export default function Mempelai() {
       <div className="relative mx-auto max-w-md text-center">
         <SectionHeading eyebrow="Mempelai" />
 
-        <p data-reveal className="mx-auto mt-4 max-w-sm font-body text-[15px] leading-[1.6] text-on-maroon-soft">
+        <p data-reveal className="mx-auto mt-4 max-w-sm font-mempelai text-[15px] leading-[1.6] text-on-maroon-soft">
           Dengan memohon rahmat Allah SWT, kami bermaksud menyelenggarakan
           pernikahan putra-putri kami:
         </p>

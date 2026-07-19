@@ -6,6 +6,9 @@ type SectionHeadingProps = {
    * the real "title" of the moment is a different element below (Footer's
    * closing names) rather than this label itself */
   kickerOnly?: boolean;
+  /** overrides the title's font family — for one-off headings that break
+   * from the shared font-display treatment (e.g. RSVP's Day Dream) */
+  titleClassName?: string;
 };
 
 export default function SectionHeading({
@@ -13,6 +16,7 @@ export default function SectionHeading({
   title,
   className = "",
   kickerOnly = false,
+  titleClassName = "font-display font-medium",
 }: SectionHeadingProps) {
   const headline = title ?? eyebrow;
   const showKicker = Boolean(title) || kickerOnly;
@@ -28,7 +32,7 @@ export default function SectionHeading({
         </p>
       )}
       {!kickerOnly && (
-        <h2 className="font-display text-[34px] font-medium leading-[1.2] text-on-maroon">
+        <h2 className={`${titleClassName} text-[34px] leading-[1.2] text-on-maroon`}>
           {headline}
         </h2>
       )}
