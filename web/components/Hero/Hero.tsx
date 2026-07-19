@@ -11,8 +11,6 @@ import { useOpenInvitation } from "@/hooks/useOpenInvitation";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { couple } from "@/lib/weddingData";
 
-const sprigProps = { src: "/floral/footer-sprig.svg", width: 220, height: 220 } as const;
-
 export default function Hero() {
   const refs = useCoverRefs();
   const idle = useIdleMotion(refs);
@@ -45,35 +43,31 @@ export default function Hero() {
           }}
         />
 
-        {/* thin bordered frame, inset from the viewport edges — the cover's
-            outer boundary, echoed by a small sprig tucked in each corner */}
+        {/* a couple of loose, scattered leaves instead of a symmetric frame —
+            matches the reference's organic (not boxed-in) feel */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-4 rounded-[2rem] border border-gold/35 sm:inset-6"
-        />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute left-3 top-3 w-12 opacity-60 sm:left-5 sm:top-5 sm:w-16"
+          className="pointer-events-none absolute right-8 top-8 w-9 rotate-[18deg] opacity-70 sm:right-12 sm:top-10 sm:w-11"
         >
-          <FloralLayer {...sprigProps} className="h-auto w-full" />
+          <FloralLayer
+            src="/floral/floral-wc-spray-e.png"
+            width={585}
+            height={579}
+            sizes="44px"
+            className="h-auto w-full"
+          />
         </div>
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute right-3 top-3 w-12 -scale-x-100 opacity-60 sm:right-5 sm:top-5 sm:w-16"
+          className="pointer-events-none absolute bottom-24 left-6 w-8 -rotate-[24deg] opacity-60 sm:left-10 sm:w-10"
         >
-          <FloralLayer {...sprigProps} className="h-auto w-full" />
-        </div>
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute bottom-3 left-3 w-12 -scale-y-100 opacity-60 sm:bottom-5 sm:left-5 sm:w-16"
-        >
-          <FloralLayer {...sprigProps} className="h-auto w-full" />
-        </div>
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute bottom-3 right-3 w-12 -scale-x-100 -scale-y-100 opacity-60 sm:bottom-5 sm:right-5 sm:w-16"
-        >
-          <FloralLayer {...sprigProps} className="h-auto w-full" />
+          <FloralLayer
+            src="/floral/floral-wc-spray-e.png"
+            width={585}
+            height={579}
+            sizes="40px"
+            className="h-auto w-full -scale-x-100"
+          />
         </div>
 
         {/* ambient light — breathes idly, blooms warm on open */}
@@ -102,20 +96,35 @@ export default function Hero() {
               The Wedding Of
             </p>
 
-            {/* monogram badge — a quiet symbol before the full names below */}
-            <div className="relative flex h-20 w-20 shrink-0 items-center justify-center">
-              <span className="absolute inset-0 rounded-full border border-gold-dark/55" />
-              <span className="absolute inset-[6px] rounded-full border border-gold-dark/30" />
-              <span className="font-script text-2xl text-gold-dark">{monogram}</span>
+            {/* monogram badge — the small wreath asset reused at a fraction
+                of its usual size, wrapped around initials instead of the
+                full names */}
+            <div className="relative flex h-[168px] w-[176px] shrink-0 items-center justify-center">
+              <FloralLayer
+                src="/floral/floral-wc-wreath.png"
+                width={744}
+                height={711}
+                sizes="176px"
+                className="absolute inset-0 h-full w-full select-none"
+              />
+              <span className="relative font-display text-2xl font-semibold text-gold">
+                {monogram}
+              </span>
             </div>
 
             <h1
               ref={title}
-              className="flex flex-col items-center gap-1 leading-none text-ink"
+              className="flex flex-wrap items-baseline justify-center gap-x-2 leading-none text-ink"
             >
-              <span className="font-script text-5xl leading-none">{couple.groom.shortName}</span>
-              <span className="font-script text-2xl leading-none text-gold">&amp;</span>
-              <span className="font-script text-5xl leading-none">{couple.bride.shortName}</span>
+              <span className="font-script text-[clamp(2.25rem,11vw,3.25rem)] leading-none">
+                {couple.groom.shortName}
+              </span>
+              <span className="font-script text-[clamp(1.5rem,7vw,2.25rem)] leading-none text-gold">
+                &amp;
+              </span>
+              <span className="font-script text-[clamp(2.25rem,11vw,3.25rem)] leading-none">
+                {couple.bride.shortName}
+              </span>
             </h1>
 
             <div className="flex items-center gap-3">
