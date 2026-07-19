@@ -19,8 +19,6 @@ export default function Hero() {
 
   const { section, coverInner, background, glow, content, title, button, music } = refs;
 
-  const monogram = `${couple.groom.shortName.charAt(0)}&${couple.bride.shortName.charAt(0)}`;
-
   return (
     <section
       id="cover"
@@ -107,9 +105,21 @@ export default function Hero() {
                 sizes="176px"
                 className="absolute inset-0 h-full w-full select-none"
               />
-              <span className="relative font-display text-2xl font-semibold text-accent">
-                {monogram}
-              </span>
+              <div className="relative flex flex-col items-center gap-1.5">
+                <span className="h-px w-9 bg-accent/50" />
+                <div className="flex items-baseline gap-1.5">
+                  <span className="font-display text-[2.1rem] font-semibold italic leading-none text-accent">
+                    {couple.groom.shortName.charAt(0)}
+                  </span>
+                  <span className="font-script text-2xl leading-none text-accent">
+                    &amp;
+                  </span>
+                  <span className="font-display text-[2.1rem] font-semibold italic leading-none text-accent">
+                    {couple.bride.shortName.charAt(0)}
+                  </span>
+                </div>
+                <span className="h-px w-9 bg-accent/50" />
+              </div>
             </div>
 
             <h1
