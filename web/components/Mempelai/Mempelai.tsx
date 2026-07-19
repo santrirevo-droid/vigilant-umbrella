@@ -30,7 +30,7 @@ function PersonBlock({ person, role }: { person: Person; role: CoupleRole }) {
           href={`https://instagram.com/${person.instagram.replace(/^@/, "")}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-4 inline-flex items-center gap-2 font-handle text-xs font-medium uppercase tracking-[0.2em] text-accent transition-colors hover:text-on-maroon"
+          className="mt-4 inline-flex items-center gap-2 font-handle text-xs font-medium lowercase tracking-[0.2em] text-accent transition-colors hover:text-on-maroon"
         >
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
             <rect x="3" y="3" width="18" height="18" rx="5" />
