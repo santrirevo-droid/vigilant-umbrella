@@ -19,7 +19,7 @@ export default function OpeningQuote() {
     >
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute left-0 top-0 w-24 select-none opacity-[0.14] sm:w-32"
+        className="pointer-events-none absolute left-0 top-0 w-24 select-none opacity-30 sm:w-32"
       >
         <FloralLayer
           ref={sprayRef}

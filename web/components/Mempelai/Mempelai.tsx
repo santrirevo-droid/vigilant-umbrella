@@ -15,15 +15,9 @@ type Person = {
 };
 
 function PersonBlock({ person, role }: { person: Person; role: CoupleRole }) {
-  const initial = person.name.trim().charAt(0);
-
   return (
     <div data-reveal className="flex flex-col items-center text-center">
-      <div className="flex h-32 w-32 items-center justify-center rounded-full border-[3px] border-accent/70 bg-gradient-to-b from-maroon to-maroon-light shadow-[0_14px_30px_-12px_rgba(0,0,0,0.45)]">
-        <span className="font-display text-5xl font-medium text-accent">{initial}</span>
-      </div>
-
-      <h3 className="mt-5 font-display text-2xl font-medium text-on-maroon">{person.name}</h3>
+      <h3 className="font-display text-2xl font-medium text-on-maroon">{person.name}</h3>
 
       <p className="mt-2 max-w-xs font-body text-[15px] leading-[1.6] text-on-maroon-soft">
         {role === "putra" ? "Putra" : "Putri"} dari {person.father}
@@ -64,7 +58,7 @@ export default function Mempelai() {
     >
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute right-0 top-0 w-24 select-none opacity-[0.14] sm:w-32"
+        className="pointer-events-none absolute right-0 top-0 w-24 select-none opacity-30 sm:w-32"
       >
         <FloralLayer
           ref={sprayRef}

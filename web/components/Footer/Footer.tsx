@@ -18,7 +18,7 @@ export default function Footer() {
     >
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute left-0 top-0 w-28 select-none opacity-[0.16] sm:w-36"
+        className="pointer-events-none absolute left-0 top-0 w-28 select-none opacity-30 sm:w-36"
       >
         <FloralLayer
           src="/floral/footer-sprig.svg"

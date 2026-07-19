@@ -33,7 +33,7 @@ export default function Gift() {
     >
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute right-0 top-0 w-20 select-none opacity-[0.14] sm:w-28"
+        className="pointer-events-none absolute right-0 top-0 w-20 select-none opacity-30 sm:w-28"
       >
         <FloralLayer
           ref={sprayRef}
