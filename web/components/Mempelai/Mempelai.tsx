@@ -58,7 +58,7 @@ export default function Mempelai() {
     >
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute right-0 top-0 w-24 select-none opacity-30 sm:w-32"
+        className="pointer-events-none absolute right-0 top-0 w-24 select-none sm:w-32"
       >
         <FloralLayer
           ref={sprayRef}

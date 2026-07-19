@@ -45,7 +45,7 @@ export default function Hero() {
             matches the reference's organic (not boxed-in) feel */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute right-8 top-8 w-9 rotate-[18deg] opacity-70 sm:right-12 sm:top-10 sm:w-11"
+          className="pointer-events-none absolute right-8 top-8 w-9 rotate-[18deg] sm:right-12 sm:top-10 sm:w-11"
         >
           <FloralLayer
             src="/floral/floral-wc-spray-e.png"
@@ -57,7 +57,7 @@ export default function Hero() {
         </div>
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute bottom-24 left-6 w-8 -rotate-[24deg] opacity-60 sm:left-10 sm:w-10"
+          className="pointer-events-none absolute bottom-24 left-6 w-8 -rotate-[24deg] sm:left-10 sm:w-10"
         >
           <FloralLayer
             src="/floral/floral-wc-spray-e.png"
@@ -105,20 +105,36 @@ export default function Hero() {
                 sizes="176px"
                 className="absolute inset-0 h-full w-full select-none"
               />
-              <div className="relative flex flex-col items-center gap-1.5">
-                <span className="h-px w-9 bg-accent/50" />
-                <div className="flex items-baseline gap-1.5">
-                  <span className="font-display text-[2.1rem] font-semibold italic leading-none text-accent">
+              <div className="relative flex items-center gap-1.5">
+                <span aria-hidden="true" className="w-5 shrink-0 -rotate-[20deg] select-none">
+                  <FloralLayer
+                    src="/floral/floral-wc-spray-e.png"
+                    width={585}
+                    height={579}
+                    sizes="20px"
+                    className="h-auto w-full"
+                  />
+                </span>
+                <div className="flex items-baseline gap-1">
+                  <span className="font-script text-[2.75rem] leading-none text-accent">
                     {couple.groom.shortName.charAt(0)}
                   </span>
-                  <span className="font-script text-2xl leading-none text-accent">
+                  <span className="font-script text-xl leading-none text-accent">
                     &amp;
                   </span>
-                  <span className="font-display text-[2.1rem] font-semibold italic leading-none text-accent">
+                  <span className="font-script text-[2.75rem] leading-none text-accent">
                     {couple.bride.shortName.charAt(0)}
                   </span>
                 </div>
-                <span className="h-px w-9 bg-accent/50" />
+                <span aria-hidden="true" className="w-5 shrink-0 rotate-[20deg] select-none">
+                  <FloralLayer
+                    src="/floral/floral-wc-spray-e.png"
+                    width={585}
+                    height={579}
+                    sizes="20px"
+                    className="h-auto w-full -scale-x-100"
+                  />
+                </span>
               </div>
             </div>
 
