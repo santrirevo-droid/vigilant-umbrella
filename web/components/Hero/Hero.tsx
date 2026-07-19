@@ -94,48 +94,17 @@ export default function Hero() {
               The Wedding Of
             </p>
 
-            {/* monogram badge — the small wreath asset reused at a fraction
-                of its usual size, wrapped around initials instead of the
-                full names */}
-            <div className="relative flex h-[168px] w-[176px] shrink-0 items-center justify-center">
+            {/* monogram — the couple's own gold F&R crest, extracted from
+                their Instagram invitation art */}
+            <div className="w-[220px] shrink-0 sm:w-[248px]">
               <FloralLayer
-                src="/floral/floral-wc-wreath.png"
-                width={744}
-                height={711}
-                sizes="176px"
-                className="absolute inset-0 h-full w-full select-none"
+                src="/floral/monogram-fr.png"
+                width={921}
+                height={731}
+                sizes="248px"
+                priority
+                className="h-auto w-full select-none"
               />
-              <div className="relative flex items-center gap-1.5">
-                <span aria-hidden="true" className="w-5 shrink-0 -rotate-[20deg] select-none">
-                  <FloralLayer
-                    src="/floral/floral-wc-spray-e.png"
-                    width={585}
-                    height={579}
-                    sizes="20px"
-                    className="h-auto w-full"
-                  />
-                </span>
-                <div className="flex items-baseline gap-1">
-                  <span className="font-script text-[2.75rem] leading-none text-accent">
-                    {couple.groom.shortName.charAt(0)}
-                  </span>
-                  <span className="font-script text-xl leading-none text-accent">
-                    &amp;
-                  </span>
-                  <span className="font-script text-[2.75rem] leading-none text-accent">
-                    {couple.bride.shortName.charAt(0)}
-                  </span>
-                </div>
-                <span aria-hidden="true" className="w-5 shrink-0 rotate-[20deg] select-none">
-                  <FloralLayer
-                    src="/floral/floral-wc-spray-e.png"
-                    width={585}
-                    height={579}
-                    sizes="20px"
-                    className="h-auto w-full -scale-x-100"
-                  />
-                </span>
-              </div>
             </div>
 
             <h1
