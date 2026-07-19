@@ -16,7 +16,8 @@ export function useCoverRefs() {
     glow: useRef<HTMLDivElement>(null),
     content: useRef<HTMLDivElement>(null),
     title: useRef<HTMLHeadingElement>(null),
-    button: useRef<HTMLButtonElement>(null),
+    // wraps the button + "tap to open" hint so both fade together on open
+    button: useRef<HTMLDivElement>(null),
     music: useRef<MusicPlayerHandle>(null),
   };
 }

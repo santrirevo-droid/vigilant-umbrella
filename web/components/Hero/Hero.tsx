@@ -11,6 +11,8 @@ import { useOpenInvitation } from "@/hooks/useOpenInvitation";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { couple } from "@/lib/weddingData";
 
+const sprigProps = { src: "/floral/footer-sprig.svg", width: 220, height: 220 } as const;
+
 export default function Hero() {
   const refs = useCoverRefs();
   const idle = useIdleMotion(refs);
@@ -18,6 +20,8 @@ export default function Hero() {
   useScrollReveal(refs);
 
   const { section, coverInner, background, glow, content, title, button, music } = refs;
+
+  const monogram = `${couple.groom.shortName.charAt(0)}&${couple.bride.shortName.charAt(0)}`;
 
   return (
     <section
@@ -41,19 +45,35 @@ export default function Hero() {
           }}
         />
 
-        {/* one subtle corner accent — the cover's only floral ornament */}
+        {/* thin bordered frame, inset from the viewport edges — the cover's
+            outer boundary, echoed by a small sprig tucked in each corner */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute right-0 top-0 w-28 select-none opacity-[0.14] sm:w-36"
+          className="pointer-events-none absolute inset-4 rounded-[2rem] border border-gold/35 sm:inset-6"
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute left-3 top-3 w-12 opacity-60 sm:left-5 sm:top-5 sm:w-16"
         >
-          <FloralLayer
-            src="/floral/floral-wc-spray-c.png"
-            width={324}
-            height={321}
-            priority
-            sizes="(min-width: 640px) 144px, 112px"
-            className="h-auto w-full -scale-x-100"
-          />
+          <FloralLayer {...sprigProps} className="h-auto w-full" />
+        </div>
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute right-3 top-3 w-12 -scale-x-100 opacity-60 sm:right-5 sm:top-5 sm:w-16"
+        >
+          <FloralLayer {...sprigProps} className="h-auto w-full" />
+        </div>
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute bottom-3 left-3 w-12 -scale-y-100 opacity-60 sm:bottom-5 sm:left-5 sm:w-16"
+        >
+          <FloralLayer {...sprigProps} className="h-auto w-full" />
+        </div>
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute bottom-3 right-3 w-12 -scale-x-100 -scale-y-100 opacity-60 sm:bottom-5 sm:right-5 sm:w-16"
+        >
+          <FloralLayer {...sprigProps} className="h-auto w-full" />
         </div>
 
         {/* ambient light — breathes idly, blooms warm on open */}
@@ -68,8 +88,8 @@ export default function Hero() {
         />
 
         {/* content column */}
-        <div className="relative z-10 mx-auto flex min-h-svh w-full max-w-md flex-col items-center justify-center gap-8 px-6 py-20 text-center">
-          <div ref={content} className="flex flex-col items-center gap-6">
+        <div className="relative z-10 mx-auto flex min-h-svh w-full max-w-md flex-col items-center justify-center gap-6 px-6 py-20 text-center">
+          <div ref={content} className="flex flex-col items-center gap-5">
             <p
               dir="rtl"
               lang="ar"
@@ -78,33 +98,32 @@ export default function Hero() {
               بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
             </p>
 
-            <div className="flex flex-col items-center gap-3">
-              <p className="font-accent text-sm font-medium tracking-[0.12em] text-ink-soft [font-variant-caps:small-caps]">
-                The Wedding Of
-              </p>
+            <p className="font-accent text-sm font-medium tracking-[0.12em] text-ink-soft [font-variant-caps:small-caps]">
+              The Wedding Of
+            </p>
 
-              <div className="relative w-full max-w-[21rem] sm:max-w-[25rem] md:max-w-[27rem]">
-                <FloralLayer
-                  src="/floral/floral-wc-wreath.png"
-                  width={744}
-                  height={711}
-                  priority
-                  sizes="(min-width: 768px) 432px, (min-width: 640px) 400px, 336px"
-                  className="w-full select-none"
-                />
-                <h1
-                  ref={title}
-                  className="absolute inset-0 flex flex-col items-center justify-center gap-1 leading-none text-ink"
-                >
-                  <span className="font-script text-[64px] leading-none">{couple.groom.shortName}</span>
-                  <span className="font-script text-3xl leading-none text-gold">&amp;</span>
-                  <span className="font-script text-[64px] leading-none">{couple.bride.shortName}</span>
-                </h1>
-              </div>
+            {/* monogram badge — a quiet symbol before the full names below */}
+            <div className="relative flex h-20 w-20 shrink-0 items-center justify-center">
+              <span className="absolute inset-0 rounded-full border border-gold-dark/55" />
+              <span className="absolute inset-[6px] rounded-full border border-gold-dark/30" />
+              <span className="font-script text-2xl text-gold-dark">{monogram}</span>
+            </div>
 
-              <p className="font-display text-xl font-semibold tracking-wide text-gold">
+            <h1
+              ref={title}
+              className="flex flex-col items-center gap-1 leading-none text-ink"
+            >
+              <span className="font-script text-5xl leading-none">{couple.groom.shortName}</span>
+              <span className="font-script text-2xl leading-none text-gold">&amp;</span>
+              <span className="font-script text-5xl leading-none">{couple.bride.shortName}</span>
+            </h1>
+
+            <div className="flex items-center gap-3">
+              <span className="h-px w-8 bg-gold/40" />
+              <p className="font-display text-lg font-semibold tracking-wide text-gold">
                 18 · 08 · 2026
               </p>
+              <span className="h-px w-8 bg-gold/40" />
             </div>
 
             <Suspense fallback={<GuestGreetingFallback />}>
@@ -112,13 +131,17 @@ export default function Hero() {
             </Suspense>
           </div>
 
-          <InvitationButton
-            ref={button}
-            onClick={() => {
-              idle.stop();
-              open();
-            }}
-          />
+          <div ref={button} className="flex flex-col items-center gap-3">
+            <InvitationButton
+              onClick={() => {
+                idle.stop();
+                open();
+              }}
+            />
+            <p className="font-accent text-[11px] tracking-[0.25em] text-ink-soft [font-variant-caps:small-caps]">
+              Ketuk untuk membuka
+            </p>
+          </div>
         </div>
       </div>
 
