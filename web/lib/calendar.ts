@@ -13,9 +13,9 @@ function escapeIcsText(text: string) {
     .replace(/\n/g, "\\n");
 }
 
-function buildIcs() {
+function buildEventDetails() {
   const start = new Date(WEDDING_DATE_ISO);
-  const end = new Date(start.getTime() + 5 * 60 * 60 * 1000); // ~5-hour block covering akad + resepsi
+  const end = new Date(start.getTime() + 9 * 60 * 60 * 1000); // 08.00 akad -> 17.00 resepsi selesai
 
   const summary = `Pernikahan ${couple.groom.shortName} & ${couple.bride.shortName}`;
   const location = `${venue.name}, ${venue.location}`;
@@ -23,6 +23,12 @@ function buildIcs() {
     ...events.map((event) => `${event.title}: ${event.time}`),
     venue.mapsUrl,
   ].join("\n");
+
+  return { start, end, summary, location, description };
+}
+
+function buildIcs() {
+  const { start, end, summary, location, description } = buildEventDetails();
 
   const lines = [
     "BEGIN:VCALENDAR",
@@ -45,5 +51,22 @@ function buildIcs() {
   return lines.join("\r\n");
 }
 
-/** Ready-made `data:` URL for the "Simpan ke Kalender" download link. */
+function buildGoogleCalendarUrl() {
+  const { start, end, summary, location, description } = buildEventDetails();
+
+  const params = new URLSearchParams({
+    action: "TEMPLATE",
+    text: summary,
+    dates: `${toIcsUtc(start)}/${toIcsUtc(end)}`,
+    details: description,
+    location,
+  });
+
+  return `https://calendar.google.com/calendar/render?${params.toString()}`;
+}
+
+/** Fallback `data:` URL for calendar apps that don't support Google's add-event link (Apple Calendar, Outlook, etc). */
 export const CALENDAR_ICS_URL = `data:text/calendar;charset=utf-8,${encodeURIComponent(buildIcs())}`;
+
+/** Ready-made Google Calendar "add event" link for the "Simpan ke Kalender" button. */
+export const CALENDAR_GOOGLE_URL = buildGoogleCalendarUrl();

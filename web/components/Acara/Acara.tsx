@@ -5,7 +5,7 @@ import FloralLayer from "@/components/FloralLayer";
 import SectionHeading from "@/components/SectionHeading";
 import { useFloralParallax } from "@/hooks/useFloralParallax";
 import { useRevealOnScroll } from "@/hooks/useRevealOnScroll";
-import { CALENDAR_ICS_URL } from "@/lib/calendar";
+import { CALENDAR_GOOGLE_URL } from "@/lib/calendar";
 import { WEDDING_DATE_ISO, events, venue } from "@/lib/weddingData";
 
 const WEDDING_DATE = new Date(WEDDING_DATE_ISO).getTime();
@@ -125,11 +125,12 @@ export default function Acara() {
             </a>
 
             <a
-              href={CALENDAR_ICS_URL}
-              download="Pernikahan-Falah-Risyqaa.ics"
+              href={CALENDAR_GOOGLE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex min-h-11 items-center gap-2 rounded-full border border-gold-dark px-7 py-3.5 text-xs font-semibold uppercase tracking-[0.2em] text-gold-dark transition-[filter] hover:brightness-90"
             >
-              Simpan ke Kalender
+              Simpan ke Google Calendar
             </a>
           </div>
         </div>
