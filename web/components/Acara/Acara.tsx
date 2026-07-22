@@ -9,6 +9,7 @@ import { CALENDAR_GOOGLE_URL } from "@/lib/calendar";
 import { WEDDING_DATE_ISO, events, venue } from "@/lib/weddingData";
 
 const WEDDING_DATE = new Date(WEDDING_DATE_ISO).getTime();
+const [akad, resepsi] = events;
 
 function getTimeLeft() {
   const diff = Math.max(0, WEDDING_DATE - Date.now());
@@ -89,49 +90,52 @@ export default function Acara() {
           ))}
         </div>
 
-        <div data-reveal className="mt-6 grid grid-cols-2 gap-3">
-          {events.map((event) => (
-            <div
-              key={event.title}
-              className="rounded-2xl border border-border bg-paper px-4 py-6 shadow-[0_10px_28px_-16px_rgba(74,30,43,0.18)]"
-            >
-              <h3 className="font-display text-lg font-medium text-ink">{event.title}</h3>
-              <div className="mx-auto mt-2 h-px w-8 bg-gold" />
-              <p className="mt-3 font-body text-sm font-semibold text-gold">{event.time}</p>
-              <p className="mt-1 font-body text-xs text-ink-soft">{event.date}</p>
+        <div data-reveal className="mt-6 flex flex-col gap-4">
+          {/* Akad Nikah — its own venue, no map/calendar actions attached */}
+          <div className="rounded-2xl border border-border bg-paper px-6 py-7 shadow-[0_10px_28px_-16px_rgba(74,30,43,0.18)]">
+            <h3 className="font-display text-lg font-medium text-ink">{akad.title}</h3>
+            <div className="mx-auto mt-2 h-px w-8 bg-gold" />
+            <p className="mt-3 font-body text-sm font-semibold text-gold">{akad.time}</p>
+            <p className="mt-1 font-body text-xs text-ink-soft">{akad.date}</p>
+            {akad.venue && (
+              <p className="mt-1 font-body text-xs font-semibold text-ink">{akad.venue}</p>
+            )}
+          </div>
+
+          {/* Resepsi — the main event guests attend, given more visual weight
+              plus its full venue details and actions in one card */}
+          <div className="rounded-2xl border border-border bg-paper px-6 py-8 shadow-[0_10px_28px_-16px_rgba(74,30,43,0.18)]">
+            <h3 className="font-display text-2xl font-semibold text-ink">{resepsi.title}</h3>
+            <div className="mx-auto mt-2 h-px w-10 bg-gold" />
+            <p className="mt-3 font-body text-lg font-semibold text-gold">{resepsi.time}</p>
+            <p className="mt-1 font-body text-xs text-ink-soft">{resepsi.date}</p>
+
+            <p className="mt-5 font-accent text-sm font-medium tracking-[0.12em] text-ink-soft [font-variant-caps:small-caps]">
+              Bertempat di
+            </p>
+            <h4 className="mt-2 font-display text-xl font-medium text-ink">{venue.name}</h4>
+            <p className="mt-1 font-body text-[15px] text-ink-soft">{venue.location}</p>
+
+            <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+              <a
+                href={venue.mapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-11 items-center gap-2 rounded-full bg-gold-dark px-7 py-3.5 text-xs font-semibold uppercase tracking-[0.2em] text-paper shadow-[0_10px_26px_-10px_rgba(122,59,71,0.55)] transition-[filter] hover:brightness-90"
+              >
+                <span className="h-1.5 w-1.5 rounded-full bg-paper" />
+                Lihat Lokasi
+              </a>
+
+              <a
+                href={CALENDAR_GOOGLE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-11 items-center gap-2 rounded-full border border-gold-dark px-7 py-3.5 text-xs font-semibold uppercase tracking-[0.2em] text-gold-dark transition-[filter] hover:brightness-90"
+              >
+                Simpan ke Google Calendar
+              </a>
             </div>
-          ))}
-        </div>
-
-        <div
-          data-reveal
-          className="mt-4 rounded-2xl border border-border bg-paper px-6 py-8"
-        >
-          <p className="font-accent text-sm font-medium tracking-[0.12em] text-ink-soft [font-variant-caps:small-caps]">
-            Bertempat di
-          </p>
-          <h3 className="mt-3 font-display text-xl font-medium text-ink">{venue.name}</h3>
-          <p className="mt-1 font-body text-[15px] text-ink-soft">{venue.location}</p>
-
-          <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-            <a
-              href={venue.mapsUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex min-h-11 items-center gap-2 rounded-full bg-gold-dark px-7 py-3.5 text-xs font-semibold uppercase tracking-[0.2em] text-paper shadow-[0_10px_26px_-10px_rgba(122,59,71,0.55)] transition-[filter] hover:brightness-90"
-            >
-              <span className="h-1.5 w-1.5 rounded-full bg-paper" />
-              Lihat Lokasi
-            </a>
-
-            <a
-              href={CALENDAR_GOOGLE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex min-h-11 items-center gap-2 rounded-full border border-gold-dark px-7 py-3.5 text-xs font-semibold uppercase tracking-[0.2em] text-gold-dark transition-[filter] hover:brightness-90"
-            >
-              Simpan ke Google Calendar
-            </a>
           </div>
         </div>
       </div>
