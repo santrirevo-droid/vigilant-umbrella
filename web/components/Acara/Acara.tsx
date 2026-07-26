@@ -91,15 +91,12 @@ export default function Acara() {
         </div>
 
         <div data-reveal className="mt-6 flex flex-col gap-4">
-          {/* Akad Nikah — its own venue, no map/calendar actions attached */}
+          {/* Akad Nikah — same venue as Resepsi, shown once in that card below */}
           <div className="rounded-2xl border border-border bg-paper px-6 py-7 shadow-[0_10px_28px_-16px_rgba(74,30,43,0.18)]">
             <h3 className="font-display text-lg font-medium text-ink">{akad.title}</h3>
             <div className="mx-auto mt-2 h-px w-8 bg-gold" />
             <p className="mt-3 font-body text-sm font-semibold text-gold">{akad.time}</p>
             <p className="mt-1 font-body text-xs text-ink-soft">{akad.date}</p>
-            {akad.venue && (
-              <p className="mt-1 font-body text-xs font-semibold text-ink">{akad.venue}</p>
-            )}
           </div>
 
           {/* Resepsi — the main event guests attend, given more visual weight

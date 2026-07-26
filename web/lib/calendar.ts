@@ -20,7 +20,7 @@ function buildEventDetails() {
   const summary = `Pernikahan ${couple.groom.shortName} & ${couple.bride.shortName}`;
   const location = `${venue.name}, ${venue.location}`;
   const description = [
-    ...events.map((event) => `${event.title}: ${event.time}${event.venue ? ` (${event.venue})` : ""}`),
+    ...events.map((event) => `${event.title}: ${event.time}`),
     venue.mapsUrl,
   ].join("\n");
 

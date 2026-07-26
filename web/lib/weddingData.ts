@@ -36,7 +36,6 @@ export const events = [
     title: "Akad Nikah",
     time: "08.00 WIB — Selesai",
     date: "Selasa, 18 Agustus 2026",
-    venue: "Masjid Al-Falah Mempawah",
   },
   {
     title: "Resepsi",
