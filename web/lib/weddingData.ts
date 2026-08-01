@@ -39,7 +39,7 @@ export const events = [
   },
   {
     title: "Resepsi",
-    time: "11.00 WIB — 17.00 WIB",
+    time: "12.00 WIB — 17.00 WIB",
     date: "Selasa, 18 Agustus 2026",
   },
 ];
