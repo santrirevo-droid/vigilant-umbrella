@@ -102,12 +102,14 @@ export default function Acara() {
           <h3 className="font-display text-lg font-medium text-ink">{akad.title}</h3>
           <div className="mx-auto mt-2 h-px w-8 bg-gold" />
           <p className="mt-3 font-body text-sm font-semibold text-gold">{akad.time}</p>
+          <p className="mt-1 font-body text-xs text-ink-soft">{akad.date}</p>
 
           <div className="mx-auto my-6 h-px w-16 bg-border" />
 
           <h3 className="font-display text-2xl font-semibold text-ink">{resepsi.title}</h3>
           <div className="mx-auto mt-2 h-px w-10 bg-gold" />
           <p className="mt-3 font-body text-lg font-semibold text-gold">{resepsi.time}</p>
+          <p className="mt-1 font-body text-xs text-ink-soft">{resepsi.date}</p>
 
           <p className="mt-5 font-accent text-sm font-medium tracking-[0.12em] text-ink-soft [font-variant-caps:small-caps]">
             Bertempat di
