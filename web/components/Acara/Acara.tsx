@@ -67,7 +67,10 @@ export default function Acara() {
       <div className="mx-auto max-w-md">
         <SectionHeading eyebrow="Acara" />
 
-        <p data-reveal className="mt-2 font-display text-3xl font-semibold tracking-wide text-accent">
+        <p
+          data-reveal
+          className="mt-3 inline-block rounded-full border border-accent/40 bg-accent/10 px-6 py-2 font-display text-2xl font-semibold tracking-wide text-accent"
+        >
           18 Agustus 2026
         </p>
 

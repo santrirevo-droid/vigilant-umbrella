@@ -206,7 +206,11 @@ function useCountdown(dateStr: string, timeStr: string) {
     const t = setInterval(() => setNow(Date.now()), 1000);
     return () => clearInterval(t);
   }, []);
-  const target = new Date(`${dateStr}T${timeStr || "08:00"}:00`).getTime();
+  // explicit +07:00 (WIB) offset — without it, browsers parse this as the
+  // viewer's own local timezone, so anyone outside WIB (or the server
+  // region, which typically defaults to UTC) gets a countdown that's off
+  // by the timezone difference
+  const target = new Date(`${dateStr}T${timeStr || "08:00"}:00+07:00`).getTime();
   let diff = Math.max(0, target - now);
   const days = Math.floor(diff / 86400000); diff -= days * 86400000;
   const hours = Math.floor(diff / 3600000); diff -= hours * 3600000;
