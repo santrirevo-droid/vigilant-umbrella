@@ -120,4 +120,8 @@ export const DEFAULT_DATA: ProgressData = {
   expenses: [
     { id: "e1", item: "DP sewa venue", category: "Sewa Venue", amount: 0, date: "", paid: false, note: "" },
   ],
+  familyItinerary: [
+    { id: "fi1", time: "12:00", activity: "Berangkat dari Surabaya", note: "" },
+    { id: "fi2", time: "14:00", activity: "Sampai di bandara", note: "" },
+  ],
 };

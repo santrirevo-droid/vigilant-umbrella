@@ -1,44 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import {
-  BedDouble, ChevronLeft, ChevronRight, Link as LinkIcon, Loader2, Plane, Route, Trash2,
-} from "lucide-react";
-import { CREAM, EDGE, GOLD, INK, LINE, MUTED, NAVY, NAVY_DARK, PERSIAPAN_GLOBAL_STYLES } from "./theme";
+import { ChevronLeft, Clock, Loader2, Trash2 } from "lucide-react";
+import { CREAM, EDGE, GOLD, INK, MUTED, NAVY, NAVY_DARK, PERSIAPAN_GLOBAL_STYLES } from "./theme";
 import { AddBtn, Card, Field } from "./ui";
 import { useProgressData } from "./useProgressData";
-
-/** One leg of the journey — an icon marker on the shared timeline rail,
- * connected to the next leg by a vertical line, plus its own heading. */
-function Leg({
-  icon: Icon, color, title, subtitle, last, children,
-}: {
-  icon: typeof Plane;
-  color: string;
-  title: string;
-  subtitle: string;
-  last?: boolean;
-  children: React.ReactNode;
-}) {
-  return (
-    <div className="relative flex gap-4">
-      <div className="flex flex-col items-center">
-        <div
-          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full"
-          style={{ background: color }}
-        >
-          <Icon size={16} color="#FFF" />
-        </div>
-        {!last && <div className="mt-1 w-px flex-1" style={{ background: EDGE }} />}
-      </div>
-      <div className={`min-w-0 flex-1 ${last ? "" : "pb-10"}`}>
-        <h2 className="pf-display text-lg" style={{ color: NAVY }}>{title}</h2>
-        <p className="mt-0.5 text-xs" style={{ color: MUTED }}>{subtitle}</p>
-        <div className="mt-3">{children}</div>
-      </div>
-    </div>
-  );
-}
 
 export default function Itinerary() {
   const { data, loading, saving, loadError, commit, addRow, delRow, editRow } = useProgressData();
@@ -52,6 +18,8 @@ export default function Itinerary() {
       </div>
     );
   }
+
+  const steps = data.familyItinerary.slice().sort((a, b) => (a.time || "").localeCompare(b.time || ""));
 
   return (
     <div
@@ -74,7 +42,7 @@ export default function Itinerary() {
             Itinerary Keluarga Falah
           </h1>
           <p className="text-sm mt-2" style={{ color: "#D9DFE8" }}>
-            Kedatangan, penginapan, dan rute perjalanan rombongan keluarga selama di Mempawah.
+            Jadwal keberangkatan dan perjalanan rombongan, dari berangkat hingga tiba di Mempawah.
           </p>
         </div>
       </div>
@@ -93,201 +61,63 @@ export default function Itinerary() {
           {saving && <span className="ml-2" style={{ color: GOLD }}>Menyimpan…</span>}
         </p>
 
-        <div className="mt-8">
-          {/* ---------- KEDATANGAN ---------- */}
-          <Leg icon={Plane} color={NAVY} title="Kedatangan Keluarga Besar" subtitle="Siapa datang, dari mana, dan kapan tiba">
-            <Card>
-              <div className="divide-y" style={{ borderColor: LINE }}>
-                {data.arrivals.map(a => (
-                  <div key={a.id} className="p-4">
-                    <div className="flex items-start gap-2">
-                      <Field value={a.group} editable={isEditor} onLocked={lockedPrompt} onBlur={commit}
-                        onChange={(v) => editRow("arrivals", a.id, "group", v)} placeholder="Nama rombongan"
-                        className="text-sm font-medium flex-1" style={{ color: INK }} />
-                      {isEditor && (
-                        <button onClick={() => delRow("arrivals", a.id)} className="p-1" aria-label="Hapus rombongan">
-                          <Trash2 size={13} style={{ color: MUTED }} />
-                        </button>
-                      )}
-                    </div>
-                    <div className="grid grid-cols-2 gap-x-3 gap-y-2 mt-2.5">
-                      {([
-                        ["Dari", "from", "text", "Kota asal"],
-                        ["Jumlah orang", "count", "text", "cth. 12 orang"],
-                      ] as const).map(([label, key, type, ph]) => (
-                        <div key={key}>
-                          <div className="text-[10px] uppercase tracking-wide pf-mono" style={{ color: MUTED }}>{label}</div>
-                          <Field value={a[key]} editable={isEditor} onLocked={lockedPrompt} onBlur={commit} type={type}
-                            onChange={(v) => editRow("arrivals", a.id, key, v)} placeholder={ph}
-                            className="text-sm w-full border-b py-0.5" style={{ color: INK, borderColor: LINE }} />
-                        </div>
-                      ))}
-                      <div>
-                        <div className="text-[10px] uppercase tracking-wide pf-mono" style={{ color: MUTED }}>Tanggal tiba</div>
-                        <Field value={a.date} editable={isEditor} onLocked={lockedPrompt} onBlur={commit} type="date"
-                          onChange={(v) => editRow("arrivals", a.id, "date", v)}
-                          className="text-sm w-full border-b py-0.5 pf-mono" style={{ color: "#C1666B", borderColor: LINE }} />
-                      </div>
-                      <div>
-                        <div className="text-[10px] uppercase tracking-wide pf-mono" style={{ color: MUTED }}>Jam tiba</div>
-                        <Field value={a.time} editable={isEditor} onLocked={lockedPrompt} onBlur={commit} type="time"
-                          onChange={(v) => editRow("arrivals", a.id, "time", v)}
-                          className="text-sm w-full border-b py-0.5 pf-mono" style={{ color: "#C1666B", borderColor: LINE }} />
-                      </div>
-                      <div className="col-span-2">
-                        <div className="text-[10px] uppercase tracking-wide pf-mono" style={{ color: MUTED }}>Transportasi</div>
-                        <Field value={a.transport} editable={isEditor} onLocked={lockedPrompt} onBlur={commit}
-                          onChange={(v) => editRow("arrivals", a.id, "transport", v)} placeholder="cth. Pesawat via Bandara Supadio"
-                          className="text-sm w-full border-b py-0.5" style={{ color: INK, borderColor: LINE }} />
-                      </div>
-                      <div className="col-span-2">
-                        <Field value={a.note} editable={isEditor} onLocked={lockedPrompt} onBlur={commit}
-                          onChange={(v) => editRow("arrivals", a.id, "note", v)} placeholder="Catatan (penjemputan, dll)…"
-                          className="text-xs w-full" style={{ color: MUTED }} />
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              {isEditor && (
-                <AddBtn onClick={() => addRow("arrivals", { group: "", from: "", date: "", time: "", transport: "", count: "", note: "" })} label="Tambah rombongan" />
-              )}
-            </Card>
-          </Leg>
-
-          {/* ---------- PENGINAPAN ---------- */}
-          <Leg icon={BedDouble} color={GOLD} title="Tempat Menginap" subtitle="Di mana rombongan menginap selama acara">
-            <Card>
-              <div className="divide-y" style={{ borderColor: LINE }}>
-                {data.lodging.map(l => (
-                  <div key={l.id} className="p-4">
-                    <div className="flex items-start gap-2">
-                      <Field value={l.name} editable={isEditor} onLocked={lockedPrompt} onBlur={commit}
-                        onChange={(v) => editRow("lodging", l.id, "name", v)} placeholder="Nama hotel / rumah"
-                        className="text-sm font-medium flex-1" style={{ color: INK }} />
-                      {isEditor && (
-                        <button onClick={() => delRow("lodging", l.id)} className="p-1" aria-label="Hapus penginapan">
-                          <Trash2 size={13} style={{ color: MUTED }} />
-                        </button>
-                      )}
-                    </div>
-                    <Field value={l.address} editable={isEditor} onLocked={lockedPrompt} onBlur={commit}
-                      onChange={(v) => editRow("lodging", l.id, "address", v)} placeholder="Alamat"
-                      className="text-xs w-full mt-1" style={{ color: MUTED }} />
-                    <div className="grid grid-cols-2 gap-x-3 gap-y-2 mt-2.5">
-                      <div>
-                        <div className="text-[10px] uppercase tracking-wide pf-mono" style={{ color: MUTED }}>Untuk rombongan</div>
-                        <Field value={l.forGroup} editable={isEditor} onLocked={lockedPrompt} onBlur={commit}
-                          onChange={(v) => editRow("lodging", l.id, "forGroup", v)} placeholder="cth. Keluarga pria"
-                          className="text-sm w-full border-b py-0.5" style={{ color: INK, borderColor: LINE }} />
-                      </div>
-                      <div>
-                        <div className="text-[10px] uppercase tracking-wide pf-mono" style={{ color: MUTED }}>Jumlah kamar</div>
-                        <Field value={l.rooms} editable={isEditor} onLocked={lockedPrompt} onBlur={commit}
-                          onChange={(v) => editRow("lodging", l.id, "rooms", v)} placeholder="cth. 5 kamar"
-                          className="text-sm w-full border-b py-0.5" style={{ color: INK, borderColor: LINE }} />
-                      </div>
-                      <div>
-                        <div className="text-[10px] uppercase tracking-wide pf-mono" style={{ color: MUTED }}>Telepon</div>
-                        <Field value={l.phone} editable={isEditor} onLocked={lockedPrompt} onBlur={commit}
-                          onChange={(v) => editRow("lodging", l.id, "phone", v)} placeholder="No. telepon"
-                          className="text-sm w-full border-b py-0.5 pf-mono" style={{ color: GOLD, borderColor: LINE }} />
-                      </div>
-                      <div>
-                        <div className="text-[10px] uppercase tracking-wide pf-mono" style={{ color: MUTED }}>Link peta</div>
-                        {isEditor ? (
-                          <Field value={l.mapUrl} editable onBlur={commit}
-                            onChange={(v) => editRow("lodging", l.id, "mapUrl", v)} placeholder="Tempel link peta"
-                            className="text-sm w-full border-b py-0.5" style={{ color: NAVY, borderColor: LINE }} />
-                        ) : l.mapUrl ? (
-                          <a href={l.mapUrl} target="_blank" rel="noopener noreferrer"
-                            className="text-sm flex items-center gap-1 border-b py-0.5" style={{ color: NAVY, borderColor: LINE }}>
-                            <LinkIcon size={11} /> Buka peta
-                          </a>
-                        ) : (
-                          <div className="text-sm border-b py-0.5" style={{ color: MUTED, borderColor: LINE }}>–</div>
-                        )}
-                      </div>
-                    </div>
-                    <Field value={l.note} editable={isEditor} onLocked={lockedPrompt} onBlur={commit}
-                      onChange={(v) => editRow("lodging", l.id, "note", v)} placeholder="Catatan (harga, check-in, dll)…"
-                      className="text-xs w-full mt-2" style={{ color: MUTED }} />
-                  </div>
-                ))}
-              </div>
-              {isEditor && (
-                <AddBtn onClick={() => addRow("lodging", { name: "", address: "", phone: "", rooms: "", forGroup: "", mapUrl: "", note: "" })} label="Tambah penginapan" />
-              )}
-            </Card>
-          </Leg>
-
-          {/* ---------- RUTE ---------- */}
-          <Leg icon={Route} color="#C1666B" title="Rute & Transportasi" subtitle="Bagaimana rombongan berpindah tempat" last>
-            <Card>
-              <div className="divide-y" style={{ borderColor: LINE }}>
-                {data.routes.map(r => (
-                  <div key={r.id} className="p-4">
-                    <div className="flex items-center gap-2">
-                      <div className="flex-1 min-w-0">
-                        <Field value={r.from} editable={isEditor} onLocked={lockedPrompt} onBlur={commit}
-                          onChange={(v) => editRow("routes", r.id, "from", v)} placeholder="Dari"
-                          className="text-sm w-full font-medium" style={{ color: INK }} />
-                        <div className="flex items-center gap-1.5 my-1">
-                          <span className="w-1.5 h-1.5 rounded-full" style={{ background: GOLD }} />
-                          <span className="flex-1 h-px" style={{ background: EDGE }} />
-                          <ChevronRight size={12} style={{ color: GOLD }} />
-                        </div>
-                        <Field value={r.to} editable={isEditor} onLocked={lockedPrompt} onBlur={commit}
-                          onChange={(v) => editRow("routes", r.id, "to", v)} placeholder="Ke"
-                          className="text-sm w-full font-medium" style={{ color: INK }} />
-                      </div>
-                      {isEditor && (
-                        <button onClick={() => delRow("routes", r.id)} className="p-1" aria-label="Hapus rute">
-                          <Trash2 size={13} style={{ color: MUTED }} />
-                        </button>
-                      )}
-                    </div>
-                    <div className="grid grid-cols-2 gap-x-3 gap-y-2 mt-3">
-                      <div>
-                        <div className="text-[10px] uppercase tracking-wide pf-mono" style={{ color: MUTED }}>Moda</div>
-                        <Field value={r.mode} editable={isEditor} onLocked={lockedPrompt} onBlur={commit}
-                          onChange={(v) => editRow("routes", r.id, "mode", v)} placeholder="cth. Mobil"
-                          className="text-sm w-full border-b py-0.5" style={{ color: INK, borderColor: LINE }} />
-                      </div>
-                      <div>
-                        <div className="text-[10px] uppercase tracking-wide pf-mono" style={{ color: MUTED }}>Estimasi waktu</div>
-                        <Field value={r.duration} editable={isEditor} onLocked={lockedPrompt} onBlur={commit}
-                          onChange={(v) => editRow("routes", r.id, "duration", v)} placeholder="cth. 2 jam"
-                          className="text-sm w-full border-b py-0.5 pf-mono" style={{ color: GOLD, borderColor: LINE }} />
-                      </div>
-                      <div className="col-span-2">
-                        <div className="text-[10px] uppercase tracking-wide pf-mono" style={{ color: MUTED }}>Link peta</div>
-                        {isEditor ? (
-                          <Field value={r.mapUrl} editable onBlur={commit}
-                            onChange={(v) => editRow("routes", r.id, "mapUrl", v)} placeholder="Tempel link peta"
-                            className="text-sm w-full border-b py-0.5" style={{ color: NAVY, borderColor: LINE }} />
-                        ) : r.mapUrl ? (
-                          <a href={r.mapUrl} target="_blank" rel="noopener noreferrer"
-                            className="text-sm flex items-center gap-1 border-b py-0.5" style={{ color: NAVY, borderColor: LINE }}>
-                            <LinkIcon size={11} /> Buka rute di peta
-                          </a>
-                        ) : (
-                          <div className="text-sm border-b py-0.5" style={{ color: MUTED, borderColor: LINE }}>–</div>
-                        )}
-                      </div>
-                    </div>
-                    <Field value={r.note} editable={isEditor} onLocked={lockedPrompt} onBlur={commit}
-                      onChange={(v) => editRow("routes", r.id, "note", v)} placeholder="Catatan…"
-                      className="text-xs w-full mt-2" style={{ color: MUTED }} />
-                  </div>
-                ))}
-              </div>
-              {isEditor && (
-                <AddBtn onClick={() => addRow("routes", { from: "", to: "", mode: "", duration: "", mapUrl: "", note: "" })} label="Tambah rute" />
-              )}
-            </Card>
-          </Leg>
+        <div className="mt-6 flex items-center gap-2">
+          <Clock size={16} style={{ color: NAVY }} />
+          <h2 className="pf-display text-lg" style={{ color: NAVY }}>Jadwal Kegiatan</h2>
         </div>
+
+        <Card className="mt-3">
+          <div className="px-4 pt-4 pb-1">
+            {steps.length === 0 ? (
+              <div className="px-2 py-6 text-center text-sm" style={{ color: MUTED }}>Belum ada jadwal.</div>
+            ) : (
+              steps.map((step, i, arr) => (
+                <div key={step.id} className="flex gap-3 pb-5">
+                  {/* timeline rail */}
+                  <div className="flex flex-col items-center shrink-0 w-28">
+                    {isEditor ? (
+                      <input
+                        type="time"
+                        value={step.time || ""}
+                        onChange={(e) => editRow("familyItinerary", step.id, "time", e.target.value)}
+                        onBlur={commit}
+                        className="pf-mono text-sm w-full px-1.5 py-1 rounded-md border text-center"
+                        style={{ color: NAVY, borderColor: EDGE, background: "#FFF" }}
+                      />
+                    ) : (
+                      <span
+                        className="pf-mono text-sm font-semibold px-2 py-1 rounded-md w-full text-center"
+                        style={{ color: NAVY, background: "#F4F1EA", letterSpacing: "0.02em" }}
+                      >
+                        {step.time || "–"}
+                      </span>
+                    )}
+                    <span className="w-2.5 h-2.5 rounded-full mt-2 shrink-0" style={{ background: GOLD, border: `2px solid ${NAVY}` }} />
+                    {i < arr.length - 1 && <span className="w-px flex-1 mt-1" style={{ background: EDGE }} />}
+                  </div>
+
+                  <div className="flex-1 min-w-0 pt-0.5">
+                    <Field value={step.activity} editable={isEditor} onLocked={lockedPrompt} onBlur={commit}
+                      onChange={(v) => editRow("familyItinerary", step.id, "activity", v)} placeholder="cth. Berangkat dari Surabaya"
+                      className="text-sm w-full font-medium" style={{ color: INK }} />
+                    <Field value={step.note} editable={isEditor} onLocked={lockedPrompt} onBlur={commit}
+                      onChange={(v) => editRow("familyItinerary", step.id, "note", v)} placeholder="Catatan…"
+                      className="text-xs w-full mt-0.5" style={{ color: MUTED }} />
+                  </div>
+
+                  {isEditor && (
+                    <button onClick={() => delRow("familyItinerary", step.id)} className="p-1 h-fit" aria-label="Hapus jadwal">
+                      <Trash2 size={13} style={{ color: MUTED }} />
+                    </button>
+                  )}
+                </div>
+              ))
+            )}
+          </div>
+          {isEditor && (
+            <AddBtn onClick={() => addRow("familyItinerary", { time: "12:00", activity: "", note: "" })} label="Tambah kegiatan" />
+          )}
+        </Card>
       </div>
     </div>
   );

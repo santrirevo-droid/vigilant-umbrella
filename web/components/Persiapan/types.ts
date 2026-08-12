@@ -22,6 +22,11 @@ export type RouteItem = { id: string; from: string; to: string; mode: string; du
 export type Vendor = { id: string; category: string; name: string; phone: string };
 export type BudgetItem = { id: string; pos: string; low: number; high: number; note: string };
 export type Expense = { id: string; item: string; category: string; amount: number; date: string; paid: boolean; note: string };
+/** a single timestamped step in the /persiapan/itinerary schedule
+ * (e.g. "12:00 — Berangkat dari Surabaya") — a flat, ad-hoc travel log,
+ * separate from the structured arrivals/lodging/routes on the main
+ * /persiapan dashboard. */
+export type ItineraryStep = { id: string; time: string; activity: string; note: string };
 
 export type ProgressData = {
   settings: Settings;
@@ -33,6 +38,7 @@ export type ProgressData = {
   vendors: Vendor[];
   budgetItems: BudgetItem[];
   expenses: Expense[];
+  familyItinerary: ItineraryStep[];
 };
 
 /** the array-valued keys of ProgressData — what the generic row helpers operate on */
