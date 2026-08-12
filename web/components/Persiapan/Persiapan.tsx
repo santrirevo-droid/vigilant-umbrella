@@ -39,20 +39,15 @@ type Settings = {
 
 type Task = { id: string; text: string; pic: string; date: string; done: boolean };
 type RundownItem = { id: string; time: string; activity: string; note: string; pic: string };
-/** absent `family` means "shared" — always visible, in both the Falah-only
- * and the "show all" itinerary view. */
-type Family = "falah" | "risyqaa";
 type Arrival = {
   id: string; group: string; from: string; date: string; time: string;
-  transport: string; count: string; note: string; family?: Family;
+  transport: string; count: string; note: string;
 };
 type Lodging = {
   id: string; name: string; address: string; phone: string; rooms: string;
-  forGroup: string; mapUrl: string; note: string; family?: Family;
+  forGroup: string; mapUrl: string; note: string;
 };
-type RouteItem = {
-  id: string; from: string; to: string; mode: string; duration: string; mapUrl: string; note: string; family?: Family;
-};
+type RouteItem = { id: string; from: string; to: string; mode: string; duration: string; mapUrl: string; note: string };
 type Vendor = { id: string; category: string; name: string; phone: string };
 type BudgetItem = { id: string; pos: string; low: number; high: number; note: string };
 type Expense = { id: string; item: string; category: string; amount: number; date: string; paid: boolean; note: string };
@@ -150,15 +145,15 @@ const DEFAULT_DATA: ProgressData = {
     { id: "r10", time: "15:00", activity: "Bongkar dekorasi & serah terima venue", note: "", pic: "WO + Dekorasi" },
   ],
   arrivals: [
-    { id: "a1", group: "Keluarga Falah (Pare, Kediri)", from: "Kediri", date: "2026-08-16", time: "", transport: "Pesawat via Bandara Supadio, Pontianak", count: "", note: "Datang H-2. Perlu penjemputan dari bandara ke penginapan.", family: "falah" },
-    { id: "a2", group: "Keluarga Risyqaa (luar kota)", from: "", date: "2026-08-17", time: "", transport: "", count: "", note: "Datang H-1, sebelum gladi.", family: "risyqaa" },
+    { id: "a1", group: "Keluarga Falah (Pare, Kediri)", from: "Kediri", date: "2026-08-16", time: "", transport: "Pesawat via Bandara Supadio, Pontianak", count: "", note: "Datang H-2. Perlu penjemputan dari bandara ke penginapan." },
+    { id: "a2", group: "Keluarga Risyqaa (luar kota)", from: "", date: "2026-08-17", time: "", transport: "", count: "", note: "Datang H-1, sebelum gladi." },
   ],
   lodging: [
-    { id: "l1", name: "", address: "", phone: "", rooms: "", forGroup: "Keluarga Falah (Pare, Kediri)", mapUrl: "", note: "Cari yang dekat venue di Mempawah. Check-in 16 Agustus.", family: "falah" },
+    { id: "l1", name: "", address: "", phone: "", rooms: "", forGroup: "Keluarga Falah (Pare, Kediri)", mapUrl: "", note: "Cari yang dekat venue di Mempawah. Check-in 16 Agustus." },
   ],
   routes: [
-    { id: "rt1", from: "Bandara Supadio, Pontianak", to: "Penginapan di Mempawah", mode: "Mobil / rental", duration: "± 2 jam", mapUrl: "", note: "Sediakan mobil jemputan untuk rombongan Kediri.", family: "falah" },
-    { id: "rt2", from: "Penginapan di Mempawah", to: "Mempawah Convention Center", mode: "Mobil", duration: "–", mapUrl: "", note: "Berangkat pagi hari-H, sebelum akad jam 08:00.", family: "falah" },
+    { id: "rt1", from: "Bandara Supadio, Pontianak", to: "Penginapan di Mempawah", mode: "Mobil / rental", duration: "± 2 jam", mapUrl: "", note: "Sediakan mobil jemputan untuk rombongan Kediri." },
+    { id: "rt2", from: "Penginapan di Mempawah", to: "Mempawah Convention Center", mode: "Mobil", duration: "–", mapUrl: "", note: "Berangkat pagi hari-H, sebelum akad jam 08:00." },
   ],
   vendors: [
     { id: "v1", category: "Venue (MCC)", name: "", phone: "" },
@@ -424,9 +419,6 @@ export default function Persiapan() {
     lodging: true, routes: true, vendors: false, budget: false,
   });
   const toggleSection = (k: OpenSectionKey) => setOpenSection(s => ({ ...s, [k]: !s[k] }));
-  // itinerary (arrivals/lodging/routes) defaults to Falah's family only —
-  // entries tagged family:"risyqaa" are hidden until this is flipped to "all"
-  const [familyScope, setFamilyScope] = useState<"falah" | "all">("falah");
   const [showSettings, setShowSettings] = useState(false);
   const [past, setPast] = useState<ProgressData[]>([]);
   const [future, setFuture] = useState<ProgressData[]>([]);
@@ -598,16 +590,6 @@ export default function Persiapan() {
       (t.date || "").includes(q)
     );
   }, [sortedTasks, taskQuery]);
-
-  // itinerary entries tagged for the other family stay hidden until
-  // familyScope is "all" — entries with no family tag are always shown
-  const inScope = useCallback(
-    <T extends { family?: Family }>(item: T) => familyScope === "all" || item.family !== "risyqaa",
-    [familyScope]
-  );
-  const scopedArrivals = useMemo(() => data.arrivals.filter(inScope), [data.arrivals, inScope]);
-  const scopedLodging = useMemo(() => data.lodging.filter(inScope), [data.lodging, inScope]);
-  const scopedRoutes = useMemo(() => data.routes.filter(inScope), [data.routes, inScope]);
 
   const budgetLow = data.budgetItems.reduce((s, b) => s + (b.low || 0), 0);
   const budgetHigh = data.budgetItems.reduce((s, b) => s + (b.high || 0), 0);
@@ -938,29 +920,11 @@ export default function Persiapan() {
           </Card>
         </Section>
 
-        {/* ---------- ITINERARY (arrivals + lodging + routes) ---------- */}
-        <div className="mt-8 text-center">
-          <h2 className="pf-display text-lg" style={{ color: NAVY }}>Itinerary Keluarga</h2>
-          <p className="mt-1 text-xs" style={{ color: MUTED }}>
-            {familyScope === "falah"
-              ? "Menampilkan itinerary khusus Keluarga Falah"
-              : "Menampilkan itinerary seluruh keluarga besar"}
-          </p>
-          <button
-            onClick={() => setFamilyScope(s => (s === "falah" ? "all" : "falah"))}
-            className="pf-mono mt-3 inline-flex items-center gap-1.5 rounded-lg px-3.5 py-1.5 text-xs"
-            style={{ color: NAVY, border: `1px solid ${EDGE}`, background: "#FFF" }}
-          >
-            <Users2 size={13} />
-            {familyScope === "falah" ? "Tampilkan Semua Keluarga" : "Tampilkan Keluarga Falah Saja"}
-          </button>
-        </div>
-
         {/* ---------- KEDATANGAN KELUARGA ---------- */}
         <Section icon={Plane} title="Kedatangan Keluarga Besar" open={openSection.arrivals} onToggle={() => toggleSection("arrivals")}>
           <Card>
             <div className="divide-y" style={{ borderColor: LINE }}>
-              {scopedArrivals.map(a => (
+              {data.arrivals.map(a => (
                 <div key={a.id} className="p-4">
                   <div className="flex items-start gap-2">
                     <Field value={a.group} editable={isEditor} onLocked={lockedPrompt} onBlur={commit}
@@ -1012,13 +976,7 @@ export default function Persiapan() {
               ))}
             </div>
             {isEditor && (
-              <AddBtn
-                onClick={() => addRow("arrivals", {
-                  group: "", from: "", date: "", time: "", transport: "", count: "", note: "",
-                  family: familyScope === "falah" ? "falah" : undefined,
-                })}
-                label="Tambah rombongan"
-              />
+              <AddBtn onClick={() => addRow("arrivals", { group: "", from: "", date: "", time: "", transport: "", count: "", note: "" })} label="Tambah rombongan" />
             )}
           </Card>
         </Section>
@@ -1027,7 +985,7 @@ export default function Persiapan() {
         <Section icon={BedDouble} title="Tempat Menginap" open={openSection.lodging} onToggle={() => toggleSection("lodging")}>
           <Card>
             <div className="divide-y" style={{ borderColor: LINE }}>
-              {scopedLodging.map(l => (
+              {data.lodging.map(l => (
                 <div key={l.id} className="p-4">
                   <div className="flex items-start gap-2">
                     <Field value={l.name} editable={isEditor} onLocked={lockedPrompt} onBlur={commit}
@@ -1084,13 +1042,7 @@ export default function Persiapan() {
               ))}
             </div>
             {isEditor && (
-              <AddBtn
-                onClick={() => addRow("lodging", {
-                  name: "", address: "", phone: "", rooms: "", forGroup: "", mapUrl: "", note: "",
-                  family: familyScope === "falah" ? "falah" : undefined,
-                })}
-                label="Tambah penginapan"
-              />
+              <AddBtn onClick={() => addRow("lodging", { name: "", address: "", phone: "", rooms: "", forGroup: "", mapUrl: "", note: "" })} label="Tambah penginapan" />
             )}
           </Card>
         </Section>
@@ -1099,7 +1051,7 @@ export default function Persiapan() {
         <Section icon={Route} title="Rute & Transportasi" open={openSection.routes} onToggle={() => toggleSection("routes")}>
           <Card>
             <div className="divide-y" style={{ borderColor: LINE }}>
-              {scopedRoutes.map(r => (
+              {data.routes.map(r => (
                 <div key={r.id} className="p-4">
                   <div className="flex items-center gap-2">
                     <div className="flex-1 min-w-0">
@@ -1157,13 +1109,7 @@ export default function Persiapan() {
               ))}
             </div>
             {isEditor && (
-              <AddBtn
-                onClick={() => addRow("routes", {
-                  from: "", to: "", mode: "", duration: "", mapUrl: "", note: "",
-                  family: familyScope === "falah" ? "falah" : undefined,
-                })}
-                label="Tambah rute"
-              />
+              <AddBtn onClick={() => addRow("routes", { from: "", to: "", mode: "", duration: "", mapUrl: "", note: "" })} label="Tambah rute" />
             )}
           </Card>
         </Section>
