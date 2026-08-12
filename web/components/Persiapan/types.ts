@@ -26,7 +26,7 @@ export type Expense = { id: string; item: string; category: string; amount: numb
  * (e.g. "12:00 — Berangkat dari Surabaya") — a flat, ad-hoc travel log,
  * separate from the structured arrivals/lodging/routes on the main
  * /persiapan dashboard. */
-export type ItineraryStep = { id: string; time: string; activity: string; note: string };
+export type ItineraryStep = { id: string; date: string; time: string; activity: string; note: string };
 
 export type ProgressData = {
   settings: Settings;

@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { ChevronLeft, Clock, Loader2, Trash2 } from "lucide-react";
-import { CREAM, EDGE, GOLD, INK, MUTED, NAVY, NAVY_DARK, PERSIAPAN_GLOBAL_STYLES } from "./theme";
-import { AddBtn, Card, Field } from "./ui";
+import { ChevronLeft, Loader2, Plus, Trash2 } from "lucide-react";
+import { CREAM, GOLD, INK, LINE, MUTED, NAVY, PERSIAPAN_GLOBAL_STYLES, fmtLongDate } from "./theme";
+import { Field } from "./ui";
 import { useProgressData } from "./useProgressData";
 
 export default function Itinerary() {
@@ -19,7 +19,9 @@ export default function Itinerary() {
     );
   }
 
-  const steps = data.familyItinerary.slice().sort((a, b) => (a.time || "").localeCompare(b.time || ""));
+  const steps = data.familyItinerary
+    .slice()
+    .sort((a, b) => (a.date + a.time).localeCompare(b.date + b.time));
 
   return (
     <div
@@ -28,23 +30,16 @@ export default function Itinerary() {
     >
       <style>{PERSIAPAN_GLOBAL_STYLES}</style>
 
-      {/* ---------- HERO ---------- */}
-      <div style={{ background: `linear-gradient(150deg, ${NAVY} 0%, ${NAVY_DARK} 100%)` }}>
-        <div className="max-w-2xl mx-auto px-6 pt-10 pb-9">
-          <Link
-            href="/persiapan"
-            className="pf-mono inline-flex items-center gap-1 text-xs uppercase tracking-widest"
-            style={{ color: GOLD }}
-          >
-            <ChevronLeft size={13} /> Rencana Persiapan
-          </Link>
-          <h1 className="pf-display text-3xl sm:text-4xl leading-tight text-white mt-3">
-            Itinerary Keluarga Falah
-          </h1>
-          <p className="text-sm mt-2" style={{ color: "#D9DFE8" }}>
-            Jadwal keberangkatan dan perjalanan rombongan, dari berangkat hingga tiba di Mempawah.
-          </p>
-        </div>
+      <div className="max-w-2xl mx-auto px-6 pt-10">
+        <Link
+          href="/persiapan"
+          className="pf-mono inline-flex items-center gap-1 text-xs uppercase tracking-widest"
+          style={{ color: MUTED }}
+        >
+          <ChevronLeft size={13} /> Rencana Persiapan
+        </Link>
+        <h1 className="pf-display text-2xl mt-2" style={{ color: NAVY }}>Itinerary Keluarga Falah</h1>
+        {saving && <p className="pf-mono text-xs mt-1" style={{ color: GOLD }}>Menyimpan…</p>}
       </div>
 
       {loadError && (
@@ -55,48 +50,46 @@ export default function Itinerary() {
         </div>
       )}
 
-      <div className="max-w-2xl mx-auto px-6">
-        <p className="mt-4 text-xs" style={{ color: MUTED }}>
-          Data yang sama dengan halaman Rencana Persiapan — perubahan di sini ikut tersimpan di sana.
-          {saving && <span className="ml-2" style={{ color: GOLD }}>Menyimpan…</span>}
-        </p>
-
-        <div className="mt-6 flex items-center gap-2">
-          <Clock size={16} style={{ color: NAVY }} />
-          <h2 className="pf-display text-lg" style={{ color: NAVY }}>Jadwal Kegiatan</h2>
-        </div>
-
-        <Card className="mt-3">
-          <div className="px-4 pt-4 pb-1">
-            {steps.length === 0 ? (
-              <div className="px-2 py-6 text-center text-sm" style={{ color: MUTED }}>Belum ada jadwal.</div>
-            ) : (
-              steps.map((step, i, arr) => (
-                <div key={step.id} className="flex gap-3 pb-5">
-                  {/* timeline rail */}
-                  <div className="flex flex-col items-center shrink-0 w-28">
+      <div className="max-w-2xl mx-auto px-6 mt-8">
+        {steps.length === 0 ? (
+          <p className="text-sm" style={{ color: MUTED }}>Belum ada jadwal.</p>
+        ) : (
+          steps.map((step, i) => {
+            const prev = steps[i - 1];
+            const showDateHeader = !prev || prev.date !== step.date;
+            return (
+              <div key={step.id}>
+                {showDateHeader && (
+                  <div className="pf-mono text-xs uppercase tracking-wide mt-6 first:mt-0" style={{ color: GOLD }}>
+                    {fmtLongDate(step.date) || "Tanggal belum diatur"}
+                  </div>
+                )}
+                <div className="flex items-start gap-3 py-3 border-t" style={{ borderColor: LINE }}>
+                  <div className="shrink-0 w-24 pt-0.5">
                     {isEditor ? (
                       <input
                         type="time"
                         value={step.time || ""}
                         onChange={(e) => editRow("familyItinerary", step.id, "time", e.target.value)}
                         onBlur={commit}
-                        className="pf-mono text-sm w-full px-1.5 py-1 rounded-md border text-center"
-                        style={{ color: NAVY, borderColor: EDGE, background: "#FFF" }}
+                        className="pf-mono text-sm font-semibold bg-transparent w-full"
+                        style={{ color: NAVY }}
                       />
                     ) : (
-                      <span
-                        className="pf-mono text-sm font-semibold px-2 py-1 rounded-md w-full text-center"
-                        style={{ color: NAVY, background: "#F4F1EA", letterSpacing: "0.02em" }}
-                      >
-                        {step.time || "–"}
-                      </span>
+                      <span className="pf-mono text-sm font-semibold" style={{ color: NAVY }}>{step.time || "–"}</span>
                     )}
-                    <span className="w-2.5 h-2.5 rounded-full mt-2 shrink-0" style={{ background: GOLD, border: `2px solid ${NAVY}` }} />
-                    {i < arr.length - 1 && <span className="w-px flex-1 mt-1" style={{ background: EDGE }} />}
+                    {isEditor && (
+                      <input
+                        type="date"
+                        value={step.date || ""}
+                        onChange={(e) => editRow("familyItinerary", step.id, "date", e.target.value)}
+                        onBlur={commit}
+                        className="pf-mono text-[10px] bg-transparent block mt-0.5 w-full"
+                        style={{ color: MUTED }}
+                      />
+                    )}
                   </div>
-
-                  <div className="flex-1 min-w-0 pt-0.5">
+                  <div className="flex-1 min-w-0">
                     <Field value={step.activity} editable={isEditor} onLocked={lockedPrompt} onBlur={commit}
                       onChange={(v) => editRow("familyItinerary", step.id, "activity", v)} placeholder="cth. Berangkat dari Surabaya"
                       className="text-sm w-full font-medium" style={{ color: INK }} />
@@ -104,20 +97,26 @@ export default function Itinerary() {
                       onChange={(v) => editRow("familyItinerary", step.id, "note", v)} placeholder="Catatan…"
                       className="text-xs w-full mt-0.5" style={{ color: MUTED }} />
                   </div>
-
                   {isEditor && (
-                    <button onClick={() => delRow("familyItinerary", step.id)} className="p-1 h-fit" aria-label="Hapus jadwal">
+                    <button onClick={() => delRow("familyItinerary", step.id)} className="p-1" aria-label="Hapus jadwal">
                       <Trash2 size={13} style={{ color: MUTED }} />
                     </button>
                   )}
                 </div>
-              ))
-            )}
-          </div>
-          {isEditor && (
-            <AddBtn onClick={() => addRow("familyItinerary", { time: "12:00", activity: "", note: "" })} label="Tambah kegiatan" />
-          )}
-        </Card>
+              </div>
+            );
+          })
+        )}
+
+        {isEditor && (
+          <button
+            onClick={() => addRow("familyItinerary", { date: steps[steps.length - 1]?.date || "", time: "", activity: "", note: "" })}
+            className="flex items-center gap-1.5 text-xs mt-4"
+            style={{ color: NAVY }}
+          >
+            <Plus size={13} /> Tambah kegiatan
+          </button>
+        )}
       </div>
     </div>
   );
