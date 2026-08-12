@@ -1,203 +1,18 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef, useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 import {
-  Check, ChevronDown, ChevronLeft, ChevronRight, Pencil, X, Phone, MapPin, Calendar,
+  Check, ChevronLeft, ChevronRight, Pencil, X, Phone, MapPin, Calendar,
   Wallet, Loader2, Users2, PartyPopper, Plus, Trash2, Undo2, Redo2,
   Clock, BedDouble, Route, Plane, Link as LinkIcon, Search, ReceiptText,
-  type LucideIcon,
 } from "lucide-react";
-
-const NAVY = "#1F3A5F";
-const NAVY_DARK = "#132539";
-const GOLD = "#B8985A";
-const CREAM = "#FAF6EF";
-const INK = "#26313F";
-const MUTED = "#8A93A0";
-const ROSE = "#C1666B";
-const LINE = "#F1EBDD";
-const EDGE = "#EAE3D6";
-
-/** GET/POST /api/progress — a single shared JSON doc, same no-auth
- * "everyone with the link can edit" model as /daftar-tamu. */
-const PROGRESS_ENDPOINT = "/api/progress";
-
-// Pakai komponen tanggal LOKAL — toISOString() akan menggeser tanggal
-// mundur satu hari untuk zona waktu UTC+ seperti WIB.
-const iso = (d: Date) =>
-  `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
-
-type Settings = {
-  nameFirst: string;
-  nameSecond: string;
-  weddingDate: string;
-  ceremonyTime: string;
-  venue: string;
-  venueMapUrl: string;
-  totalBudget: number;
-};
-
-type Task = { id: string; text: string; pic: string; date: string; done: boolean };
-type RundownItem = { id: string; time: string; activity: string; note: string; pic: string };
-type Arrival = {
-  id: string; group: string; from: string; date: string; time: string;
-  transport: string; count: string; note: string;
-};
-type Lodging = {
-  id: string; name: string; address: string; phone: string; rooms: string;
-  forGroup: string; mapUrl: string; note: string;
-};
-type RouteItem = { id: string; from: string; to: string; mode: string; duration: string; mapUrl: string; note: string };
-type Vendor = { id: string; category: string; name: string; phone: string };
-type BudgetItem = { id: string; pos: string; low: number; high: number; note: string };
-type Expense = { id: string; item: string; category: string; amount: number; date: string; paid: boolean; note: string };
-
-type ProgressData = {
-  settings: Settings;
-  tasks: Task[];
-  rundown: RundownItem[];
-  arrivals: Arrival[];
-  lodging: Lodging[];
-  routes: RouteItem[];
-  vendors: Vendor[];
-  budgetItems: BudgetItem[];
-  expenses: Expense[];
-};
-
-/** the array-valued keys of ProgressData — what the generic row helpers operate on */
-type ListKey = {
-  [K in keyof ProgressData]: ProgressData[K] extends unknown[] ? K : never;
-}[keyof ProgressData];
-
-const DEFAULT_DATA: ProgressData = {
-  settings: {
-    nameFirst: "Falah Fauzan",
-    nameSecond: "Risyqaa Syafitri",
-    weddingDate: "2026-08-18",
-    ceremonyTime: "08:00",
-    venue: "Mempawah Convention Center",
-    venueMapUrl: "",
-    totalBudget: 150000000,
-  },
-  tasks: [
-    { id: "t01", text: "Konfirmasi tanggal 18 Agustus ke Mempawah Convention Center (harga, kapasitas, fasilitas)", pic: "Kedua mempelai", date: "2026-07-14", done: false },
-    { id: "t02", text: "Mulai administrasi nikah di KUA/kelurahan domisili", pic: "Risyqaa", date: "2026-07-15", done: false },
-    { id: "t03", text: "Urus surat pindah nikah dari KUA Pare, Kediri", pic: "Falah", date: "2026-07-15", done: false },
-    { id: "t04", text: "Survei & DP catering untuk 700 tamu", pic: "", date: "2026-07-16", done: false },
-    { id: "t05", text: "Survei & DP dekorasi (konsep semi modern)", pic: "", date: "2026-07-16", done: false },
-    { id: "t06", text: "Booking fotografer & videografer", pic: "", date: "2026-07-17", done: false },
-    { id: "t07", text: "Booking MUA & busana pengantin", pic: "", date: "2026-07-17", done: false },
-    { id: "t08", text: "Booking sound system, MC, hiburan", pic: "", date: "2026-07-18", done: false },
-    { id: "t09", text: "Finalisasi rundown acara & konsep visual", pic: "", date: "2026-07-20", done: false },
-    { id: "t10", text: "Desain undangan digital (WA/e-invitation)", pic: "", date: "2026-07-21", done: false },
-    { id: "t11", text: "Cetak undangan fisik terbatas (keluarga inti/tokoh adat)", pic: "", date: "2026-07-23", done: false },
-    { id: "t12", text: "Finalisasi daftar 700 tamu", pic: "", date: "2026-07-24", done: false },
-    { id: "t13", text: "Mulai sebar undangan", pic: "", date: "2026-07-25", done: false },
-    { id: "t14", text: "Fitting awal busana pengantin", pic: "", date: "2026-07-26", done: false },
-    { id: "t15", text: "DP mahar & seserahan", pic: "", date: "2026-07-27", done: false },
-    { id: "t16", text: "Rapat teknis dengan seluruh vendor (rundown, denah, jam kerja)", pic: "", date: "2026-07-29", done: false },
-    { id: "t17", text: "Test food bersama catering", pic: "", date: "2026-07-30", done: false },
-    { id: "t18", text: "Cek mockup dekorasi", pic: "", date: "2026-07-31", done: false },
-    { id: "t19", text: "Selesaikan seluruh dokumen administrasi nikah", pic: "", date: "2026-08-03", done: false },
-    { id: "t20", text: "Pantau RSVP & susulan undangan", pic: "", date: "2026-08-03", done: false },
-    { id: "t21", text: "Booking penginapan untuk rombongan keluarga Pare, Kediri", pic: "", date: "2026-08-04", done: false },
-    { id: "t22", text: "Atur jemputan dari Bandara Supadio ke Mempawah", pic: "", date: "2026-08-05", done: false },
-    { id: "t23", text: "Konfirmasi jadwal kedatangan seluruh rombongan keluarga", pic: "", date: "2026-08-06", done: false },
-    { id: "t24", text: "Fitting final busana pengantin", pic: "", date: "2026-08-07", done: false },
-    { id: "t25", text: "Briefing tim hari-H (among tamu, keluarga bertugas)", pic: "", date: "2026-08-10", done: false },
-    { id: "t26", text: "Konfirmasi jumlah tamu final ke catering", pic: "", date: "2026-08-13", done: false },
-    { id: "t27", text: "H-3: Konfirmasi ulang seluruh vendor", pic: "", date: "2026-08-15", done: false },
-    { id: "t28", text: "Sambut & antar rombongan keluarga ke penginapan", pic: "", date: "2026-08-16", done: false },
-    { id: "t29", text: "H-1: Gladi & setup venue, cek sound & listrik", pic: "", date: "2026-08-17", done: false },
-    { id: "t30", text: "H-1: Terima & simpan mahar/seserahan dengan aman", pic: "", date: "2026-08-17", done: false },
-    { id: "t31", text: "Hari-H: Delegasikan koordinasi ke WO/koordinator keluarga", pic: "", date: "2026-08-18", done: false },
-    { id: "t32", text: "Hari-H: Nikmati acara!", pic: "", date: "2026-08-18", done: false },
-    { id: "t33", text: "Konfirmasi ketersediaan genset/backup listrik ke MCC", pic: "", date: "2026-07-14", done: false },
-    { id: "t34", text: "Ikuti Bimbingan Perkawinan (bimwin) & urus sertifikatnya", pic: "Kedua mempelai", date: "2026-07-15", done: false },
-    { id: "t35", text: "Suntik TT & surat keterangan sehat dari puskesmas (Risyqaa)", pic: "Risyqaa", date: "2026-07-15", done: false },
-    { id: "t36", text: "Konfirmasi penghulu, 2 saksi & wali nikah untuk akad di venue", pic: "", date: "2026-07-16", done: false },
-    { id: "t37", text: "Pesan cincin kawin", pic: "", date: "2026-07-18", done: false },
-    { id: "t38", text: "Mulai perawatan pengantin (facial/spa/luluran)", pic: "Risyqaa", date: "2026-07-19", done: false },
-    { id: "t39", text: "Pesan kue pengantin", pic: "", date: "2026-07-22", done: false },
-    { id: "t40", text: "Pesan souvenir tamu (± 700 pcs)", pic: "", date: "2026-07-22", done: false },
-    { id: "t41", text: "Siapkan dekorasi & wadah seserahan/hantaran", pic: "", date: "2026-07-23", done: false },
-    { id: "t42", text: "Koordinasi busana keluarga inti & seragam panitia/among tamu", pic: "", date: "2026-07-26", done: false },
-    { id: "t43", text: "Atur manajemen parkir & petugas parkir", pic: "", date: "2026-07-29", done: false },
-    { id: "t44", text: "Booking qori/qoriah & pembaca doa untuk akad", pic: "", date: "2026-07-31", done: false },
-    { id: "t45", text: "Atur keamanan/security & petugas P3K standby", pic: "", date: "2026-08-01", done: false },
-    { id: "t46", text: "Siapkan tim livestream akad/resepsi (opsional)", pic: "", date: "2026-08-03", done: false },
-    { id: "t47", text: "Atur konsumsi & mobilitas keluarga Kediri selama menginap", pic: "", date: "2026-08-05", done: false },
-    { id: "t48", text: "Rencanakan bulan madu (opsional)", pic: "", date: "2026-08-07", done: false },
-    { id: "t49", text: "Tunjuk & briefing petugas: penerima tamu, buku tamu, penjaga kotak angpau, pagar ayu/bagus", pic: "", date: "2026-08-10", done: false },
-    { id: "t50", text: "Siapkan amplop uang tip untuk kru vendor di hari-H", pic: "", date: "2026-08-15", done: false },
-    { id: "t51", text: "Rencanakan syukuran/tasyakuran setelah acara", pic: "", date: "2026-08-18", done: false },
-  ],
-  rundown: [
-    { id: "r1", time: "06:00", activity: "Persiapan & make-up pengantin", note: "MUA tiba di lokasi", pic: "MUA" },
-    { id: "r2", time: "07:30", activity: "Tim vendor final check", note: "Sound, dekorasi, catering siap", pic: "WO" },
-    { id: "r3", time: "08:00", activity: "Akad nikah / pemberkatan", note: "Penghulu & saksi hadir", pic: "Keluarga inti" },
-    { id: "r4", time: "09:00", activity: "Sesi foto keluarga", note: "Setelah akad, sebelum tamu masuk", pic: "Fotografer" },
-    { id: "r5", time: "10:00", activity: "Tamu mulai berdatangan", note: "Among tamu bersiap di pintu masuk", pic: "Among tamu" },
-    { id: "r6", time: "10:30", activity: "Pembukaan resepsi & kirab pengantin", note: "MC membuka acara", pic: "MC" },
-    { id: "r7", time: "11:00", activity: "Sambutan keluarga & doa", note: "", pic: "Perwakilan keluarga" },
-    { id: "r8", time: "11:30", activity: "Ramah tamah & hiburan", note: "Sesi foto bersama tamu di pelaminan", pic: "Hiburan" },
-    { id: "r9", time: "14:00", activity: "Penutupan & sesi foto vendor", note: "", pic: "WO" },
-    { id: "r10", time: "15:00", activity: "Bongkar dekorasi & serah terima venue", note: "", pic: "WO + Dekorasi" },
-  ],
-  arrivals: [
-    { id: "a1", group: "Keluarga Falah (Pare, Kediri)", from: "Kediri", date: "2026-08-16", time: "", transport: "Pesawat via Bandara Supadio, Pontianak", count: "", note: "Datang H-2. Perlu penjemputan dari bandara ke penginapan." },
-    { id: "a2", group: "Keluarga Risyqaa (luar kota)", from: "", date: "2026-08-17", time: "", transport: "", count: "", note: "Datang H-1, sebelum gladi." },
-  ],
-  lodging: [
-    { id: "l1", name: "", address: "", phone: "", rooms: "", forGroup: "Keluarga Falah (Pare, Kediri)", mapUrl: "", note: "Cari yang dekat venue di Mempawah. Check-in 16 Agustus." },
-  ],
-  routes: [
-    { id: "rt1", from: "Bandara Supadio, Pontianak", to: "Penginapan di Mempawah", mode: "Mobil / rental", duration: "± 2 jam", mapUrl: "", note: "Sediakan mobil jemputan untuk rombongan Kediri." },
-    { id: "rt2", from: "Penginapan di Mempawah", to: "Mempawah Convention Center", mode: "Mobil", duration: "–", mapUrl: "", note: "Berangkat pagi hari-H, sebelum akad jam 08:00." },
-  ],
-  vendors: [
-    { id: "v1", category: "Venue (MCC)", name: "", phone: "" },
-    { id: "v2", category: "Catering", name: "", phone: "" },
-    { id: "v3", category: "Dekorasi", name: "", phone: "" },
-    { id: "v4", category: "Fotografer/Videografer", name: "", phone: "" },
-    { id: "v5", category: "MUA", name: "", phone: "" },
-    { id: "v6", category: "Busana", name: "", phone: "" },
-    { id: "v7", category: "Sound/MC/Hiburan", name: "", phone: "" },
-    { id: "v8", category: "WO / Koordinator", name: "", phone: "" },
-  ],
-  budgetItems: [
-    { id: "b1", pos: "Sewa Venue", low: 5000000, high: 10000000, note: "Konfirmasi langsung ke pengelola MCC" },
-    { id: "b2", pos: "Catering (700 tamu)", low: 60000000, high: 75000000, note: "Pos terbesar, ± Rp85–105rb/porsi" },
-    { id: "b3", pos: "Dekorasi", low: 20000000, high: 25000000, note: "Fokus pelaminan & panggung utama" },
-    { id: "b4", pos: "Dokumentasi", low: 8000000, high: 12000000, note: "Foto + video" },
-    { id: "b5", pos: "Busana & MUA", low: 10000000, high: 15000000, note: "" },
-    { id: "b6", pos: "Sound, MC, Hiburan", low: 8000000, high: 12000000, note: "" },
-    { id: "b7", pos: "Undangan", low: 2000000, high: 3000000, note: "Prioritaskan digital" },
-    { id: "b8", pos: "Akomodasi & transport keluarga", low: 5000000, high: 8000000, note: "Penginapan & jemputan dari bandara" },
-    { id: "b10", pos: "Administrasi nikah (KUA, bimwin, penghulu)", low: 1000000, high: 2000000, note: "Termasuk akad di luar KUA & suntik TT" },
-    { id: "b11", pos: "Cincin kawin", low: 5000000, high: 10000000, note: "Terpisah dari mahar" },
-    { id: "b12", pos: "Kue pengantin", low: 1000000, high: 3000000, note: "" },
-    { id: "b13", pos: "Souvenir tamu (± 700)", low: 3500000, high: 7000000, note: "± Rp5–10rb per buah" },
-    { id: "b14", pos: "Genset/backup listrik", low: 2000000, high: 4000000, note: "Antisipasi mati listrik untuk 700 tamu" },
-    { id: "b15", pos: "Parkir, keamanan & P3K", low: 2000000, high: 4000000, note: "Petugas parkir, security, medis standby" },
-    { id: "b16", pos: "Busana keluarga & seragam panitia", low: 5000000, high: 10000000, note: "Orang tua kedua pihak + among tamu" },
-    { id: "b17", pos: "Perawatan pengantin", low: 1500000, high: 3000000, note: "Facial/spa sebelum hari-H" },
-    { id: "b18", pos: "Qori & pembaca doa", low: 500000, high: 1500000, note: "" },
-    { id: "b19", pos: "Uang tip kru vendor", low: 1000000, high: 2000000, note: "Sering lupa dianggarkan" },
-    { id: "b9", pos: "Dana Cadangan", low: 10000000, high: 15000000, note: "Wajib disisihkan" },
-  ],
-  expenses: [
-    { id: "e1", item: "DP sewa venue", category: "Sewa Venue", amount: 0, date: "", paid: false, note: "" },
-  ],
-};
-
-const fmtIDR = (n: number) => "Rp " + Math.round(n || 0).toLocaleString("id-ID");
-const fmtLongDate = (s: string) =>
-  s
-    ? new Date(s + "T00:00:00").toLocaleDateString("id-ID", { weekday: "long", day: "numeric", month: "long", year: "numeric" })
-    : "";
-const fmtShortDate = (s: string) =>
-  s ? new Date(s + "T00:00:00").toLocaleDateString("id-ID", { day: "numeric", month: "short" }) : "";
+import {
+  CREAM, EDGE, GOLD, INK, LINE, MUTED, NAVY, NAVY_DARK, ROSE,
+  PERSIAPAN_GLOBAL_STYLES, fmtIDR, fmtLongDate, fmtShortDate, iso,
+} from "./theme";
+import type { CalendarEvent, Settings, Task } from "./types";
+import { AddBtn, Card, Field, Section } from "./ui";
+import { useProgressData } from "./useProgressData";
 
 /* ---------- Countdown ---------- */
 function useCountdown(dateStr: string, timeStr: string) {
@@ -219,80 +34,7 @@ function useCountdown(dateStr: string, timeStr: string) {
   return { days, hours, mins, secs, past: target - now <= 0 };
 }
 
-/* ---------- Small UI pieces ---------- */
-function Section({
-  icon: Icon, title, open, onToggle, badge, children,
-}: {
-  icon: LucideIcon;
-  title: string;
-  open: boolean;
-  onToggle: () => void;
-  badge?: React.ReactNode;
-  children: React.ReactNode;
-}) {
-  return (
-    <section className="mt-8">
-      <button onClick={onToggle} className="flex items-center gap-2 mb-3 w-full text-left">
-        <Icon size={16} style={{ color: NAVY }} className="shrink-0" />
-        <h2 className="pf-display text-lg" style={{ color: NAVY }}>{title}</h2>
-        {badge}
-        <ChevronDown
-          size={16}
-          style={{ color: MUTED, marginLeft: "auto", transform: open ? "none" : "rotate(-90deg)", transition: "transform .2s" }}
-        />
-      </button>
-      {open && <div className="accordion-body">{children}</div>}
-    </section>
-  );
-}
-
-function Card({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  return (
-    <div className={`rounded-xl ${className}`} style={{ background: "#FFFFFF", border: `1px solid ${EDGE}` }}>
-      {children}
-    </div>
-  );
-}
-
-function AddBtn({ onClick, label }: { onClick: () => void; label: string }) {
-  return (
-    <button onClick={onClick} className="flex items-center gap-1.5 text-xs w-full px-4 py-3 border-t" style={{ color: NAVY, borderColor: LINE }}>
-      <Plus size={13} /> {label}
-    </button>
-  );
-}
-
-function Field({
-  value, onChange, onBlur, editable, placeholder, className = "", style = {}, type = "text", onLocked,
-}: {
-  value: string | number | undefined;
-  onChange: (value: string) => void;
-  onBlur?: () => void;
-  editable: boolean;
-  placeholder?: string;
-  className?: string;
-  style?: React.CSSProperties;
-  type?: string;
-  onLocked?: () => void;
-}) {
-  return (
-    <input
-      type={type}
-      value={value ?? ""}
-      onChange={(e) => onChange(e.target.value)}
-      onBlur={onBlur}
-      readOnly={!editable}
-      onFocus={(e) => { if (!editable) { e.target.blur(); onLocked?.(); } }}
-      placeholder={editable ? placeholder : ""}
-      className={`bg-transparent ${className}`}
-      style={{ cursor: editable ? "text" : "default", ...style }}
-    />
-  );
-}
-
 /* ---------- Calendar ---------- */
-type CalendarEvent = { label: string; color: string; done?: boolean };
-
 function CalendarView({ weddingDate, events }: { weddingDate: string; events: Record<string, CalendarEvent[]> }) {
   const wedding = new Date(weddingDate + "T00:00:00");
   const [cursor, setCursor] = useState(() => new Date(new Date().getFullYear(), new Date().getMonth(), 1));
@@ -409,10 +151,7 @@ type OpenSectionKey = "calendar" | "checklist" | "rundown" | "arrivals" | "lodgi
 
 /* ================= MAIN ================= */
 export default function Persiapan() {
-  const [data, setData] = useState<ProgressData>(DEFAULT_DATA);
-  const [loading, setLoading] = useState(true);
-  const [saving, setSaving] = useState(false);
-  const [loadError, setLoadError] = useState(false);
+  const { data, loading, saving, loadError, past, future, undo, redo, commit, draft, persist, addRow, delRow, editRow } = useProgressData();
   const [taskQuery, setTaskQuery] = useState("");
   const [openSection, setOpenSection] = useState<Record<OpenSectionKey, boolean>>({
     calendar: true, checklist: true, rundown: true, arrivals: true,
@@ -420,135 +159,13 @@ export default function Persiapan() {
   });
   const toggleSection = (k: OpenSectionKey) => setOpenSection(s => ({ ...s, [k]: !s[k] }));
   const [showSettings, setShowSettings] = useState(false);
-  const [past, setPast] = useState<ProgressData[]>([]);
-  const [future, setFuture] = useState<ProgressData[]>([]);
-  const saveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const dataRef = useRef(data);
-  const lastCommitted = useRef(data);
-  useEffect(() => { dataRef.current = data; }, [data]);
 
   const isEditor = true; // akses terbuka — siapa pun bisa mengedit, sama seperti /daftar-tamu
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const res = await fetch(PROGRESS_ENDPOINT);
-        if (!res.ok) throw new Error("failed to load");
-        const json = (await res.json()) as { data: Partial<ProgressData> | null };
-        if (json.data) {
-          const parsed = json.data;
-          const merged: ProgressData = {
-            ...DEFAULT_DATA,
-            ...parsed,
-            settings: { ...DEFAULT_DATA.settings, ...(parsed.settings || {}) },
-          };
-          lastCommitted.current = merged;
-          dataRef.current = merged;
-          setData(merged);
-        } else {
-          lastCommitted.current = DEFAULT_DATA;
-          await fetch(PROGRESS_ENDPOINT, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(DEFAULT_DATA),
-          });
-        }
-      } catch {
-        setLoadError(true);
-      } finally {
-        setLoading(false);
-      }
-    })();
-  }, []);
-
-  const scheduleSave = useCallback((next: ProgressData) => {
-    setSaving(true);
-    if (saveTimer.current) clearTimeout(saveTimer.current);
-    saveTimer.current = setTimeout(async () => {
-      try {
-        await fetch(PROGRESS_ENDPOINT, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(next),
-        });
-      } catch { /* retry on next change */ }
-      finally { setSaving(false); }
-    }, 400);
-  }, []);
-
-  // persist = terapkan perubahan + catat titik riwayat (untuk undo)
-  const persist = useCallback((next: ProgressData) => {
-    setPast(p => [...p.slice(-59), lastCommitted.current]);
-    setFuture([]);
-    lastCommitted.current = next;
-    dataRef.current = next;
-    setData(next);
-    scheduleSave(next);
-  }, [scheduleSave]);
-
-  const undo = useCallback(() => {
-    setPast(p => {
-      if (p.length === 0) return p;
-      const prev = p[p.length - 1];
-      setFuture(f => [lastCommitted.current, ...f].slice(0, 60));
-      lastCommitted.current = prev;
-      dataRef.current = prev;
-      setData(prev);
-      scheduleSave(prev);
-      return p.slice(0, -1);
-    });
-  }, [scheduleSave]);
-
-  const redo = useCallback(() => {
-    setFuture(f => {
-      if (f.length === 0) return f;
-      const next = f[0];
-      setPast(p => [...p, lastCommitted.current].slice(-60));
-      lastCommitted.current = next;
-      dataRef.current = next;
-      setData(next);
-      scheduleSave(next);
-      return f.slice(1);
-    });
-  }, [scheduleSave]);
-
-  // pintasan keyboard Ctrl/Cmd+Z (undo) dan Ctrl/Cmd+Shift+Z / Ctrl+Y (redo)
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      const mod = e.ctrlKey || e.metaKey;
-      if (!mod) return;
-      const k = e.key.toLowerCase();
-      if (k === "z" && !e.shiftKey) { e.preventDefault(); undo(); }
-      else if ((k === "z" && e.shiftKey) || k === "y") { e.preventDefault(); redo(); }
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [undo, redo]);
 
   const requireEdit = (action: () => void) => action();
   const lockedPrompt = () => {};
 
   const newId = () => Math.random().toString(36).slice(2, 9);
-  const commit = () => persist(dataRef.current);
-  const draft = (patch: Partial<ProgressData>) => setData(d => { const n = { ...d, ...patch }; dataRef.current = n; return n; });
-
-  /* generic list ops */
-  const addRow = <K extends ListKey>(key: K, row: Omit<ProgressData[K][number], "id">) =>
-    requireEdit(() => {
-      const list = data[key] as ProgressData[K];
-      const newRow = { id: newId(), ...row } as ProgressData[K][number];
-      persist({ ...data, [key]: [...list, newRow] } as ProgressData);
-    });
-  const delRow = <K extends ListKey>(key: K, id: string) =>
-    requireEdit(() => {
-      const list = data[key] as Array<{ id: string }>;
-      persist({ ...data, [key]: list.filter(r => r.id !== id) } as ProgressData);
-    });
-  const editRow = <K extends ListKey>(key: K, id: string, field: string, value: unknown) => {
-    const list = data[key] as Array<Record<string, unknown> & { id: string }>;
-    const nextList = list.map(r => (r.id === id ? { ...r, [field]: value } : r));
-    draft({ [key]: nextList } as unknown as Partial<ProgressData>);
-  };
 
   /* tasks (flat) */
   const toggleTask = (tid: string) => requireEdit(() => persist({
@@ -623,19 +240,7 @@ export default function Persiapan() {
       className="min-h-screen pb-16"
       style={{ background: CREAM, fontFamily: "var(--font-persiapan-body), sans-serif", color: INK }}
     >
-      <style>{`
-        .pf-display { font-family: var(--font-persiapan-display), serif; }
-        .pf-mono { font-family: var(--font-persiapan-mono), monospace; }
-        input:focus, textarea:focus { outline: none; }
-        /* cegah teks tembus batas: input tidak dipaksa selebar isinya */
-        input, textarea { min-width: 0; max-width: 100%; box-sizing: border-box; }
-        input::placeholder { overflow: hidden; text-overflow: ellipsis; }
-        .task-check { transition: all .15s ease; }
-        .task-row:hover .task-check { border-color: ${GOLD}; }
-        .accordion-body { animation: expand .25s ease; }
-        @keyframes expand { from { opacity:0; transform: translateY(-4px);} to { opacity:1; transform:none;} }
-        @media (prefers-reduced-motion: reduce) { .accordion-body { animation: none; } }
-      `}</style>
+      <style>{PERSIAPAN_GLOBAL_STYLES}</style>
 
       {/* ---------- HERO + COUNTDOWN ---------- */}
       <div style={{ background: `linear-gradient(150deg, ${NAVY} 0%, ${NAVY_DARK} 100%)` }}>
@@ -1257,7 +862,7 @@ export default function Persiapan() {
               {expenses.map(e => (
                 <div key={e.id} className="flex items-start gap-2 py-2.5 border-t" style={{ borderColor: LINE }}>
                   <button
-                    onClick={() => persist({ ...dataRef.current, expenses: dataRef.current.expenses.map(x => x.id === e.id ? { ...x, paid: !x.paid } : x) })}
+                    onClick={() => persist({ ...data, expenses: data.expenses.map(x => x.id === e.id ? { ...x, paid: !x.paid } : x) })}
                     className="mt-0.5 w-5 h-5 rounded-full flex items-center justify-center shrink-0"
                     style={{ border: `1.5px solid ${e.paid ? "#4B7B5A" : "#D3CBB8"}`, background: e.paid ? "#4B7B5A" : "transparent" }}
                     aria-label={e.paid ? "Tandai belum lunas" : "Tandai lunas"}
