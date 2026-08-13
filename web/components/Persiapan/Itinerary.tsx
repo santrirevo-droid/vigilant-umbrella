@@ -1,14 +1,17 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
-import { ChevronLeft, Loader2, Plus, Trash2 } from "lucide-react";
-import { CREAM, GOLD, INK, LINE, MUTED, NAVY, PERSIAPAN_GLOBAL_STYLES, fmtLongDate } from "./theme";
+import { ChevronLeft, Loader2, Pencil, Plus, Trash2 } from "lucide-react";
+import { CREAM, EDGE, GOLD, INK, LINE, MUTED, NAVY, PERSIAPAN_GLOBAL_STYLES, fmtLongDate, fmtShortDate } from "./theme";
 import { Field } from "./ui";
 import { useProgressData } from "./useProgressData";
 
 export default function Itinerary() {
   const { data, loading, saving, loadError, commit, addRow, delRow, editRow } = useProgressData();
-  const isEditor = true; // akses terbuka — sama seperti halaman /persiapan utama
+  // terkunci (read-only) secara default — tombol "Edit" di atas membukanya,
+  // supaya teks tidak berubah tidak sengaja saat sekadar dibaca
+  const [isEditor, setIsEditor] = useState(false);
   const lockedPrompt = () => {};
 
   if (loading) {
@@ -38,7 +41,20 @@ export default function Itinerary() {
         >
           <ChevronLeft size={13} /> Rencana Persiapan
         </Link>
-        <h1 className="pf-display text-2xl mt-2" style={{ color: NAVY }}>Itinerary Keluarga Falah</h1>
+        <div className="flex items-center justify-between gap-3 mt-2">
+          <h1 className="pf-display text-2xl" style={{ color: NAVY }}>Itinerary Keluarga Falah</h1>
+          <button
+            onClick={() => setIsEditor((v) => !v)}
+            className="pf-mono inline-flex shrink-0 items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs"
+            style={
+              isEditor
+                ? { color: "#FFF", background: NAVY }
+                : { color: NAVY, border: `1px solid ${EDGE}`, background: "#FFF" }
+            }
+          >
+            <Pencil size={12} /> {isEditor ? "Selesai" : "Edit"}
+          </button>
+        </div>
         {saving && <p className="pf-mono text-xs mt-1" style={{ color: GOLD }}>Menyimpan…</p>}
       </div>
 
@@ -60,42 +76,51 @@ export default function Itinerary() {
             return (
               <div key={step.id}>
                 {showDateHeader && (
-                  <div className="pf-mono text-xs uppercase tracking-wide mt-6 first:mt-0" style={{ color: GOLD }}>
+                  <div
+                    className="pf-mono inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wide mt-6 first:mt-0"
+                    style={{ color: GOLD, background: "rgba(184,152,90,0.12)", border: `1px solid ${GOLD}` }}
+                  >
                     {fmtLongDate(step.date) || "Tanggal belum diatur"}
                   </div>
                 )}
                 <div className="flex items-start gap-3 py-3 border-t" style={{ borderColor: LINE }}>
-                  <div className="shrink-0 w-24 pt-0.5">
+                  <div className="shrink-0 w-24 pt-0.5 flex flex-col gap-1">
                     {isEditor ? (
                       <input
                         type="time"
                         value={step.time || ""}
                         onChange={(e) => editRow("familyItinerary", step.id, "time", e.target.value)}
                         onBlur={commit}
-                        className="pf-mono text-sm font-semibold bg-transparent w-full"
-                        style={{ color: NAVY }}
+                        className="pf-mono text-sm font-semibold w-full rounded-md border px-1.5 py-1 text-center"
+                        style={{ color: NAVY, borderColor: EDGE, background: "#FFF" }}
                       />
                     ) : (
                       <span className="pf-mono text-sm font-semibold" style={{ color: NAVY }}>{step.time || "–"}</span>
                     )}
-                    {isEditor && (
+                    {isEditor ? (
                       <input
                         type="date"
                         value={step.date || ""}
                         onChange={(e) => editRow("familyItinerary", step.id, "date", e.target.value)}
                         onBlur={commit}
-                        className="pf-mono text-[10px] bg-transparent block mt-0.5 w-full"
-                        style={{ color: MUTED }}
+                        className="pf-mono text-[10px] w-full rounded-md border px-1 py-0.5 text-center"
+                        style={{ color: MUTED, borderColor: EDGE, background: "#FFF" }}
                       />
+                    ) : (
+                      <span className="pf-mono text-[10px]" style={{ color: MUTED }}>{fmtShortDate(step.date) || "–"}</span>
                     )}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <Field value={step.activity} editable={isEditor} onLocked={lockedPrompt} onBlur={commit}
+                    <Field value={step.activity} editable={isEditor} onLocked={lockedPrompt} onBlur={commit} multiline
                       onChange={(v) => editRow("familyItinerary", step.id, "activity", v)} placeholder="cth. Berangkat dari Surabaya"
-                      className="text-sm w-full font-medium" style={{ color: INK }} />
-                    <Field value={step.note} editable={isEditor} onLocked={lockedPrompt} onBlur={commit}
-                      onChange={(v) => editRow("familyItinerary", step.id, "note", v)} placeholder="Catatan…"
-                      className="text-xs w-full mt-0.5" style={{ color: MUTED }} />
+                      className={`text-sm w-full font-medium leading-snug ${isEditor ? "border-b py-0.5" : ""}`}
+                      style={{ color: INK, borderColor: LINE }} />
+                    {(isEditor || step.note) && (
+                      <Field value={step.note} editable={isEditor} onLocked={lockedPrompt} onBlur={commit} multiline
+                        onChange={(v) => editRow("familyItinerary", step.id, "note", v)} placeholder="Catatan…"
+                        className={`text-xs w-full mt-1.5 leading-snug ${isEditor ? "border-b py-0.5" : ""}`}
+                        style={{ color: MUTED, borderColor: LINE }} />
+                    )}
                   </div>
                   {isEditor && (
                     <button onClick={() => delRow("familyItinerary", step.id)} className="p-1" aria-label="Hapus jadwal">

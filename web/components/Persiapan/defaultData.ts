@@ -121,7 +121,47 @@ export const DEFAULT_DATA: ProgressData = {
     { id: "e1", item: "DP sewa venue", category: "Sewa Venue", amount: 0, date: "", paid: false, note: "" },
   ],
   familyItinerary: [
-    { id: "fi1", date: "2026-08-16", time: "12:00", activity: "Berangkat dari Surabaya", note: "" },
-    { id: "fi2", date: "2026-08-16", time: "14:00", activity: "Sampai di bandara", note: "" },
+    // 14 Agustus (Jumat) — dari Bandara Surabaya langsung ke Pontianak, lalu ke penginapan
+    { id: "fi1", date: "2026-08-14", time: "12:00", activity: "Sudah di Bandara Surabaya", note: "Bandara Juanda — bersiap keberangkatan" },
+    { id: "fi2", date: "2026-08-14", time: "14:00", activity: "Sampai di Bandara Supadio, Pontianak", note: "" },
+    { id: "fi3", date: "2026-08-14", time: "14:30", activity: "Perjalanan menuju penginapan di Mempawah", note: "± 2 jam perjalanan darat — estimasi" },
+    { id: "fi4", date: "2026-08-14", time: "16:30", activity: "Sampai & check-in penginapan", note: "Estimasi" },
+    { id: "fi5", date: "2026-08-14", time: "19:00", activity: "Makan malam", note: "Estimasi" },
+
+    // 15 Agustus (Sabtu) — hari santai
+    { id: "fi6", date: "2026-08-15", time: "08:00", activity: "Sarapan & istirahat di penginapan", note: "Estimasi" },
+    { id: "fi7", date: "2026-08-15", time: "10:00", activity: "Wisata santai sekitar Mempawah/Pontianak", note: "Opsional — estimasi" },
+    { id: "fi8", date: "2026-08-15", time: "19:00", activity: "Makan malam", note: "Estimasi" },
+
+    // 16 Agustus (Minggu) — hari santai
+    { id: "fi9", date: "2026-08-16", time: "08:00", activity: "Sarapan & istirahat di penginapan", note: "Estimasi" },
+    { id: "fi10", date: "2026-08-16", time: "10:00", activity: "Wisata santai / kumpul keluarga", note: "Opsional — estimasi" },
+    { id: "fi11", date: "2026-08-16", time: "19:00", activity: "Makan malam", note: "Estimasi" },
+
+    // 17 Agustus (Senin) — H-1: istirahat, wisata santai, lalu gladi resepsi
+    { id: "fi12", date: "2026-08-17", time: "07:00", activity: "Sarapan pagi di penginapan", note: "Estimasi" },
+    { id: "fi13", date: "2026-08-17", time: "09:00", activity: "Wisata santai sekitar Mempawah/Pontianak", note: "Opsional, sambil menunggu hari-H — estimasi" },
+    { id: "fi14", date: "2026-08-17", time: "12:00", activity: "Makan siang", note: "Estimasi" },
+    { id: "fi15", date: "2026-08-17", time: "15:00", activity: "Bersiap menuju venue", note: "Estimasi" },
+    { id: "fi16", date: "2026-08-17", time: "16:00", activity: "Gladi resepsi & bantu setup venue", note: "Mempawah Convention Center — estimasi" },
+    { id: "fi17", date: "2026-08-17", time: "19:00", activity: "Makan malam bersama keluarga besar", note: "Estimasi" },
+    { id: "fi18", date: "2026-08-17", time: "21:00", activity: "Kembali ke penginapan, istirahat", note: "Estimasi" },
+
+    // 18 Agustus (Selasa) — hari-H
+    { id: "fi19", date: "2026-08-18", time: "06:00", activity: "Bersiap & sarapan pagi", note: "Estimasi" },
+    { id: "fi20", date: "2026-08-18", time: "08:00", activity: "Akad Nikah", note: "Mempawah Convention Center" },
+    { id: "fi21", date: "2026-08-18", time: "09:00", activity: "Sesi foto keluarga", note: "" },
+    { id: "fi22", date: "2026-08-18", time: "12:00", activity: "Resepsi dimulai, makan siang bersama tamu", note: "" },
+    { id: "fi23", date: "2026-08-18", time: "17:00", activity: "Resepsi selesai", note: "" },
+    { id: "fi24", date: "2026-08-18", time: "19:00", activity: "Makan malam / syukuran kecil bersama keluarga", note: "Estimasi" },
+    { id: "fi25", date: "2026-08-18", time: "21:00", activity: "Istirahat di penginapan", note: "Estimasi" },
+
+    // 19 Agustus (Rabu) — pulang
+    { id: "fi26", date: "2026-08-19", time: "07:00", activity: "Sarapan pagi & check-out penginapan", note: "Estimasi" },
+    { id: "fi27", date: "2026-08-19", time: "08:00", activity: "Berangkat menuju Bandara Supadio", note: "± 2 jam perjalanan darat" },
+    { id: "fi28", date: "2026-08-19", time: "10:00", activity: "Sampai di bandara, check-in", note: "Estimasi" },
+    { id: "fi29", date: "2026-08-19", time: "11:30", activity: "Penerbangan menuju Surabaya", note: "Estimasi — sesuaikan dengan jadwal penerbangan aktual" },
+    { id: "fi30", date: "2026-08-19", time: "13:00", activity: "Sampai di Bandara Juanda, Surabaya", note: "Estimasi" },
+    { id: "fi31", date: "2026-08-19", time: "14:30", activity: "Tiba kembali di rumah, Kediri", note: "Perjalanan darat Surabaya–Kediri — estimasi" },
   ],
 };

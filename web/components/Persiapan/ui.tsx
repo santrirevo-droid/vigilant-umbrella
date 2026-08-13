@@ -48,7 +48,7 @@ export function AddBtn({ onClick, label }: { onClick: () => void; label: string 
 }
 
 export function Field({
-  value, onChange, onBlur, editable, placeholder, className = "", style = {}, type = "text", onLocked,
+  value, onChange, onBlur, editable, placeholder, className = "", style = {}, type = "text", onLocked, multiline,
 }: {
   value: string | number | undefined;
   onChange: (value: string) => void;
@@ -59,7 +59,36 @@ export function Field({
   style?: React.CSSProperties;
   type?: string;
   onLocked?: () => void;
+  /** wraps onto multiple lines instead of clipping/scrolling horizontally
+   * — for text that can run long (e.g. itinerary activity/note). */
+  multiline?: boolean;
 }) {
+  if (multiline) {
+    return (
+      <textarea
+        value={value ?? ""}
+        onChange={(e) => onChange(e.target.value)}
+        onBlur={onBlur}
+        readOnly={!editable}
+        onFocus={(e) => { if (!editable) { e.target.blur(); onLocked?.(); } }}
+        placeholder={editable ? placeholder : ""}
+        rows={1}
+        ref={(el) => {
+          if (!el) return;
+          el.style.height = "auto";
+          el.style.height = `${el.scrollHeight}px`;
+        }}
+        onInput={(e) => {
+          const el = e.currentTarget;
+          el.style.height = "auto";
+          el.style.height = `${el.scrollHeight}px`;
+        }}
+        className={`bg-transparent resize-none overflow-hidden ${className}`}
+        style={{ cursor: editable ? "text" : "default", ...style }}
+      />
+    );
+  }
+
   return (
     <input
       type={type}
