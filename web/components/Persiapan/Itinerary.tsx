@@ -26,6 +26,15 @@ export default function Itinerary() {
     .slice()
     .sort((a, b) => (a.date + a.time).localeCompare(b.date + b.time));
 
+  // kelompokkan per tanggal supaya tiap hari punya tombol "+ Tambah
+  // kegiatan" sendiri, bukan satu tombol global di bawah semuanya
+  const groups: { date: string; items: typeof steps }[] = [];
+  for (const step of steps) {
+    const lastGroup = groups[groups.length - 1];
+    if (lastGroup && lastGroup.date === step.date) lastGroup.items.push(step);
+    else groups.push({ date: step.date, items: [step] });
+  }
+
   return (
     <div
       className="min-h-screen pb-16"
@@ -67,23 +76,20 @@ export default function Itinerary() {
       )}
 
       <div className="max-w-2xl mx-auto px-6 mt-8">
-        {steps.length === 0 ? (
+        {groups.length === 0 ? (
           <p className="text-sm" style={{ color: MUTED }}>Belum ada jadwal.</p>
         ) : (
-          steps.map((step, i) => {
-            const prev = steps[i - 1];
-            const showDateHeader = !prev || prev.date !== step.date;
-            return (
-              <div key={step.id}>
-                {showDateHeader && (
-                  <div
-                    className="pf-mono inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wide mt-6 first:mt-0"
-                    style={{ color: GOLD, background: "rgba(184,152,90,0.12)", border: `1px solid ${GOLD}` }}
-                  >
-                    {fmtLongDate(step.date) || "Tanggal belum diatur"}
-                  </div>
-                )}
-                <div className="flex items-start gap-3 py-3 border-t" style={{ borderColor: LINE }}>
+          groups.map((group) => (
+            <div key={group.date || "no-date"} className="mt-6 first:mt-0">
+              <div
+                className="pf-mono inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wide"
+                style={{ color: GOLD, background: "rgba(184,152,90,0.12)", border: `1px solid ${GOLD}` }}
+              >
+                {fmtLongDate(group.date) || "Tanggal belum diatur"}
+              </div>
+
+              {group.items.map((step) => (
+                <div key={step.id} className="flex items-start gap-3 py-3 border-t" style={{ borderColor: LINE }}>
                   <div className="shrink-0 w-24 pt-0.5 flex flex-col gap-1">
                     {isEditor ? (
                       <input
@@ -128,18 +134,28 @@ export default function Itinerary() {
                     </button>
                   )}
                 </div>
-              </div>
-            );
-          })
+              ))}
+
+              {isEditor && (
+                <button
+                  onClick={() => addRow("familyItinerary", { date: group.date, time: "", activity: "", note: "" })}
+                  className="flex items-center gap-1.5 text-xs mt-2 pt-2 border-t"
+                  style={{ color: NAVY, borderColor: LINE }}
+                >
+                  <Plus size={13} /> Tambah kegiatan
+                </button>
+              )}
+            </div>
+          ))
         )}
 
         {isEditor && (
           <button
-            onClick={() => addRow("familyItinerary", { date: steps[steps.length - 1]?.date || "", time: "", activity: "", note: "" })}
-            className="flex items-center gap-1.5 text-xs mt-4"
-            style={{ color: NAVY }}
+            onClick={() => addRow("familyItinerary", { date: groups[groups.length - 1]?.date || "", time: "", activity: "", note: "" })}
+            className="pf-mono flex items-center gap-1.5 text-xs mt-6"
+            style={{ color: MUTED }}
           >
-            <Plus size={13} /> Tambah kegiatan
+            <Plus size={13} /> Tambah hari baru
           </button>
         )}
       </div>
