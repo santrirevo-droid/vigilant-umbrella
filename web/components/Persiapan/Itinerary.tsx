@@ -7,12 +7,27 @@ import { CREAM, EDGE, GOLD, INK, LINE, MUTED, NAVY, PERSIAPAN_GLOBAL_STYLES, fmt
 import { Field } from "./ui";
 import { useProgressData } from "./useProgressData";
 
+// pengaman ringan saja (bukan keamanan sungguhan — data di baliknya tetap
+// lewat endpoint tanpa auth) supaya tidak ke-edit tidak sengaja saat dibuka
+const EDIT_PASSWORD = "0000";
+
 export default function Itinerary() {
   const { data, loading, saving, loadError, commit, addRow, delRow, editRow } = useProgressData();
   // terkunci (read-only) secara default — tombol "Edit" di atas membukanya,
   // supaya teks tidak berubah tidak sengaja saat sekadar dibaca
   const [isEditor, setIsEditor] = useState(false);
   const lockedPrompt = () => {};
+
+  const handleEditToggle = () => {
+    if (isEditor) {
+      setIsEditor(false);
+      return;
+    }
+    const input = window.prompt("Masukkan password untuk mode edit:");
+    if (input === null) return;
+    if (input === EDIT_PASSWORD) setIsEditor(true);
+    else window.alert("Password salah.");
+  };
 
   if (loading) {
     return (
@@ -53,7 +68,7 @@ export default function Itinerary() {
         <div className="flex items-center justify-between gap-3 mt-2">
           <h1 className="pf-display text-2xl" style={{ color: NAVY }}>Itinerary Keluarga Falah</h1>
           <button
-            onClick={() => setIsEditor((v) => !v)}
+            onClick={handleEditToggle}
             className="pf-mono inline-flex shrink-0 items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs"
             style={
               isEditor
