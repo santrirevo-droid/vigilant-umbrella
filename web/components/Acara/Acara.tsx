@@ -8,11 +8,15 @@ import { useRevealOnScroll } from "@/hooks/useRevealOnScroll";
 import { CALENDAR_GOOGLE_URL } from "@/lib/calendar";
 import { WEDDING_DATE_ISO, events, venue } from "@/lib/weddingData";
 
-const WEDDING_DATE = new Date(WEDDING_DATE_ISO).getTime();
 const [akad, resepsi] = events;
 
+// target parsed fresh inside the function (not hoisted to a module-level
+// constant) so every call — including from the interval below — is a
+// fully self-contained computation with nothing pre-baked/cached across
+// calls or environments
 function getTimeLeft() {
-  const diff = Math.max(0, WEDDING_DATE - Date.now());
+  const target = new Date(WEDDING_DATE_ISO).getTime();
+  const diff = Math.max(0, target - Date.now());
   return {
     days: Math.floor(diff / 86_400_000),
     hours: Math.floor((diff / 3_600_000) % 24),
