@@ -74,7 +74,7 @@ export default function Mempelai() {
         <SectionHeading eyebrow="Mempelai" titleClassName="font-title-mempelai font-medium" />
 
         <p data-reveal className="mx-auto mt-4 max-w-sm font-mempelai text-[15px] leading-[1.6] text-on-maroon-soft">
-          Dengan memohon rahmat Allah SWT, kami bermaksud menyelenggarakan
+          Alhamdulillah, dengan rahmat Allah SWT telah dilangsungkan
           pernikahan putra-putri kami:
         </p>
 
