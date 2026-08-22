@@ -6,11 +6,24 @@ export type GallerySection = {
   photos: GalleryPhoto[];
 };
 
-/** Chronological wedding-day gallery, sequenced from the photographers'
- * own camera frame numbers (not just folder names) so the story actually
- * runs in the order the day happened: decor → persiapan → arak-arakan →
- * akad → sungkeman → foto sesi/bersama akad → resepsi. */
+/** Chronological gallery, sequenced from the photographers' own camera
+ * frame numbers (not just folder names) so the story actually runs in
+ * the order it happened: siraman (sehari sebelumnya) → decor → persiapan
+ * → arak-arakan → akad → sungkeman → foto sesi/bersama akad → resepsi. */
 export const gallerySections: GallerySection[] = [
+  {
+    slug: "siraman",
+    title: "Siraman",
+    subtitle: "Tradisi sehari sebelum akad",
+    photos: [
+      { src: "/gallery/siraman/1.jpg", width: 1920, height: 2880 },
+      { src: "/gallery/siraman/2.jpg", width: 1920, height: 2880 },
+      { src: "/gallery/siraman/3.jpg", width: 1920, height: 2880 },
+      { src: "/gallery/siraman/4.jpg", width: 1920, height: 1280 },
+      { src: "/gallery/siraman/5.jpg", width: 1920, height: 2880 },
+      { src: "/gallery/siraman/6.jpg", width: 1920, height: 1280 },
+    ],
+  },
   {
     slug: "dekor",
     title: "Dekorasi",

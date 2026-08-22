@@ -196,8 +196,8 @@ export default function Gallery() {
       <div ref={introRef} className="mx-auto max-w-md">
         <SectionHeading eyebrow="Galeri" title="Kilas Balik" />
         <p data-reveal className="mx-auto mt-4 max-w-sm font-body text-[15px] leading-[1.6] text-on-maroon-soft">
-          Rangkaian momen hari bahagia kami, dari persiapan pagi hingga
-          resepsi malam — 18 Agustus 2026.
+          Rangkaian momen hari bahagia kami, dari siraman sehari sebelumnya
+          hingga resepsi malam — 17–18 Agustus 2026.
         </p>
       </div>
 
