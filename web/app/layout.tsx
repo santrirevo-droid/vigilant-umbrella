@@ -58,17 +58,17 @@ const ttFors = localFont({
   weight: "100 900",
 });
 
-// used only for the "Ucapan & Doa" guestbook heading
+// used only for the RSVP section's "Konfirmasi Kehadiran" heading
 const magnoliaScript = localFont({
   src: "../assets/fonts/magnolia-script/MagnoliaScript.otf",
-  variable: "--font-wishes",
+  variable: "--font-rsvp",
   weight: "400",
 });
 
 export const metadata: Metadata = {
-  title: "Falah & Risyqaa — Telah Menikah",
+  title: "Falah & Risyqaa — The Wedding Of",
   description:
-    "Terima kasih atas doa dan restunya — kilas balik pernikahan Falah Fauzan & Risyqaa Syafitri, Selasa, 18 Agustus 2026, Mempawah Convention Center.",
+    "Undangan pernikahan digital Falah Fauzan & Risyqaa Syafitri — Selasa, 18 Agustus 2026, Mempawah Convention Center.",
 };
 
 // Without this, browsers with an auto-dark-theme feature (e.g. Android

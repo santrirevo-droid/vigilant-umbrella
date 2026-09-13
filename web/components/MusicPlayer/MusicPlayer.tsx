@@ -20,6 +20,7 @@ const MusicPlayer = forwardRef<MusicPlayerHandle, MusicPlayerProps>(
   ({ src = "/music/wedding-song.m4a", className = "" }, ref) => {
     const audioRef = useRef<HTMLAudioElement>(null);
     const [isPlaying, setIsPlaying] = useState(false);
+    const [hasStarted, setHasStarted] = useState(false);
 
     useImperativeHandle(ref, () => ({
       play: () => {
@@ -27,9 +28,13 @@ const MusicPlayer = forwardRef<MusicPlayerHandle, MusicPlayerProps>(
         if (!audio) return;
         audio
           .play()
-          .then(() => setIsPlaying(true))
+          .then(() => {
+            setIsPlaying(true);
+            setHasStarted(true);
+          })
           .catch(() => {
             // autoplay blocked or asset missing — user can still use the toggle
+            setHasStarted(true);
           });
       },
     }));
@@ -44,6 +49,8 @@ const MusicPlayer = forwardRef<MusicPlayerHandle, MusicPlayerProps>(
         setIsPlaying(false);
       }
     };
+
+    if (!hasStarted) return <audio ref={audioRef} src={src} loop preload="none" />;
 
     return (
       <>
