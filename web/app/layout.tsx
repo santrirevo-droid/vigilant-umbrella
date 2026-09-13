@@ -66,9 +66,9 @@ const magnoliaScript = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Falah & Risyqaa — Telah Menikah",
+  title: "Saiful & Nufus — Undangan Pernikahan",
   description:
-    "Terima kasih atas doa dan restunya — kilas balik pernikahan Falah Fauzan & Risyqaa Syafitri, Selasa, 18 Agustus 2026, Mempawah Convention Center.",
+    "Undangan pernikahan Saiful Amri Tanjung & Nufus Nurcholisoh, Minggu, 01 November 2026, di Pandeglang.",
 };
 
 // Without this, browsers with an auto-dark-theme feature (e.g. Android

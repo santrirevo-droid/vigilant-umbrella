@@ -568,7 +568,7 @@ export default function Persiapan() {
                     <div className="col-span-2">
                       <div className="text-[10px] uppercase tracking-wide pf-mono" style={{ color: MUTED }}>Transportasi</div>
                       <Field value={a.transport} editable={isEditor} onLocked={lockedPrompt} onBlur={commit}
-                        onChange={(v) => editRow("arrivals", a.id, "transport", v)} placeholder="cth. Pesawat via Bandara Supadio"
+                        onChange={(v) => editRow("arrivals", a.id, "transport", v)} placeholder="cth. Mobil pribadi / travel"
                         className="text-sm w-full border-b py-0.5" style={{ color: INK, borderColor: LINE }} />
                     </div>
                     <div className="col-span-2">

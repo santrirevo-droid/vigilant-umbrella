@@ -35,8 +35,8 @@ export default function Footer() {
         </p>
 
         <p data-reveal className="mt-6 font-display text-lg italic leading-[1.7] text-on-maroon-soft">
-          Atas kehadiran serta doa restu Bapak/Ibu/Saudara/i, kami
-          sekeluarga mengucapkan terima kasih yang sebesar-besarnya.
+          Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila
+          Bapak/Ibu/Saudara/i berkenan hadir serta memberikan doa restu.
         </p>
         <p data-reveal className="mt-3 font-display text-lg italic leading-[1.7] text-on-maroon-soft">
           Wassalamu&apos;alaikum Warahmatullahi Wabarakatuh

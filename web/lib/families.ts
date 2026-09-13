@@ -12,11 +12,11 @@ export type Family = {
  * names, so keep slugs unique and don't rename one after sharing its link.
  */
 export const families: Family[] = [
-  { slug: "keluarga-bapak-nonot", label: "Keluarga Bapak Drh. Nonot Suhartono" },
-  { slug: "keluarga-ibu-heriana", label: "Keluarga Ibu Drh. Heriana Martawati" },
-  { slug: "keluarga-bapak-safawi", label: "Keluarga Bapak Ir. Safawi" },
-  { slug: "keluarga-ibu-tuty", label: "Keluarga Ibu Tuty Oktavia" },
-  { slug: "falah-risyqaa", label: "Falah & Risyqaa (Teman & Kerabat Sendiri)" },
+  // TODO: ganti dengan nama orang tua sebenarnya, lalu bagikan satu link
+  // per keluarga (mis. /daftar-tamu/keluarga-mempelai-pria).
+  { slug: "keluarga-mempelai-pria", label: "Keluarga Mempelai Pria (Saiful Amri Tanjung)" },
+  { slug: "keluarga-mempelai-wanita", label: "Keluarga Mempelai Wanita (Nufus Nurcholisoh)" },
+  { slug: "saiful-nufus", label: "Saiful & Nufus (Teman & Kerabat Sendiri)" },
 ];
 
 export function findFamily(slug: string): Family | undefined {

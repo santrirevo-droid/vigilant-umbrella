@@ -3,7 +3,7 @@ import Link from "next/link";
 import { families } from "@/lib/families";
 
 export const metadata: Metadata = {
-  title: "Daftar Tamu — Falah & Risyqaa",
+  title: "Daftar Tamu — Saiful & Nufus",
   description: "Halaman untuk keluarga menambahkan nama tamu yang ingin diundang.",
 };
 
@@ -12,7 +12,7 @@ export default function DaftarTamuPage() {
     <main className="mx-auto flex min-h-full max-w-lg flex-col px-6 py-16">
       <h1 className="text-3xl font-bold text-on-maroon">Daftar Tamu Undangan</h1>
       <p className="mt-4 text-xl leading-relaxed text-on-maroon-soft">
-        Falah &amp; Risyqaa — Selasa, 18 Agustus 2026
+        Saiful &amp; Nufus — Minggu, 01 November 2026
       </p>
       <p className="mt-6 text-xl leading-relaxed text-on-maroon">
         Silakan pilih nama keluarga Anda di bawah ini, lalu tuliskan nama-nama
