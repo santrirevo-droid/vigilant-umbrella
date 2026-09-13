@@ -1,4 +1,3 @@
-import Acara from "@/components/Acara";
 import Divider from "@/components/Divider";
 import Footer from "@/components/Footer";
 import Gallery from "@/components/Gallery";
@@ -15,8 +14,6 @@ export default function Home() {
       <OpeningQuote />
       <Divider className="py-2" />
       <Mempelai />
-      <Divider className="py-2" />
-      <Acara />
       <Divider className="py-2" />
       <Gallery />
       <Divider className="py-2" />

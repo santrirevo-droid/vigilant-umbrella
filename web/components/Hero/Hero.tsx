@@ -90,22 +90,20 @@ export default function Hero() {
             </p>
 
             <p data-reveal className="font-accent text-sm font-medium tracking-[0.12em] text-on-maroon-soft [font-variant-caps:small-caps]">
-              The Wedding Of
+              Telah Menikah
             </p>
 
-            {/* monogram — simple text mark; swap for a custom crest image
-                once one exists for this couple */}
-            <div
-              data-reveal
-              className="flex w-[220px] shrink-0 items-center justify-center gap-3 rounded-full border border-accent/40 py-8 sm:w-[248px]"
-            >
-              <span className="font-script text-4xl leading-none text-accent sm:text-5xl">
-                {couple.groom.shortName.charAt(0)}
-              </span>
-              <span className="font-display text-xl italic text-accent/70">&amp;</span>
-              <span className="font-script text-4xl leading-none text-accent sm:text-5xl">
-                {couple.bride.shortName.charAt(0)}
-              </span>
+            {/* monogram — the couple's own gold F&R crest, extracted from
+                their Instagram invitation art */}
+            <div data-reveal className="w-[220px] shrink-0 sm:w-[248px]">
+              <FloralLayer
+                src="/floral/monogram-fr.png"
+                width={921}
+                height={731}
+                sizes="248px"
+                priority
+                className="h-auto w-full select-none"
+              />
             </div>
 
             <h1 data-reveal className="flex flex-wrap items-baseline justify-center gap-x-2 leading-none text-on-maroon">
@@ -123,25 +121,24 @@ export default function Hero() {
             <div data-reveal className="flex items-center gap-3">
               <span className="h-px w-8 bg-accent/40" />
               <p className="font-display text-lg font-semibold tracking-wide text-accent">
-                01 · 11 · 2026
+                18 · 08 · 2026
               </p>
               <span className="h-px w-8 bg-accent/40" />
             </div>
 
             <p data-reveal className="max-w-xs font-body text-[15px] leading-[1.7] text-on-maroon-soft">
-              Dengan memohon rahmat dan ridho Allah SWT, kami bermaksud
-              menyelenggarakan pernikahan kami dan mengharap kehadiran serta
-              doa restu Bapak/Ibu/Saudara/i.
+              Terima kasih atas kehadiran, doa, dan restu yang telah
+              diberikan untuk hari bahagia kami.
             </p>
           </div>
 
           <a
             data-reveal
-            href="#ayat-pembuka"
+            href="#galeri"
             className="mt-2 flex flex-col items-center gap-2 text-on-maroon-soft transition-colors hover:text-on-maroon"
           >
             <span className="font-accent text-[11px] tracking-[0.25em] [font-variant-caps:small-caps]">
-              Lihat undangan
+              Lihat kilas balik
             </span>
             <span className="flex h-8 w-5 items-start justify-center rounded-full border border-accent/40 p-1">
               <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-accent" />

@@ -66,7 +66,7 @@ export default function Itinerary() {
           <ChevronLeft size={13} /> Rencana Persiapan
         </Link>
         <div className="flex items-center justify-between gap-3 mt-2">
-          <h1 className="pf-display text-2xl" style={{ color: NAVY }}>Itinerary Keluarga</h1>
+          <h1 className="pf-display text-2xl" style={{ color: NAVY }}>Itinerary Keluarga Falah</h1>
           <button
             onClick={handleEditToggle}
             className="pf-mono inline-flex shrink-0 items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs"

@@ -21,8 +21,6 @@ export default function Wishes() {
   const { wishes, addWish } = useWishes();
 
   const [name, setName] = useState("");
-  const [attend, setAttend] = useState<"hadir" | "tidak">("hadir");
-  const [guests, setGuests] = useState("1");
   const [message, setMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -37,18 +35,16 @@ export default function Wishes() {
     setErrorMessage(null);
     setIsSubmitting(true);
     try {
-      await addWish({
-        name: name.trim(),
-        attend,
-        guests: attend === "hadir" ? guests : "",
-        message: message.trim(),
-      });
+      // attend/guests are vestigial now that the event is over — the API
+      // still expects a valid value, so this just satisfies that shape
+      // without exposing an RSVP concept that no longer applies.
+      await addWish({ name: name.trim(), attend: "hadir", guests: "", message: message.trim() });
       setName("");
       setMessage("");
       setJustSent(true);
       setTimeout(() => setJustSent(false), 2500);
     } catch {
-      setErrorMessage("Gagal mengirim konfirmasi. Periksa koneksi Anda dan coba lagi.");
+      setErrorMessage("Gagal mengirim ucapan. Periksa koneksi Anda dan coba lagi.");
     } finally {
       setIsSubmitting(false);
     }
@@ -112,10 +108,9 @@ export default function Wishes() {
       </div>
 
       <div className="relative mx-auto max-w-md">
-        <SectionHeading eyebrow="RSVP & Guestbook" title="Konfirmasi Kehadiran" titleClassName="font-wishes font-normal" />
+        <SectionHeading eyebrow="Guestbook" title="Ucapan & Doa" titleClassName="font-wishes font-normal" />
         <p data-reveal className="mt-4 font-display text-lg leading-[1.7] text-on-maroon-soft">
-          Mohon konfirmasi kehadiran Anda, serta bagikan ucapan dan doa
-          terbaik untuk kami berdua.
+          Bagikan ucapan dan doa terbaik Anda untuk kami berdua.
         </p>
 
         <form onSubmit={handleSubmit} className="mt-8 flex flex-col gap-5 text-left">
@@ -139,44 +134,6 @@ export default function Wishes() {
               className={fieldClass}
             />
           </div>
-
-          <div data-reveal>
-            <label className={labelClass}>Kehadiran</label>
-            <div className="flex gap-3">
-              {(["hadir", "tidak"] as const).map((option) => (
-                <button
-                  key={option}
-                  type="button"
-                  onClick={() => setAttend(option)}
-                  className={[
-                    "min-h-11 flex-1 cursor-pointer rounded-xl border px-4 py-3 text-sm font-medium transition-colors",
-                    attend === option
-                      ? "border-gold-dark bg-accent text-maroon-deep"
-                      : "border-border bg-paper text-ink-soft hover:border-gold-dark",
-                  ].join(" ")}
-                >
-                  {option === "hadir" ? "Hadir" : "Tidak Hadir"}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {attend === "hadir" && (
-            <div data-reveal>
-              <label className={labelClass} htmlFor="wish-guests">
-                Jumlah Tamu
-              </label>
-              <input
-                id="wish-guests"
-                type="number"
-                min={1}
-                max={10}
-                value={guests}
-                onChange={(e) => setGuests(e.target.value)}
-                className={fieldClass}
-              />
-            </div>
-          )}
 
           <div data-reveal>
             <label className={labelClass} htmlFor="wish-message">
@@ -204,12 +161,12 @@ export default function Wishes() {
             disabled={isSubmitting}
             className="mt-1 min-h-11 cursor-pointer rounded-full bg-accent py-3.5 text-xs font-semibold uppercase tracking-[0.22em] text-maroon-deep shadow-[0_10px_26px_-10px_rgba(0,0,0,0.45)] transition-[filter] hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-60"
           >
-            {isSubmitting ? "Mengirim…" : "Kirim Konfirmasi & Ucapan"}
+            {isSubmitting ? "Mengirim…" : "Kirim Ucapan"}
           </button>
 
           {justSent && (
             <p data-reveal className="-mt-2 text-center font-body text-xs text-sage-dark">
-              Terima kasih atas konfirmasi, ucapan &amp; doanya ✓
+              Terima kasih atas ucapan &amp; doanya ✓
             </p>
           )}
         </form>

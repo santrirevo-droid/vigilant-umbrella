@@ -194,11 +194,10 @@ export default function Gallery() {
   return (
     <section id="galeri" className="relative overflow-hidden px-6 py-24 text-center">
       <div ref={introRef} className="mx-auto max-w-md">
-        <SectionHeading eyebrow="Galeri" title="Momen Kami" />
+        <SectionHeading eyebrow="Galeri" title="Kilas Balik" />
         <p data-reveal className="mx-auto mt-4 max-w-sm font-body text-[15px] leading-[1.6] text-on-maroon-soft">
-          {gallerySections.length > 0
-            ? "Rangkaian momen menuju hari bahagia kami."
-            : "Foto akan segera hadir di sini menjelang hari bahagia."}
+          Rangkaian momen hari bahagia kami, dari siraman sehari sebelumnya
+          hingga resepsi malam — 17–18 Agustus 2026.
         </p>
       </div>
 

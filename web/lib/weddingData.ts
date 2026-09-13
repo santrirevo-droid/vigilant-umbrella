@@ -1,4 +1,4 @@
-export const WEDDING_DATE_ISO = "2026-11-01T08:00:00+07:00";
+export const WEDDING_DATE_ISO = "2026-08-18T08:00:00+07:00";
 
 export type CoupleRole = "putra" | "putri";
 
@@ -14,47 +14,48 @@ export const couple: Record<
   }
 > = {
   groom: {
-    name: "Saiful Amri Tanjung",
-    shortName: "Saiful",
+    name: "Falah Fauzan, B.Ec.",
+    shortName: "Falah",
     role: "putra",
-    father: "Bapak (TODO: nama ayah)",
-    mother: "Ibu (TODO: nama ibu)",
-    instagram: "@ (TODO)",
+    father: "Bapak Drh. Nonot Suhartono",
+    mother: "Ibu Drh. Heriana Martawati",
+    instagram: "@falfavzan",
   },
   bride: {
-    name: "Nufus Nurcholisoh",
-    shortName: "Nufus",
+    name: "Risyqaa Syafitri, M.Mat.",
+    shortName: "Risyqaa",
     role: "putri",
-    father: "Bapak (TODO: nama ayah)",
-    mother: "Ibu (TODO: nama ibu)",
-    instagram: "@ (TODO)",
+    father: "Bapak Ir. Safawi",
+    mother: "Ibu Tuty Oktavia, S.E.",
+    instagram: "@rsyqaaa",
   },
 };
 
 export const events = [
   {
     title: "Akad Nikah",
-    time: "08.00 WIB — Selesai (TODO: konfirmasi jam)",
-    date: "Minggu, 01 November 2026",
+    time: "08.00 WIB — Selesai",
+    date: "Selasa, 18 Agustus 2026",
   },
   {
     title: "Resepsi",
-    time: "12.00 WIB — 17.00 WIB (TODO: konfirmasi jam)",
-    date: "Minggu, 01 November 2026",
+    time: "12.00 WIB — 17.00 WIB",
+    date: "Selasa, 18 Agustus 2026",
   },
 ];
 
 export const venue = {
-  name: "Rumah Mempelai Wanita",
-  location: "Pandeglang, Banten",
-  mapsUrl: "", // TODO: isi link Google Maps lokasi
+  name: "Mempawah Convention Center",
+  location: "Mempawah, Kalimantan Barat",
+  mapsUrl: "https://maps.app.goo.gl/izf4Vvh5txNW6AZo7",
 };
 
 export const bankAccounts = [
-  { bank: "BCA", number: "7003007539", holder: "Saiful Amri Tanjung" },
+  { bank: "Bank Mandiri", number: "1460021830521", holder: "Risyqaa Syafitri" },
 ];
 
 export const giftAddress = {
-  recipient: "Saiful Amri Tanjung",
-  address: "(TODO: alamat lengkap untuk kirim kado, Pandeglang, Banten)",
+  recipient: "Falah Fauzan",
+  address:
+    "Jl. Alam Indah 2 No.7, Cibatu, Cikarang Sel., Kabupaten Bekasi, Jawa Barat 17530, Indonesia",
 };
